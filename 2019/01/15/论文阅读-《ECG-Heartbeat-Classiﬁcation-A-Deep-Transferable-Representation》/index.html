@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="A boring person.">
+    <title>论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》 | caoqi95&#39;blog</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x8FD9;&amp;#x7BC7;&amp;#x8BBA;&amp;#x6587;&amp;#x53D1;&amp;#x81EA; 2018 &amp;#x5E74;&amp;#xFF0C;&amp;#x51FA;&amp;#x81EA;&amp;#x6D1B;&amp;#x6749;&amp;#x77F6;&amp;#x5927;&amp;#x5B66;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x56E2;&amp;#x961F;&amp;#xFF0C;&amp;#x4E3B;&amp;#x8981;&amp;#x5BF9; 5">
+<meta name="keywords" content="生物医学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="&amp;#x8FD9;&amp;#x7BC7;&amp;#x8BBA;&amp;#x6587;&amp;#x53D1;&amp;#x81EA; 2018 &amp;#x5E74;&amp;#xFF0C;&amp;#x51FA;&amp;#x81EA;&amp;#x6D1B;&amp;#x6749;&amp;#x77F6;&amp;#x5927;&amp;#x5B66;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x56E2;&amp;#x961F;&amp;#xFF0C;&amp;#x4E3B;&amp;#x8981;&amp;#x5BF9; 5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png">
+<meta property="og:updated_time" content="2019-01-27T09:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》">
+<meta name="twitter:description" content="&amp;#x8FD9;&amp;#x7BC7;&amp;#x8BBA;&amp;#x6587;&amp;#x53D1;&amp;#x81EA; 2018 &amp;#x5E74;&amp;#xFF0C;&amp;#x51FA;&amp;#x81EA;&amp;#x6D1B;&amp;#x6749;&amp;#x77F6;&amp;#x5927;&amp;#x5B66;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x56E2;&amp;#x961F;&amp;#xFF0C;&amp;#x4E3B;&amp;#x8981;&amp;#x5BF9; 5">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "caoqi95",
+  "url": "http://caoqi95.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>caoqi95&#39;blog</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">caoqi95</a>
+                    
+                        <div class="meta">
+                            Programer / Deep Learner
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Wenzhou</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/caoqi95"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="https://twitter.com/stayherewait"><i class="large twitter icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item">
+        <i class="home icon"></i>
+        caoqi95
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>&#x8FD9;&#x7BC7;&#x8BBA;&#x6587;&#x53D1;&#x81EA; 2018 &#x5E74;&#xFF0C;&#x51FA;&#x81EA;&#x6D1B;&#x6749;&#x77F6;&#x5927;&#x5B66;&#x7684;&#x4E00;&#x4E2A;&#x56E2;&#x961F;&#xFF0C;&#x4E3B;&#x8981;&#x5BF9; 5 &#x79CD;&#x4E0D;&#x540C;&#x5FC3;&#x7387;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x5206;&#x7C7B;&#x53CA;&#x9884;&#x6D4B; MI&#xFF08;&#x5FC3;&#x808C;&#x6897;&#x6B7B;&#xFF09;&#x3002;&#x8BBA;&#x6587;&#x5730;&#x5740;&#xFF1A;<a href="https://arxiv.org/pdf/1805.00794.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1805.00794.pdf</a> &#x3002;&#x6700;&#x8FD1;&#x6B63;&#x597D;&#x5728;&#x5B66;&#x4E60; ECG &#x65B9;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#xFF0C;&#x5728; kaggle &#x627E;&#x6570;&#x636E;&#x96C6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6B63;&#x597D;&#x770B;&#x5230;&#x6709;&#x4EBA;&#x7528;&#x4E86;&#x8FD9;&#x7BC7;&#x8BBA;&#x6587;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x590D;&#x73B0;&#x4E86;&#x8BBA;&#x6587;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5C31;&#x9605;&#x8BFB;&#x4E0B;&#x8BBA;&#x6587;&#xFF0C;&#x5E76;&#x770B;&#x770B;&#x5B9E;&#x73B0;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<h3 id="&#x5B9E;&#x9A8C;&#x7684;&#x6570;&#x636E;&#x96C6;"><a href="#&#x5B9E;&#x9A8C;&#x7684;&#x6570;&#x636E;&#x96C6;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x7684;&#x6570;&#x636E;&#x96C6;"></a>&#x5B9E;&#x9A8C;&#x7684;&#x6570;&#x636E;&#x96C6;</h3><ul class="ui list">
+<li><p><a href="https://www.physionet.org/physiobank/database/mitdb/" target="_blank" rel="noopener">MIT-BIH &#x5FC3;&#x5F8B;&#x5931;&#x5E38;&#x6570;&#x636E;&#x96C6;</a>&#xFF1A;</p>
+<ul>
+<li>47 &#x4E2A;&#x4E0D;&#x540C;&#x5BF9;&#x8C61;</li>
+<li>&#x91C7;&#x6837;&#x9891;&#x7387;&#xFF1A;360 Hz</li>
+<li>&#x7531; 2 &#x4E2A;&#x5FC3;&#x810F;&#x75C5;&#x4E13;&#x5BB6;&#x6807;&#x8BB0;</li>
+</ul>
+<p>&#x8BBA;&#x6587;&#x4E2D;&#x5C06;&#x4E13;&#x5BB6;&#x7684;&#x6807;&#x8BB0;&#x6309;&#x7167; AAMI &#x7684;&#x6807;&#x51C6;&#x5206;&#x6210;&#x4E0B;&#x9762; 5 &#x4E2D;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#x522B;&#xFF1A;</p>
+</li>
+</ul>
+<p><a class="magnific-img" href="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/1.png"><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/1.png" alt="" class="ui centered image"></a></p>
+<ul class="ui list">
+<li><a href="https://physionet.org/physiobank/database/ptbdb/" target="_blank" rel="noopener">PTB &#x8BCA;&#x65AD;&#x5FC3;&#x7535;&#x56FE;&#x6570;&#x636E;&#x5E93;</a>&#xFF1A;<ul>
+<li>290 &#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#xFF1A;<ul>
+<li>148 &#x4E2A;&#x88AB;&#x8BCA;&#x65AD;&#x4E3A; MI</li>
+<li>52 &#x4E2A;&#x5065;&#x5EB7;</li>
+<li>&#x5176;&#x4F59;&#x88AB;&#x8BCA;&#x65AD;&#x4E3A; 7 &#x79CD;&#x4E0D;&#x540C;&#x7684;&#x75BE;&#x75C5;</li>
+</ul>
+</li>
+<li>&#x91C7;&#x7528; 12 &#x5BFC;&#x8054;</li>
+<li>&#x91C7;&#x6837;&#x9891;&#x7387;&#xFF1A;1000 Hz</li>
+</ul>
+</li>
+</ul>
+<p>&#x5728;&#x5B9E;&#x9A8C;&#x4E2D;&#xFF0C;&#x53EA;&#x4F7F;&#x7528; ECG &#x5BFC;&#x8054; II&#xFF0C;MI &#x53CA;&#x5065;&#x5EB7;&#x7684;&#x6837;&#x672C;&#x3002;&#x4E14;&#x5728;&#x5B9E;&#x9A8C;&#x4E2D;&#xFF0C;&#x91CD;&#x65B0;&#x7684;&#x91C7;&#x6837;&#x9891;&#x7387;&#x4E3A; 125 Hz&#x3002;</p>
+<p>kaggle &#x4E0A;&#x7684;<a href="https://www.kaggle.com/shayanfazeli/heartbeat/home" target="_blank" rel="noopener"> &#x6570;&#x636E;&#x96C6; </a>&#x5DF2;&#x7ECF;&#x628A;&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x4E86;&#xFF0C;&#x540E;&#x9762;&#x590D;&#x73B0;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x3002;</p>
+<h3 id="&#x5B9E;&#x9A8C;&#x65B9;&#x6CD5;"><a href="#&#x5B9E;&#x9A8C;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x65B9;&#x6CD5;"></a>&#x5B9E;&#x9A8C;&#x65B9;&#x6CD5;</h3><ul class="ui list">
+<li><p><strong>&#x9884;&#x5904;&#x7406;</strong></p>
+<p><a class="magnific-img" href="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/2.png"><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/2.png" alt="" class="ui centered image"></a><br>&#x503C;&#x5F97;&#x4E00;&#x63D0;&#x7684;&#x662F;&#xFF0C;&#x8BBA;&#x6587;&#x4E2D;&#x5EFA;&#x8BAE;&#x7684;&#x8282;&#x62CD;&#x6570;&#x636E;&#x63D0;&#x53D6;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x6709;&#x6548;&#x5730;&#x4ECE;&#x5177;&#x6709;&#x4E0D;&#x540C;&#x5F62;&#x6001;&#x7684;&#x4FE1;&#x53F7;&#x4E2D;&#x63D0;&#x53D6; R-R &#x95F4;&#x9694;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x4EFB;&#x4F55;&#x5F62;&#x5F0F;&#x7684;&#x6EE4;&#x6CE2;&#xFF0C;&#x6216;&#x4EFB;&#x4F55;&#x5BF9;&#x4FE1;&#x53F7;&#x5F62;&#x6001;&#x6216;&#x9891;&#x8C31;&#x505A;&#x51FA;&#x4EFB;&#x4F55;&#x5047;&#x8BBE;&#x7684;&#x5904;&#x7406;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x6240;&#x6709;&#x63D0;&#x53D6;&#x7684;&#x8282;&#x62CD;&#x6570;&#x636E;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x8FD9;&#x5BF9;&#x4E8E;&#x7528;&#x4F5C;&#x540E;&#x7EED;&#x5904;&#x7406;&#x7684;&#x8F93;&#x5165;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x3002;<br><a class="magnific-img" href="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/3.png"><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/3.png" alt="" class="ui centered image"></a></p>
+<p>kaggle &#x4E0A;&#x7684;&#x6570;&#x636E;&#x96C6;&#x662F;&#x5904;&#x7406;&#x8FC7;&#x540E;&#x7684;&#x3002;</p>
+</li>
+</ul>
+<ul class="ui list">
+<li><strong>&#x8BAD;&#x7EC3;&#x5FC3;&#x5F8B;&#x8DF3;&#x52A8;&#x5206;&#x7C7B;&#x5668;</strong><br>&#x5728; MIT-BIH &#x7684;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#xFF0C;&#x91C7;&#x7528;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x6765;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x5206;&#x7C7B;&#x5668;&#x3002;&#x7ECF;&#x8FC7;&#x8BAD;&#x7EC3;&#x7684;&#x7F51;&#x7EDC;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5FC3;&#x810F;&#x8DF3;&#x52A8;&#x5206;&#x7C7B;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x7684;&#x5B9E;&#x9A8C;&#x4E2D;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5B83;&#x53EF;&#x4EE5;&#x7528;&#x4F5C;&#x5FC3;&#x8DF3;&#x7684;&#x4FE1;&#x606F;&#x8868;&#x793A;&#x3002;&#x6A21;&#x578B;&#x7684;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;<br><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/4.png" alt=""></li>
+</ul>
+<blockquote>
+<p>Here, all convolution layers are applying 1-D convolution through time and each have 32 kernels of size 5. We also use max pooling of size 5 and stride 2 in all pooling layers. The predictor network consists of &#xFB01;ve residual blocks followed by two fully-connected layers with 32 neurons each and a softmax layer to predict output class probabilities. Each residual block contains two convolutional layers, two ReLU nonlinearities [19], a residual skip connection [20], and a pooling layer. In total, the resulting network is a deep network consisting of 13 weight layers.</p>
+</blockquote>
+<ul class="ui list">
+<li><strong>&#x8BAD;&#x7EC3; MI &#x9884;&#x6D4B;&#x5668;</strong></li>
+</ul>
+<p>&#x8BAD;&#x7EC3;&#x5B8C;&#x5FC3;&#x810F;&#x8DF3;&#x52A8;&#x5206;&#x7C7B;&#x5668;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x8F93;&#x51FA;&#x6FC0;&#x6D3B;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x8868;&#x793A;&#x3002;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x5C06;&#x5176;&#x8F93;&#x5165;&#x6709;&#x4E2A;&#x4E24;&#x5C42;&#x7684;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF0C;&#x6BCF;&#x4E00;&#x5C42;&#x5305;&#x542B; 32 &#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x3002;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53EA;&#x8BAD;&#x7EC3;&#x6700;&#x540E;&#x8FD9;&#x4E24;&#x5C42;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5176;&#x4F59;&#x5C42;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x51BB;&#x7ED3;&#x3002;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x5206;&#x7C7B;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<ul class="ui list">
+<li><strong>&#x53C2;&#x6570;&#x7EC6;&#x8282;</strong></li>
+</ul>
+<blockquote>
+<p>Cross entropy loss on the softmax outputs is used as the loss function. For training the networks, we used Adam optimization method [22] with the learning rate, beta-1, and beta-2 of 0.001, 0.9, and 0.999, respectively. Learning rate is decayed exponentially with the decay factor of 0.75 every 10000 iterations. Training all the networks took less than two hours on a GeForce GTX 1080Ti processor.</p>
+</blockquote>
+<h3 id="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"><a href="#&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"></a>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;</h3><ul class="ui list">
+<li><strong>&#x5FC3;&#x5F8B;&#x8DF3;&#x52A8;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x7ED3;&#x679C;</strong>&#xFF1A;<br><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/5.png" alt=""></li>
+</ul>
+<p><a class="magnific-img" href="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/6.png"><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/6.png" alt="" class="ui centered image"></a></p>
+<p>&#x8868; II &#x5217;&#x51FA;&#x4E86;&#x6240;&#x63D0;&#x65B9;&#x6CD5;&#x7684;&#x5E73;&#x5747;&#x51C6;&#x786E;&#x5EA6;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x4E0E;&#x6587;&#x732E;&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x4E86;&#x6BD4;&#x8F83;&#x3002;&#x8BE5;&#x8BBA;&#x6587;&#x5EFA;&#x8BAE; MIT-BIH &#x7684;&#x9884;&#x6D4B;&#x5668;&#x5E76;&#x4E0D;&#x662F;&#x7814;&#x7A76;&#x7684;&#x552F;&#x4E00;&#x76EE;&#x7684;&#xFF0C;&#x4F46;&#x6839;&#x636E;&#x7ED3;&#x679C;&#xFF0C;&#x8BE5;&#x8BBA;&#x6587;&#x6240;&#x53D6;&#x5F97;&#x7684;&#x51C6;&#x786E;&#x6027;&#x4E0E;&#x6700;&#x5148;&#x8FDB;&#x7684;&#x65B9;&#x6CD5;&#x76F8;&#x6BD4;&#x5177;&#x6709;&#x7ADE;&#x4E89;&#x529B;&#x3002;&#x8FD9;&#x80CC;&#x540E;&#x7684;&#x4E3B;&#x8981;&#x539F;&#x56E0;&#x53EF;&#x80FD;&#x662F;&#x5728;&#x7F51;&#x7EDC;&#x67B6;&#x6784;&#x4E2D;&#x4F7F;&#x7528;&#x4E86; <strong>&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;</strong> &#x8FD9;&#x4E00;&#x4E8B;&#x5B9E;&#xFF0C;&#x4E0E;&#x4F7F;&#x7528;&#x4F20;&#x7EDF;&#x7684;&#x5377;&#x79EF;&#x67B6;&#x6784;&#x76F8;&#x6BD4;&#xFF0C;&#x53EF;&#x4EE5;&#x8BAD;&#x7EC3;&#x66F4;&#x6DF1;&#x7684;&#x7F51;&#x7EDC;&#x3002;</p>
+<ul class="ui list">
+<li><p><strong>MI &#x9884;&#x6D4B;&#x5668;&#x7684;&#x7ED3;&#x679C;</strong></p>
+<p><a class="magnific-img" href="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/7.png"><img src="/2019/01/15/&#x8BBA;&#x6587;&#x9605;&#x8BFB;-&#x300A;ECG-Heartbeat-Classi&#xFB01;cation-A-Deep-Transferable-Representation&#x300B;/7.png" alt="" class="ui centered image"></a></p>
+<p>&#x8868; III &#x7ED9;&#x51FA;&#x4E86;&#x6240;&#x63D0;&#x51FA;&#x7684; MI &#x5206;&#x7C7B;&#x65B9;&#x6CD5;&#x548C;&#x6587;&#x732E;&#x4E2D;&#x5176;&#x4ED6;&#x5DE5;&#x4F5C;&#x7684;&#x5E73;&#x5747;&#x51C6;&#x786E;&#x5EA6;&#xFF0C;&#x7CBE;&#x786E;&#x5EA6;&#x548C;&#x53EC;&#x56DE;&#x7387;&#x4E4B;&#x95F4;&#x7684;&#x6BD4;&#x8F83;&#x3002;&#x9664; Sharma &#x7B49;&#x4EBA;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;&#x5916;&#xFF0C;&#x8BE5;&#x8BBA;&#x6587;&#x6240;&#x63D0;&#x65B9;&#x6CD5;&#x7684;&#x6027;&#x80FD;&#x4F18;&#x4E8E;&#x5176;&#x4ED6;&#x6240;&#x6709;&#x5DE5;&#x4F5C;&#x3002; &#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#x663E;&#x793A;&#x4E86;&#x66F4;&#x9AD8;&#x7684;&#x51C6;&#x786E;&#x5EA6;&#x548C;&#x7CBE;&#x786E;&#x5EA6;&#x503C;&#x3002;&#x4F46;&#x662F;&#xFF0C; Sharma &#x7B49;&#x4EBA;&#xFF0C;&#x4F7F;&#x7528; 12 &#x5BFC;&#x8054;&#x5FC3;&#x7535;&#x56FE;&#x800C;&#x4E0D;&#x662F;&#x53EA;&#x4F7F;&#x7528;&#x5BFC;&#x8054; II&#x3002;</p>
+</li>
+</ul>
+<h3 id="&#x590D;&#x73B0;&#x4EE3;&#x7801;&#x5730;&#x5740;"><a href="#&#x590D;&#x73B0;&#x4EE3;&#x7801;&#x5730;&#x5740;" class="headerlink" title="&#x590D;&#x73B0;&#x4EE3;&#x7801;&#x5730;&#x5740;"></a>&#x590D;&#x73B0;&#x4EE3;&#x7801;&#x5730;&#x5740;</h3><ul class="ui list">
+<li>&#x4E0B;&#x9762;&#x7684;&#x94FE;&#x63A5;&#x53EA;&#x590D;&#x73B0;&#x4E86;&#x8BBA;&#x6587;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;&#xFF1A;<ul>
+<li>&#x53C2;&#x8003;&#x7684; Kaggle Kernels &#x539F;&#x5730;&#x5740;&#xFF1A;<a href="https://www.kaggle.com/coni57/model-from-arxiv-1805-00794" target="_blank" rel="noopener">&#x70B9;&#x51FB;</a></li>
+<li>&#x6839;&#x636E; Kaggle Kernels &#x5B8C;&#x6210;&#x7684; Jupyter Notebook&#xFF1A;<a href="https://github.com/caoqi95/My_Kaggle_Journey/blob/master/LearnFromKernels/ECG%20Heartbeat%20Classification.ipynb" target="_blank" rel="noopener">&#x70B9;&#x51FB;</a></li>
+</ul>
+</li>
+<li>&#x4E24;&#x4E2A;&#x5B9E;&#x9A8C;&#x90FD;&#x590D;&#x73B0;&#x4E86;&#xFF1A;<ul>
+<li>&#x5B8C;&#x6574;&#x5B9E;&#x9A8C;&#x7684;&#x4EE3;&#x7801;&#x5730;&#x5740;&#xFF1A;<a href="https://github.com/caoqi95/ECG-Projects/tree/master/ECG_Heart_Classification" target="_blank" rel="noopener">&#x70B9;&#x51FB;</a></li>
+<li>&#x63A8;&#x8350;&#x4E00;&#x4E2A;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F5C;&#x8005;&#x8FD8;&#x4E0E;&#x4ECE;&#x5934;&#x8BAD;&#x7EC3;&#x7684;&#x65B9;&#x6CD5;&#x548C;&#x5728;&#x5B66;&#x4E60;&#x5230;&#x7684;&#x7279;&#x5F81;&#x4E0A;&#x5B8C;&#x6574;&#x8BAD;&#x7EC3;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x4E86;&#x6BD4;&#x8F83;&#xFF1A;[&#x70B9;&#x51FB;](</li>
+</ul>
+</li>
+</ul>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-01-15T06:55:56.000Z" itemprop="datePublished">2019-01-15</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/生物医学/">生物医学</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2019/01/16/假期太短了/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    假期太短了
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/13/每日一问之什么是递归/" class="ui tiny button">
+                    
+                    每日一问之什么是递归
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#实验的数据集"><span>实验的数据集</span></a></li><li><a href="#实验方法"><span>实验方法</span></a></li><li><a href="#实验结果"><span>实验结果</span></a></li><li><a href="#复现代码地址"><span>复现代码地址</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2019 <a href="/">caoqi95</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

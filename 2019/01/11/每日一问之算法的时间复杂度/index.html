@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="A boring person.">
+    <title>每日一问之算法的时间复杂度 | caoqi95&#39;blog</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x5199;&amp;#x5728;&amp;#x524D;&amp;#x9762;&amp;#x8FD9;&amp;#x5468;&amp;#x8C03;&amp;#x6574;&amp;#x4E86;&amp;#x4E0B;&amp;#x8BA1;&amp;#x5212;&amp;#xFF0C;&amp;#x9274;&amp;#x4E8E;&amp;#x5F88;&amp;#x591A;&amp;#x4E0D;&amp;#x61C2;&amp;#x7684;&amp;#x77E5;&amp;#x8BC6;&amp;#x9700;&amp;#x8981;&amp;#x5927;">
+<meta name="keywords" content="算法知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一问之算法的时间复杂度">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/11/每日一问之算法的时间复杂度/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="&amp;#x5199;&amp;#x5728;&amp;#x524D;&amp;#x9762;&amp;#x8FD9;&amp;#x5468;&amp;#x8C03;&amp;#x6574;&amp;#x4E86;&amp;#x4E0B;&amp;#x8BA1;&amp;#x5212;&amp;#xFF0C;&amp;#x9274;&amp;#x4E8E;&amp;#x5F88;&amp;#x591A;&amp;#x4E0D;&amp;#x61C2;&amp;#x7684;&amp;#x77E5;&amp;#x8BC6;&amp;#x9700;&amp;#x8981;&amp;#x5927;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-27T09:06:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一问之算法的时间复杂度">
+<meta name="twitter:description" content="&amp;#x5199;&amp;#x5728;&amp;#x524D;&amp;#x9762;&amp;#x8FD9;&amp;#x5468;&amp;#x8C03;&amp;#x6574;&amp;#x4E86;&amp;#x4E0B;&amp;#x8BA1;&amp;#x5212;&amp;#xFF0C;&amp;#x9274;&amp;#x4E8E;&amp;#x5F88;&amp;#x591A;&amp;#x4E0D;&amp;#x61C2;&amp;#x7684;&amp;#x77E5;&amp;#x8BC6;&amp;#x9700;&amp;#x8981;&amp;#x5927;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "caoqi95",
+  "url": "http://caoqi95.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>caoqi95&#39;blog</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">caoqi95</a>
+                    
+                        <div class="meta">
+                            Programer / Deep Learner
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Wenzhou</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/caoqi95"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="https://twitter.com/stayherewait"><i class="large twitter icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item">
+        <i class="home icon"></i>
+        caoqi95
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-每日一问之算法的时间复杂度" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    每日一问之算法的时间复杂度
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x5199;&#x5728;&#x524D;&#x9762;"><a href="#&#x5199;&#x5728;&#x524D;&#x9762;" class="headerlink" title="&#x5199;&#x5728;&#x524D;&#x9762;"></a>&#x5199;&#x5728;&#x524D;&#x9762;</h3><p>&#x8FD9;&#x5468;&#x8C03;&#x6574;&#x4E86;&#x4E0B;&#x8BA1;&#x5212;&#xFF0C;&#x9274;&#x4E8E;&#x5F88;&#x591A;&#x4E0D;&#x61C2;&#x7684;&#x77E5;&#x8BC6;&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x65F6;&#x95F4;&#x53BB;&#x6D88;&#x5316;&#x53CA;&#x6574;&#x7406;&#x8F93;&#x51FA;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6539;&#x4E3A;&#x6BCF;&#x9022;&#x8282;&#x5047;&#x65E5;&#x66F4;&#x65B0;&#x6BCF;&#x65E5;&#x4E00;&#x95EE;&#x3002;</p>
+<p>&#x4ECA;&#x5929;&#x6765;&#x6574;&#x7406;&#x7B97;&#x6CD5;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#x3002;&#x5728;&#x7B97;&#x6CD5;&#x4E2D;&#x5305;&#x542B;&#x4E24;&#x79CD;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x3002;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E3B;&#x8981;&#x603B;&#x7ED3; <strong>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</strong> &#x76F8;&#x5173;&#x7684;&#x77E5;&#x8BC6;&#x70B9;&#x3002;</p>
+<ul class="ui list">
+<li>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</li>
+<li>&#x5927; O &#x8868;&#x793A;&#x6CD5;</li>
+<li>&#x8BA1;&#x7B97;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</li>
+</ul>
+<h3 id="&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"><a href="#&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;" class="headerlink" title="&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></a>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</h3><ul class="ui list">
+<li><p><strong>&#x65F6;&#x95F4;&#x9891;&#x5EA6;</strong><br>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4E2D;&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x771F;&#x6B63;&#x7684;&#x53BB;&#x8BA1;&#x7B97;&#x7B97;&#x6CD5;&#x7684;&#x6BCF;&#x6761;&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x53EA;&#x6709;&#x771F;&#x6B63;&#x4E0A;&#x673A;&#x6D4B;&#x8BD5;&#x624D;&#x80FD;&#x77E5;&#x9053;&#x5927;&#x6982;&#x65F6;&#x95F4;&#x3002;&#x4F46;&#x662F;&#x5B9E;&#x9645;&#x5DE5;&#x4F5C;&#x4E2D;&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x628A;&#x6240;&#x6709;&#x7684;&#x7B97;&#x6CD5;&#x90FD;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x4E00;&#x904D;&#xFF0C;&#x8FD9;&#x4E0D;&#x73B0;&#x5B9E;&#x4E5F;&#x6D6A;&#x8D39;&#x65F6;&#x95F4;&#x3002;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7B97;&#x6CD5;&#x4E2D;&#x4E3B;&#x8981;&#x90E8;&#x5206;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x4E0E;&#x7B97;&#x6CD5;&#x4E2D;&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x6B21;&#x6570;&#x6210;&#x6B63;&#x6BD4;&#xFF0C;&#x6240;&#x4EE5;<strong>&#x5C06;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x4E2D;&#x7684;&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x6B21;&#x6570;&#x79F0;&#x4E3A;&#x8BED;&#x53E5;&#x9891;&#x5EA6;&#x6216;&#x65F6;&#x95F4;&#x9891;&#x5EA6;&#xFF0C;&#x8BB0;&#x4E3A; T(n)</strong>&#x3002;n &#x4E3A;&#x95EE;&#x9898;&#x7684;&#x89C4;&#x6A21;&#xFF0C;&#x65F6;&#x95F4;&#x9891;&#x5EA6;&#x4F1A;&#x968F;&#x7740; n &#x7684;&#x53D8;&#x5316;&#x800C;&#x53D8;&#x5316;&#x3002;</p>
+</li>
+<li><p><strong>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</strong><br>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x4E2D;&#xFF0C;<strong>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF08;Time Complexity&#xFF09;</strong>&#x662F;&#x4E00;&#x4E2A;&#x5B9A;&#x6027;&#x63CF;&#x8FF0;&#x8FD0;&#x884C;&#x7B97;&#x6CD5;&#x6240;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4;&#x7684;&#x5EA6;&#x91CF;&#x3002;<strong>&#x5E38;&#x7528;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x6765;&#x5EA6;&#x91CF;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x8BB0;&#x4E3A; T(n) = O(f(n))</strong>&#x3002;</p>
+<blockquote>
+<p>&#x5728;&#x65F6;&#x95F4;&#x9891;&#x5EA6; T(n) &#x4E2D;&#xFF0C;n &#x53C8;&#x4EE3;&#x8868;&#x7740;&#x95EE;&#x9898;&#x7684;&#x89C4;&#x6A21;&#xFF0C;&#x5F53; n &#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x65F6;&#xFF0C;T(n) &#x4E5F;&#x4F1A;&#x4E0D;&#x65AD;&#x5730;&#x968F;&#x4E4B;&#x53D8;&#x5316;&#x3002;&#x4E3A;&#x4E86;&#x4E86;&#x89E3;&#x8FD9;&#x4E2A;&#x53D8;&#x5316;&#x7684;&#x89C4;&#x5F8B;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x8FD9;&#x4E00;&#x6982;&#x5FF5;&#x5C31;&#x88AB;&#x5F15;&#x5165;&#x4E86;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x7B97;&#x6CD5;&#x57FA;&#x7840;&#x64CD;&#x4F5C;&#x7684;&#x91CD;&#x590D;&#x6267;&#x884C;&#x6B21;&#x6570;&#x4E3A;&#x95EE;&#x9898;&#x89C4;&#x6A21; n &#x7684;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x65F6;&#x95F4;&#x9891;&#x5EA6; T(n)&#x3002;&#x5982;&#x679C;&#x6709;&#x67D0;&#x4E2A;&#x8F85;&#x52A9;&#x51FD;&#x6570; f(n)&#xFF0C;&#x5F53;&#x8D8B;&#x4E8E;&#x65E0;&#x7A77;&#x5927;&#x7684;&#x65F6;&#x5019;&#xFF0C;T(n)/f(n) &#x7684;&#x6781;&#x9650;&#x503C;&#x662F;&#x4E0D;&#x4E3A;&#x96F6;&#x7684;&#x67D0;&#x4E2A;&#x5E38;&#x6570;&#xFF0C;&#x90A3;&#x4E48; f(n) &#x662F; T(n) &#x7684;&#x540C;&#x6570;&#x91CF;&#x7EA7;&#x51FD;&#x6570;&#xFF0C;&#x8BB0;&#x4F5C; T(n)=O(f(n))&#xFF0C;&#x88AB;&#x79F0;&#x4E3A;&#x7B97;&#x6CD5;&#x7684;&#x6E10;&#x8FDB;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x53C8;&#x7B80;&#x79F0;&#x4E3A;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x3002;- &#x7B97;&#x6CD5;&#xFF08;&#x4E00;&#xFF09;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;<sup>[1]</sup></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="&#x5927;-O-&#x8868;&#x793A;&#x6CD5;"><a href="#&#x5927;-O-&#x8868;&#x793A;&#x6CD5;" class="headerlink" title="&#x5927; O &#x8868;&#x793A;&#x6CD5;"></a>&#x5927; O &#x8868;&#x793A;&#x6CD5;</h3><p>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x9886;&#x57DF;&#xFF0C;&#x4F1A;&#x7528;&#x5927; O &#x7B26;&#x53F7;&#x6216;&#x8005;&#x8BF4;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x6765;&#x5EA6;&#x91CF;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x3002;&#x90A3;&#x4EC0;&#x4E48;&#x662F;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x5462;&#xFF1F;</p>
+<blockquote>
+<p>Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann, Edmund Landau, and others collectively called Bachmann&#x2013;Landau notation or asymptotic notation.<br>&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x662F;&#x4E00;&#x79CD;&#x6570;&#x5B66;&#x7B26;&#x53F7;&#xFF0C;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;&#x5F53;&#x53C2;&#x6570;&#x8D8B;&#x5411;&#x4E8E;&#x7279;&#x5B9A;&#x503C;&#x6216;&#x65E0;&#x7A77;&#x5927;&#x65F6;&#x51FD;&#x6570;&#x7684;&#x9650;&#x5236;&#x884C;&#x4E3A;&#x3002;&#x5B83;&#x662F; Paul Bachmann&#xFF0C;Edmund Landau &#x7B49;&#x4EBA;&#x53D1;&#x660E;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x7B26;&#x53F7;&#x7684;&#x4E4B;&#x4E00;&#xFF0C;&#x7EDF;&#x79F0;&#x4E3A;&#x5DF4;&#x8D6B;&#x66FC; - &#x5170;&#x9053;&#x7B26;&#x53F7;&#x6216;&#x6E10;&#x8FD1;&#x7B26;&#x53F7;&#x3002;- &#x7EF4;&#x57FA;&#x767E;&#x79D1;<sup>[4]</sup></p>
+</blockquote>
+<p>&#x56E0;&#x4E3A;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; T(n)=O(f(n))&#xFF0C;&#x6709;&#x4E2A;&#x8D8B;&#x8FD1;&#x51FD;&#x6570; O()&#xFF0C;&#x6240;&#x4EE5;&#x88AB;&#x79F0;&#x4E3A;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x3002;&#x73B0;&#x5728;&#x5047;&#x8BBE;&#x4E00;&#x4E2A;&#x5217;&#x8868;&#x5305;&#x542B; n &#x4E2A;&#x5143;&#x7D20;&#x3002;&#x6211;&#x4EEC;&#x7528;&#x7B80;&#x5355;&#x67E5;&#x627E;&#x7684;&#x8BDD;&#xFF0C;&#x9700;&#x8981;&#x904D;&#x5386;&#x68C0;&#x67E5;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6267;&#x884C; n &#x6B21;&#x64CD;&#x4F5C;&#x3002;&#x4F7F;&#x7528;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#xFF0C;&#x5176;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x4E3A; O(n)&#xFF0C;f(n) = n &#x4E3A;&#x64CD;&#x4F5C;&#x6570;&#x3002;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x662F;&#x6CA1;&#x6709;&#x5355;&#x4F4D;&#x7684;&#xFF0C;&#x5B83;&#x6307;&#x7684;&#x5E76;&#x4E0D;&#x662F;&#x4EE5;&#x79D2;&#x4E3A;&#x5355;&#x4F4D;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x3002;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x80FD;&#x591F;&#x7528;&#x6765;&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x6570;&#xFF0C;&#x901A;&#x5E38;&#x5B83;&#x6307;&#x7684;&#x662F;&#x7B97;&#x6CD5;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x7684;&#x589E;&#x901F;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4E3A;&#x68C0;&#x67E5;&#x957F;&#x5EA6;&#x4E3A; 8 &#x7684;&#x5217;&#x8868;&#xFF0C;&#x7528;&#x7B80;&#x5355;&#x67E5;&#x627E;&#x6CD5;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(f(n))&#xFF0C;f(n) = 8&#xFF1B;&#x5982;&#x679C;&#x7528;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x7684;&#x8BDD;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(f(n))&#xFF0C;f(n) = log<sub>2</sub> 8 = 3&#x3002;&#x4ECE;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x4E0A;&#x770B;&#x6765;&#xFF0C;&#x51E0;&#x4E4E;&#x5FEB;&#x4E86; 3 &#x500D;&#x3002;</p>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;<strong>&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x63CF;&#x8FF0;&#x7684;&#x59CB;&#x7EC8;&#x662F;&#x6700;&#x574F;&#x7684;&#x60C5;&#x51B5;</strong>&#x3002;</p>
+<p>&#x5E38;&#x89C1;&#x7684;&#x4E00;&#x4E9B;&#x5927; O &#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#xFF1A;</p>
+<ul class="ui list">
+<li>O(1)&#xFF1A;&#x5E38;&#x6570;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x54C8;&#x5E0C;&#x8868;</li>
+<li>O(n)&#xFF1A;&#x7EBF;&#x6027;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x7B80;&#x5355;&#x67E5;&#x627E;</li>
+<li>O(log<sub>2</sub>n)&#xFF1A;&#x5BF9;&#x6570;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x4E8C;&#x5206;&#x67E5;&#x627E;</li>
+<li>O(nlog<sub>2</sub>n)&#xFF1A;&#x5982;&#x5FEB;&#x901F;&#x6392;&#x5E8F;</li>
+<li>O(n<sup>2</sup>)&#xFF1A;&#x5982;&#x9009;&#x62E9;&#x6392;&#x5E8F;</li>
+<li>O(n!)&#xFF1A;&#x9636;&#x4E58;&#x65F6;&#x95F4;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x5E38;&#x6162;&#x7684;&#x7B97;&#x6CD5;</li>
+</ul>
+<h3 id="&#x8BA1;&#x7B97;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"><a href="#&#x8BA1;&#x7B97;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;" class="headerlink" title="&#x8BA1;&#x7B97;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;"></a>&#x8BA1;&#x7B97;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</h3><p>&#x77E5;&#x9053;&#x4E86;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5B9E;&#x9645;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x8981;&#x600E;&#x4E48;&#x8BA1;&#x7B97;&#x5462;&#xFF1F;&#x4E0B;&#x9762;&#x4E3E;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x3002;</p>
+<p><strong>O(1)</strong>&#xFF1A;&#x63CF;&#x8FF0;&#x4E86;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x4E0D;&#x7BA1;&#x8F93;&#x5165;&#x7684;&#x5927;&#x5C0F;&#x662F;&#x591A;&#x5C11;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x6C38;&#x8FDC;&#x4E3A;&#x5E38;&#x6570;&#xFF08;&#x4E0D;&#x53D8;&#xFF09;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4E0B;&#x65B9;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32; list &#x7684;&#x9996;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x3002;&#x56E0;&#x4E3A;&#x65E0;&#x8BBA;&#x8F93;&#x5165;&#x7684; list &#x6709;&#x591A;&#x957F;&#xFF0C;&#x90FD;&#x53EA;&#x5224;&#x65AD;&#x9996;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#xFF0C;&#x6267;&#x884C;&#x6B21;&#x6570;&#x4E3A; 1&#xFF0C;&#x6240;&#x4EE5;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(1)&#x3002;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isFirstElementNull</span><span class="params">(str_list)</span>:</span></span><br><span class="line">        rerurn str_list[<span class="number">0</span>] == <span class="string">&apos;&apos;</span></span><br></pre></td></tr></table></figure>
+<p><strong>O(n)</strong>&#xFF1A;&#x63CF;&#x8FF0;&#x4E86;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5C06;&#x968F;&#x7740;&#x7B97;&#x6CD5;&#x8F93;&#x5165;&#x7684;&#x589E;&#x52A0;&#x800C;&#x7EBF;&#x6027;&#x589E;&#x52A0;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x5224;&#x65AD;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32; list &#x662F;&#x5426;&#x5305;&#x542B;&#x67D0;&#x4E9B;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x503C;&#x3002;&#x867D;&#x7136;&#x7B97;&#x6CD5;&#x53EF;&#x80FD;&#x4F1A;&#x5F88;&#x65E9;&#x7684;&#x5C31;&#x505C;&#x6B62;&#x5FAA;&#x73AF;&#xFF0C;&#x5E76;&#x4E0D;&#x5B8C;&#x5168;&#x6267;&#x884C;&#x6240;&#x6709;&#x7684;&#x8FED;&#x4EE3;&#xFF0C;&#x4F46;&#x9700;&#x8BB0;&#x5F97;&#x5927; O &#x8868;&#x793A;&#x6CD5;&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x6700;&#x574F;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x6700;&#x5927;&#x8FED;&#x4EE3; n &#x6B21;&#xFF0C;&#x90A3;&#x4E48;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x662F; O(n)&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4E0B;&#x9762;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(n)&#x3002;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainValue</span><span class="params">(str_list, value)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> str_list:</span><br><span class="line">        <span class="keyword">if</span> i == value:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>O(n<sup>2</sup>)</strong>&#xFF1A;&#x63CF;&#x8FF0;&#x4E86;&#x4E00;&#x79CD;&#x7B97;&#x6CD5;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E0E;&#x8F93;&#x5165;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x7684;&#x5E73;&#x65B9;&#x6210;&#x6B63;&#x6BD4;&#x3002;&#x8FD9;&#x5728;&#x6D89;&#x53CA;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5D4C;&#x5957;&#x8FED;&#x4EE3;&#x7684;&#x7B97;&#x6CD5;&#x4E2D;&#x5F88;&#x5E38;&#x89C1;&#x3002;&#x66F4;&#x6DF1;&#x7684;&#x5D4C;&#x5957;&#x8FED;&#x4EE3;&#x5C06;&#x4F1A;&#x6709; O(n<sup>3</sup>)&#xFF0C;O(n<sup>4</sup>) &#x7B49;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x4E24;&#x5C42;&#x8FED;&#x4EE3;&#xFF0C;&#x6309;&#x7167;&#x6700;&#x574F;&#x7684;&#x6253;&#x7B97;&#xFF0C;&#x8FED;&#x4EE3;&#x603B;&#x6B21;&#x6570;&#x4E3A; ixj&#xFF0C;&#x662F;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x76F8;&#x4E58;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8868;&#x793A;&#x4E3A; nxn&#xFF0C;&#x5373; n &#x7684;&#x5E73;&#x65B9;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x4E3A; O(n<sup>2</sup>)&#x3002;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainDuplicates</span><span class="params">(str_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str_list)): <span class="comment"># &#x6700;&#x591A;&#x8FED;&#x4EE3; i &#x6B21;</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str_list): <span class="comment"># &#x6700;&#x591A;&#x8FED;&#x4EE3; j &#x6B21;</span></span><br><span class="line">            <span class="keyword">if</span> i != j <span class="keyword">and</span> str_list[i] = str_list[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>O(log<sub>2</sub>n)</strong>&#xFF1A;&#x63CF;&#x8FF0;&#x7684;&#x662F;&#x4E00;&#x79CD;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x3002;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x662F;&#x4E00;&#x79CD;&#x7B97;&#x6CD5;&#xFF0C;&#x5176;&#x8F93;&#x5165;&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x5E8F;&#x7684;&#x5143;&#x7D20;&#x5217;&#x8868;&#x3002;&#x5982;&#x679C;&#x8981;&#x67E5;&#x627E;&#x7684;&#x5143;&#x7D20;&#x5305;&#x542B;&#x5728;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x8FD4;&#x56DE;&#x5176;&#x4F4D;&#x7F6E;&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE; null &#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x8981;&#x731C;&#x6D4B; 1-100 &#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x3002;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x5C06;&#x6BCF;&#x6B21;&#x8FED;&#x4EE3;&#x7684;&#x6570;&#x636E;&#x96C6;&#x51CF;&#x534A;&#xFF0C;&#x76F4;&#x5230;&#x627E;&#x5230;&#x8BE5;&#x503C;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x5230;&#x5B83;&#x4E0D;&#x518D;&#x5206;&#x5272;&#x6570;&#x636E;&#x96C6;&#x4E3A;&#x6B62;&#x3002; &#x8FED;&#x4EE3;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x96C6;&#x5927;&#x5C0F;&#x4F9D;&#x6B21;&#x6709; n&#xFF0C;n/2&#xFF0C;n/4&#xFF0C;&#x2026;.&#xFF0C;n/2<sup>k</sup>&#xFF08;k &#x4E3A;&#x5FAA;&#x73AF;&#x7684;&#x6B21;&#x6570;&#xFF09;&#x3002;&#x56E0;&#x4E3A;&#x6700;&#x540E;&#x7ED3;&#x679C; n/2<sup>k</sup> &gt;= 1&#x3002;&#x5982;&#x679C;&#x4EE4; n/2<sup>k</sup> = 1&#xFF0C;&#x5C06;&#x5F97;&#x5230; k = log<sub>2</sub>n&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(log<sub>2</sub>n)&#x3002;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(list, item)</span>:</span></span><br><span class="line">    </span><br><span class="line">    low = <span class="number">0</span> </span><br><span class="line">    high = len(list) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high :</span><br><span class="line">        mid = (low + high) % <span class="number">2</span> </span><br><span class="line">        guess = list[mid]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> guess == item:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">if</span> guess &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            low = mid + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<h3 id="&#x53C2;&#x8003;"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</h3><p>[1]. <a href="https://juejin.im/post/58d15f1044d90400691834d4" target="_blank" rel="noopener">&#x7B97;&#x6CD5;&#xFF08;&#x4E00;&#xFF09;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;</a></p>
+<p>[2]. &#x7B97;&#x6CD5;&#x56FE;&#x89E3; - Aditya Bhargava</p>
+<p>[3]. <a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" target="_blank" rel="noopener">A beginner&#x2019;s guide to Big O notation</a></p>
+<p>[4]. <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank" rel="noopener">Big O notation - wikipedia</a></p>
+<p>[5]. <a href="https://www.jianshu.com/p/3a534cb85795" target="_blank" rel="noopener">Binary Search - &#x4E8C;&#x5206;&#x67E5;&#x627E;</a></p>
+<p><em>P.S&#xFF1A;&#x6587;&#x4E2D;&#x6709;&#x9519;&#x6B22;&#x8FCE;&#x6307;&#x51FA;&#xFF0C;&#x4E92;&#x76F8;&#x5B66;&#x4E60;&#x3002;</em></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-01-11T12:15:49.000Z" itemprop="datePublished">2019-01-11</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/算法知识/">算法知识</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2019/01/13/每日一问之什么是递归/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    每日一问之什么是递归
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/11/今天去牙科医院了/" class="ui tiny button">
+                    
+                    今天去牙科医院了
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#写在前面"><span>写在前面</span></a></li><li><a href="#时间复杂度"><span>时间复杂度</span></a></li><li><a href="#大-O-表示法"><span>大 O 表示法</span></a></li><li><a href="#计算时间复杂度"><span>计算时间复杂度</span></a></li><li><a href="#参考"><span>参考</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2019 <a href="/">caoqi95</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="A boring person.">
+    <title>初识语义分割与 FCN | caoqi95&#39;blog</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x6765;&amp;#x81EA;: Fully_Convolutional_Neural_Networks_rendered.ipynb &amp;#x56E0;&amp;#x5B66;&amp;#x4E60;&amp;#x800C;&amp;#x7FFB;&amp;#x8BD1;&amp;#x4E86;&amp;#x8BE5;&amp;#x7EC3;&amp;#x4E60;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识语义分割与 FCN">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x6765;&amp;#x81EA;: Fully_Convolutional_Neural_Networks_rendered.ipynb &amp;#x56E0;&amp;#x5B66;&amp;#x4E60;&amp;#x800C;&amp;#x7FFB;&amp;#x8BD1;&amp;#x4E86;&amp;#x8BE5;&amp;#x7EC3;&amp;#x4E60;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/4.png">
+<meta property="og:updated_time" content="2019-01-27T08:44:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识语义分割与 FCN">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7AE0;&amp;#x6765;&amp;#x81EA;: Fully_Convolutional_Neural_Networks_rendered.ipynb &amp;#x56E0;&amp;#x5B66;&amp;#x4E60;&amp;#x800C;&amp;#x7FFB;&amp;#x8BD1;&amp;#x4E86;&amp;#x8BE5;&amp;#x7EC3;&amp;#x4E60;&amp;#x7684;&amp;#x5185;&amp;#x5BB9;&amp;#x">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/1.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "caoqi95",
+  "url": "http://caoqi95.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>caoqi95&#39;blog</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">caoqi95</a>
+                    
+                        <div class="meta">
+                            Programer / Deep Learner
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Wenzhou</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/caoqi95"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="https://twitter.com/stayherewait"><i class="large twitter icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item">
+        <i class="home icon"></i>
+        caoqi95
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-初识语义分割与-FCN" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    初识语义分割与 FCN
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>&#x672C;&#x6587;&#x7AE0;&#x6765;&#x81EA;: <a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener"><strong>Fully_Convolutional_Neural_Networks_rendered.ipynb</strong></a></p>
+<p>&#x56E0;&#x5B66;&#x4E60;&#x800C;&#x7FFB;&#x8BD1;&#x4E86;&#x8BE5;&#x7EC3;&#x4E60;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x4E0D;&#x59A5;&#x5220;&#x3002;&#x8F6C;&#x8F7D;&#x4E5F;&#x8BF7;&#x8BF4;&#x660E;&#x60C5;&#x51B5;&#x3002;</p>
+<h3 id="&#x8BED;&#x4E49;&#x5206;&#x5272;"><a href="#&#x8BED;&#x4E49;&#x5206;&#x5272;" class="headerlink" title="&#x8BED;&#x4E49;&#x5206;&#x5272;"></a>&#x8BED;&#x4E49;&#x5206;&#x5272;</h3><p>&#x5728;&#x7EC3;&#x4E60;&#x524D;&#xFF0C;&#x5148;&#x4E86;&#x89E3;&#x4E0B;&#x5173;&#x4E8E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x4E00;&#x4E9B;&#x77E5;&#x8BC6;&#x3002;&#x521A;&#x5F00;&#x59CB;&#x770B;&#x5230;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x8FD9;&#x4E2A;&#x8BCD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4EE5;&#x4E3A;&#x662F;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x91CC;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#xFF0C;&#x540E;&#x6765;&#x770B;&#x7684;&#x591A;&#x4E86;&#xFF0C;&#x5C31;&#x77E5;&#x9053;&#x8FD8;&#x662F;&#x8BA1;&#x7B97;&#x673A;&#x89C6;&#x89C9;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x90A3;&#x4E48;&#x4EC0;&#x4E48;&#x662F;&#x8BED;&#x4E49;&#x5206;&#x5272;&#xFF1F;&#x522B;&#x770B;&#x540D;&#x5B57;&#x8FD9;&#x4E48;&#x9AD8;&#x7EA7;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x50CF;&#x7D20;&#x7EA7;&#x522B;&#x7684;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x3002;&#x5373;&#x5BF9;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FDB;&#x884C;&#x8BED;&#x4E49;&#x5206;&#x5272;&#xFF1F;&#x5982;&#x679C;&#x5F53;&#x7CBE;&#x786E;&#x7684;&#x7269;&#x4F53;&#x8FB9;&#x754C;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x5728;&#x81EA;&#x52A8;&#x9A7E;&#x9A76;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x7CBE;&#x786E;&#x5730;&#x8BC6;&#x522B;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x4E2D;&#x7684;&#x7269;&#x4F53;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x9700;&#x8981;&#x7528;&#x5230;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x5728;&#x533B;&#x5B66;&#x56FE;&#x50CF;&#x8BC6;&#x522B;&#x7684;&#x95EE;&#x9898;&#x4E0A;&#xFF0C;&#x4E5F;&#x4F1A;&#x7528;&#x5230;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x3002;</p>
+<p>&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E2D;&#x662F;&#x600E;&#x4E48;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x6807;&#x6CE8;&#x7684;&#xFF1F;&#x770B;&#x5230;&#x5173;&#x4E8E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x7684;&#x5404;&#x79CD;&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x901A;&#x5E38;&#x90FD;&#x4F1A;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF0C;&#x4E00;&#x7247;&#x84DD;&#xFF0C;&#x4E00;&#x7247;&#x7EA2;&#x7684;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x597D;&#x5947;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x662F;&#x600E;&#x4E48;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x6807;&#x6CE8;&#x7684;&#xFF1F;&#x5176;&#x5B9E;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x5206;&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x4E3A;&#x4E86;&#x4FBF;&#x4E8E;&#x5C55;&#x793A;&#xFF0C;&#x6240;&#x4EE5;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x989C;&#x8272;&#x5757;&#x6765;&#x533A;&#x5206;&#x3002;&#x5728;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E2D;&#xFF0C;&#x6570;&#x636E;&#x6807;&#x6CE8;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#x3002;&#x56E0;&#x4E3A;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x505A;&#x7684;&#x662F;&#x5BF9;&#x4E00;&#x5F20;&#x56FE;&#x7247;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6570;&#x636E;&#x6807;&#x6CE8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;&#x50CF;&#x7D20;&#x6807;&#x6CE8;&#x51FA;&#x6807;&#x7B7E;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x6807;&#x6CE8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x4F1A;&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;&#x7C7B;&#x522B;&#x548C;&#x989C;&#x8272;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x989C;&#x8272;&#x5173;&#x8054;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x65B9;&#x4FBF;&#x540E;&#x7EED;&#x7684;&#x5C55;&#x793A;&#x3002;</p>
+<h3 id="&#x7EC3;&#x4E60;&#x76EE;&#x6807;"><a href="#&#x7EC3;&#x4E60;&#x76EE;&#x6807;" class="headerlink" title="&#x7EC3;&#x4E60;&#x76EE;&#x6807;"></a>&#x7EC3;&#x4E60;&#x76EE;&#x6807;</h3><ul class="ui list">
+<li>&#x52A0;&#x8F7D;&#x4E00;&#x4E2A;&#x5728; ImageNet &#x4E0A;&#x9884;&#x8BAD;&#x7EC3;&#x8FC7;&#x7684;&#x6A21;&#x578B; - ResNet50</li>
+<li>&#x5C06; ResNet50 &#x6A21;&#x578B;&#x8F6C;&#x6362;&#x6210;&#x5168;&#x5377;&#x79EF;&#x7F51;&#x7EDC;</li>
+<li>&#x5E94;&#x7528;&#x8BE5;&#x7F51;&#x7EDC;&#x5728;&#x56FE;&#x7247;&#x4E0A;&#x5B9E;&#x884C;&#x5F31;&#x5206;&#x5272; - &#x5229;&#x7528;&#x70ED;&#x529B;&#x56FE;</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread <span class="keyword">as</span> scipy_imread, imresize <span class="keyword">as</span> scipy_imresize</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5305;&#x88C5;&#x51FD;&#x6570;&#x6765;&#x7981;&#x7528;&#x4E00;&#x4E9B;&#x8B66;&#x544A;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imread</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imread(*args, **kwargs)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imresize</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imresize(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x52A0;&#x8F7D; ResNet50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> ResNet50</span><br><span class="line"></span><br><span class="line">base_model = ResNet50(include_top=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">print(base_model.output_shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res5c = base_model.layers[<span class="number">-1</span>]</span><br><span class="line">type(res5c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keras.layers.core.Activation</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res5c.output_shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5168;&#x5377;&#x79EF;-ResNet"><a href="#&#x5168;&#x5377;&#x79EF;-ResNet" class="headerlink" title="&#x5168;&#x5377;&#x79EF; ResNet"></a>&#x5168;&#x5377;&#x79EF; ResNet</h3><ul class="ui list">
+<li><p>&#x9664;&#x4E86;&#x6B8B;&#x5DEE;&#x5757;&#xFF0C;resnet &#x8F93;&#x51FA;&#x5F62;&#x72B6;&#x4E3A; WxHx2048</p>
+</li>
+<li><p>ImageNet &#x7684;&#x9ED8;&#x8BA4;&#x8F93;&#x5165;&#x5F62;&#x72B6;&#x4E3A; 224x224&#xFF0C;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x8F93;&#x51FA;&#x4E3A; 7x7x2048</p>
+</li>
+</ul>
+<ul class="ui list">
+<li>&#x6B63;&#x89C4;&#x7684; ResNet &#x7684;&#x7F51;&#x7EDC;&#x5C42;&#xFF1A;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = base_model.output</span><br><span class="line">x = Faltten()(x)</span><br><span class="line">x = Dense(1000)(x)</span><br><span class="line">x = softmax()(x)</span><br></pre></td></tr></table></figure>
+<ul class="ui list">
+<li>&#x4E4B;&#x540E;&#x4FEE;&#x6B63;&#x7684;&#x7248;&#x672C;&#xFF1A;<ul>
+<li>&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x68C0;&#x7D22;&#x5B58;&#x50A8;&#x5728; Dense &#x56FE;&#x5C42;&#x4E2D;&#x7684;&#x6807;&#x7B7E;&#x4FE1;&#x606F;&#x3002;&#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x5C06;&#x52A0;&#x8F7D;&#x8FD9;&#x4E9B;&#x6743;&#x91CD;&#x3002;</li>
+<li>&#x5C06; Dense &#x5C42;&#x66F4;&#x6539;&#x4E3A; Convolution2D &#x5C42;&#x4EE5;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;&#x4FE1;&#x606F;&#xFF0C;&#x8F93;&#x51FA;&#x4E3A; WxHx1000</li>
+<li>&#x5BF9;&#x4E8E;&#x65B0;&#x7684; Convolution2D &#x5C42;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF08;1,1&#xFF09;&#x7684; kernel &#x6765;&#x4FDD;&#x6301;&#x524D;&#x4E00;&#x5C42;&#x7684;&#x7A7A;&#x95F4;&#x7EC4;&#x7EC7;&#x4E0D;&#x53D8;&#xFF08;&#x5B83;&#x79F0;&#x4E3A;&#x9010;&#x70B9;&#x5377;&#x79EF;&#xFF09;</li>
+<li>&#x53EA;&#x60F3;&#x5728;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7EF4;&#x5EA6;&#x4E0A;&#x5E94;&#x7528; softmax&#xFF0C;&#x4EE5;&#x4FBF;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;&#x4FE1;&#x606F;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x81EA;&#x5B9A;&#x4E49;&#x7684; softmax</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.engine <span class="keyword">import</span> Layer</span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoftmaxMap</span><span class="params">(Layer)</span>:</span></span><br><span class="line">    <span class="comment"># &#x521D;&#x59CB;&#x5316;&#x51FD;&#x6570;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, axis=<span class="number">-1</span>, **kwargs)</span>:</span></span><br><span class="line">        self.axis = axis</span><br><span class="line">        super(SoftmaxMap, self).__init__(**kwargs)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># &#x6CA1;&#x6709;&#x53C2;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># &#x8FD9;&#x91CC;&#x662F;&#x6211;&#x4EEC;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x5730;&#x65B9;</span></span><br><span class="line">    <span class="comment"># &#x548C;&#x4E00;&#x822C;&#x7684; softmax &#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x989D;&#x5916;&#x7684;&#x70B9;&#xFF1A;</span></span><br><span class="line">    <span class="comment"># &#x6211;&#x4EEC;&#x63A5;&#x53D7;&#x7684; x &#x7684;&#x5F62;&#x72B6;&#x4E3A;&#xFF1A;x.shape == (batch_size, w, h, n_classes)</span></span><br><span class="line">    <span class="comment"># &#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5728; Keras&#x4E0D;&#x662F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;</span></span><br><span class="line">    <span class="comment"># &#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x6211;&#x4EEC;&#x5C06; logits &#x7684;&#x6700;&#x5927;&#x503C;&#x51CF;&#x53BB;&#x4EE5;&#x4F7F; softmax &#x5728;&#x6570;&#x503C;&#x4E0A;&#x66F4;&#x7A33;&#x5B9A;&#x3002;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, mask=None)</span>:</span></span><br><span class="line">        e = K.exp(x - K.max(x, axis=self.axis, keepdims=<span class="keyword">True</span>))</span><br><span class="line">        s = K.sum(e, axis=self.axis, keepdims=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">return</span> e / s</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># &#x8F93;&#x51FA;&#x7684;&#x5F62;&#x72B6;&#x4E0E;&#x8F93;&#x5165;&#x4E00;&#x81F4;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_output_shape_for</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> input_shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5C06; resnet &#x6539;&#x6210;&#x5168;&#x5377;&#x79EF;&#x7F51;&#x7EDC;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Convolution2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"></span><br><span class="line">input = base_model.layers[<span class="number">0</span>].input</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x9009;&#x53D6;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x8F93;&#x51FA;</span></span><br><span class="line">x = base_model.layers[<span class="number">-1</span>].output</span><br><span class="line"></span><br><span class="line"><span class="comment"># Kernel &#x7684;&#x5927;&#x5C0F;&#x4E3A; (1,1), &#x8F93;&#x51FA;&#x901A;&#x9053;&#x4E3A; 1000</span></span><br><span class="line">x = Convolution2D(<span class="number">1000</span>, (<span class="number">1</span>, <span class="number">1</span>), name=<span class="string">&apos;conv1000&apos;</span>)(x)</span><br><span class="line"></span><br><span class="line">output = SoftmaxMap(axis=<span class="number">-1</span>)(x)</span><br><span class="line"></span><br><span class="line">fully_conv_ResNet = Model(inputs=input, outputs=output)</span><br></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x968F;&#x673A;&#x6570;&#x636E;&#x6765;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5728;&#x968F;&#x673A; RGB &#x56FE;&#x50CF;&#x4E0A;&#x8FD0;&#x884C;&#x6B63;&#x5411;&#x4F20;&#x9012;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps = fully_conv_ResNet.predict(np.random.randn(<span class="number">1</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">3</span>))</span><br><span class="line">prediction_maps.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 7, 10, 1000)</span><br></pre></td></tr></table></figure>
+<p>&#x5982;&#x4F55;&#x89E3;&#x91CA;&#x6700;&#x7EC8;&#x7684;&#x8F93;&#x51FA;&#x5F62;&#x72B6;&#xFF1F; &#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x6982;&#x7387;&#x5E94;&#x8BE5;&#x5728;&#x8F93;&#x51FA;&#x6620;&#x5C04;&#x7684;&#x6BCF;&#x4E2A;&#x533A;&#x57DF;&#x4E2D;&#x603B;&#x548C;&#x4E3A; 1&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps.sum(axis=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array([[[1.        , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.        , 0.99999994, 0.9999999 , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 1.        , 1.        , 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.0000001 , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 0.99999994, 0.99999994, 1.        , 1.0000001 ],</span><br><span class="line">        [1.0000001 , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.0000001 , 1.0000001 , 1.        , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.0000001 , 0.99999994, 1.        ],</span><br><span class="line">        [1.0000001 , 1.        , 0.99999994, 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 0.99999994, 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.        , 1.        , 1.        ]]],</span><br><span class="line">      dtype=float32)</span><br></pre></td></tr></table></figure>
+<h3 id="&#x52A0;&#x8F7D;&#x6743;&#x91CD;"><a href="#&#x52A0;&#x8F7D;&#x6743;&#x91CD;" class="headerlink" title="&#x52A0;&#x8F7D;&#x6743;&#x91CD;"></a>&#x52A0;&#x8F7D;&#x6743;&#x91CD;</h3><ul class="ui list">
+<li>&#x5728;&#x6587;&#x4EF6; <code>weights_dense.h5</code> &#x4E2D;&#x63D0;&#x4F9B; ResNet50 &#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A; Dense &#x5C42;&#x7684;&#x6743;&#x91CD;&#x548C;&#x504F;&#x5DEE;</li>
+<li>&#x73B0;&#x5728;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x73B0;&#x5728;&#x662F; 1x1 &#x5377;&#x79EF;&#x5C42;&#x800C;&#x4E0D;&#x662F;&#x5168;&#x8FDE;&#x63A5;&#x5C42;</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> h5py.File(<span class="string">&apos;weights_dense.h5&apos;</span>, <span class="string">&apos;r&apos;</span>) <span class="keyword">as</span> h5f:</span><br><span class="line">    w = h5f[<span class="string">&apos;w&apos;</span>][:]</span><br><span class="line">    b = h5f[<span class="string">&apos;b&apos;</span>][:]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line">last_layer.get_weights()[<span class="number">0</span>].shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;&#x52A0;&#x8F7D;&#x7684;&#x6743;&#x91CD;&#x5F62;&#x72B6;&#xFF1A;&quot;</span>, w.shape)</span><br><span class="line">print(<span class="string">&quot;&#x6700;&#x540E;&#x7684;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x6743;&#x91CD;&#x5F62;&#x72B6;&#xFF1A;&quot;</span>, last_layer.get_weights()[<span class="number">0</span>].shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x52A0;&#x8F7D;&#x7684;&#x6743;&#x91CD;&#x5F62;&#x72B6;&#xFF1A; (2048, 1000)</span><br><span class="line">&#x6700;&#x540E;&#x7684;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x6743;&#x91CD;&#x5F62;&#x72B6;&#xFF1A; (1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x91CD;&#x7EC4;&#x6743;&#x91CD;&#x7684;&#x5F62;&#x72B6;</span></span><br><span class="line">w_reshaped = w.reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2048</span>, <span class="number">1000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x6743;&#x91CD;</span></span><br><span class="line">last_layer.set_weights([w_reshaped, b])</span><br></pre></td></tr></table></figure>
+<h3 id="&#x524D;&#x5411;&#x4F20;&#x64AD;"><a href="#&#x524D;&#x5411;&#x4F20;&#x64AD;" class="headerlink" title="&#x524D;&#x5411;&#x4F20;&#x64AD;"></a>&#x524D;&#x5411;&#x4F20;&#x64AD;</h3><ul class="ui list">
+<li>&#x5B9A;&#x4E49;&#x4E0B;&#x9762;&#x7684;&#x51FD;&#x6570;&#x6765;&#x6D4B;&#x8BD5;&#x6211;&#x4EEC;&#x7684;&#x7F51;&#x7EDC;</li>
+<li>&#x5B83;&#x5C06;&#x8F93;&#x5165;&#x8C03;&#x6574;&#x4E3A;&#x7ED9;&#x5B9A;&#x5927;&#x5C0F;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528; <code>model.predict</code> &#x8BA1;&#x7B97;&#x8F93;&#x51FA;</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass_resize</span><span class="params">(img_path, img_size)</span>:</span></span><br><span class="line">    img_raw = imread(img_path)</span><br><span class="line">    print(<span class="string">&apos;Image shape before resizing: %s&apos;</span> %(img_raw.shape,))</span><br><span class="line">    img = imresize(img_raw, size=img_size).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line">    img = preprocess_input(img[np.newaxis])</span><br><span class="line">    print(<span class="string">&quot;Image batch size shape before forward pass:&quot;</span>, img.shape)</span><br><span class="line">    z = fully_conv_ResNet.predict(img)</span><br><span class="line">    <span class="keyword">return</span> z</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output = forward_pass_resize(<span class="string">&quot;dog.jpg&quot;</span>, (<span class="number">800</span>, <span class="number">600</span>))</span><br><span class="line">print(<span class="string">&quot;prediction map shape:&quot;</span>, output.shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 600, 3)</span><br><span class="line">prediction map shape: (1, 25, 19, 1000)</span><br></pre></td></tr></table></figure>
+<h3 id="&#x627E;&#x5230;&#x4E0E;&#x72D7;&#x5173;&#x8054;&#x7684;&#x7C7B;&#x522B;"><a href="#&#x627E;&#x5230;&#x4E0E;&#x72D7;&#x5173;&#x8054;&#x7684;&#x7C7B;&#x522B;" class="headerlink" title="&#x627E;&#x5230;&#x4E0E;&#x72D7;&#x5173;&#x8054;&#x7684;&#x7C7B;&#x522B;"></a>&#x627E;&#x5230;&#x4E0E;&#x72D7;&#x5173;&#x8054;&#x7684;&#x7C7B;&#x522B;</h3><p>ImageNet &#x4F7F;&#x7528;&#x6982;&#x5FF5;&#x672C;&#x4F53;&#xFF0C;&#x4ECE;&#x4E2D;&#x6D3E;&#x751F;&#x7C7B;&#x3002; synset &#x5BF9;&#x5E94;&#x4E8E;&#x672C;&#x4F53;&#x4E2D;&#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x6240;&#x6709;&#x79CD;&#x7C7B;&#x7684;&#x72D7;&#x90FD;&#x662F;&#x540C;&#x4E49;&#x8BCD; <code>n02084071</code>&#xFF08;&#x72D7;&#xFF0C;&#x5BB6;&#x72AC;&#xFF0C;&#x72AC;&#x79D1;&#x52A8;&#x7269;&#xFF09;&#x7684;&#x5B69;&#x5B50;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Helper file importing synsets from imagenet</span></span><br><span class="line"><span class="keyword">import</span> imagenet_tool</span><br><span class="line"></span><br><span class="line">synset = <span class="string">&quot;n02084071&quot;</span> <span class="comment"># &#x5BF9;&#x5E94;&#x4E8E;&#x72D7;</span></span><br><span class="line">ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">print(<span class="string">&quot;All dog classes ids (%d):&quot;</span> % len(ids))</span><br><span class="line">print(ids)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">All dog classes ids (118):</span><br><span class="line">[251, 268, 256, 253, 255, 254, 257, 159, 211, 210, 212, 214, 213, 216, 215, 219, 220, 221, 217, 218, 207, 209, 206, 205, 208, 193, 202, 194, 191, 204, 187, 203, 185, 192, 183, 199, 195, 181, 184, 201, 186, 200, 182, 188, 189, 190, 197, 196, 198, 179, 180, 177, 178, 175, 163, 174, 176, 160, 162, 161, 164, 168, 173, 170, 169, 165, 166, 167, 172, 171, 264, 263, 266, 265, 267, 262, 246, 242, 243, 248, 247, 229, 233, 234, 228, 231, 232, 230, 227, 226, 235, 225, 224, 223, 222, 236, 252, 237, 250, 249, 241, 239, 238, 240, 244, 245, 259, 261, 260, 258, 154, 153, 158, 152, 155, 151, 157, 156]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dog_id <span class="keyword">in</span> ids[:<span class="number">10</span>]:</span><br><span class="line">    print(imagenet_tool.id_to_words(dog_id))</span><br><span class="line">print(<span class="string">&apos;...&apos;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dalmatian, coach dog, carriage dog</span><br><span class="line">Mexican hairless</span><br><span class="line">Newfoundland, Newfoundland dog</span><br><span class="line">basenji</span><br><span class="line">Leonberg</span><br><span class="line">pug, pug-dog</span><br><span class="line">Great Pyrenees</span><br><span class="line">Rhodesian ridgeback</span><br><span class="line">vizsla, Hungarian pointer</span><br><span class="line">German short-haired pointer</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="&#x72D7;&#x7C7B;&#x70ED;&#x529B;&#x56FE;"><a href="#&#x72D7;&#x7C7B;&#x70ED;&#x529B;&#x56FE;" class="headerlink" title="&#x72D7;&#x7C7B;&#x70ED;&#x529B;&#x56FE;"></a>&#x72D7;&#x7C7B;&#x70ED;&#x529B;&#x56FE;</h3><p>&#x4E0B;&#x9762;&#x7684;&#x51FD;&#x6570;&#x662F;&#x4ECE;&#x524D;&#x5411;&#x4F20;&#x64AD;&#x4E2D;&#x5EFA;&#x7ACB;&#x70ED;&#x529B;&#x56FE;&#x7684;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#x3002;&#x5B83;&#x5BF9;&#x4E0E; synset &#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x6240;&#x6709; id &#x7684;&#x8868;&#x793A;&#x6C42;&#x548C;&#x3002;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_heatmap</span><span class="params">(z, synset)</span>:</span></span><br><span class="line">    class_ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">    class_ids = np.array([id_ <span class="keyword">for</span> id_ <span class="keyword">in</span> class_ids <span class="keyword">if</span> id_ <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>])</span><br><span class="line">    x = z[<span class="number">0</span>, :, :, class_ids].sum(axis=<span class="number">0</span>)</span><br><span class="line">    print(<span class="string">&quot;size of heatmap:&quot;</span> + str(x.shape))</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_img_and_heatmap</span><span class="params">(img_path, heatmap)</span>:</span></span><br><span class="line">    dog = imread(img_path)</span><br><span class="line">    fig, (ax0, ax1) = plt.subplots(ncols=<span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">8</span>))</span><br><span class="line">    ax0.imshow(dog)</span><br><span class="line">    ax0.axis(<span class="string">&apos;off&apos;</span>)</span><br><span class="line">    ax1.imshow(heatmap, interpolation=<span class="string">&apos;nearest&apos;</span>, cmap=<span class="string">&quot;viridis&quot;</span>)</span><br><span class="line">    ax1.axis(<span class="string">&apos;off&apos;</span>)</span><br></pre></td></tr></table></figure>
+<p>&#x4E0B;&#x9762;&#x7528; 3 &#x79CD;&#x4E0D;&#x540C;&#x7684;&#x5927;&#x5C0F;&#xFF1A;</p>
+<ul class="ui list">
+<li>(400, 640)</li>
+<li>(800, 1280)</li>
+<li>(1600, 2560)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dog synset</span></span><br><span class="line">s = <span class="string">&quot;n02084071&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># size 1 - (400, 640)</span></span><br><span class="line">probas_1 = forward_pass_resize(<span class="string">&quot;dog.jpg&quot;</span>, (<span class="number">400</span>, <span class="number">640</span>))</span><br><span class="line">heatmap_1 = build_heatmap(probas_1, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">&quot;dog.jpg&quot;</span>, heatmap_1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 400, 640, 3)</span><br><span class="line">size of heatmap:(13, 20)</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/1.png"><img src="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/1.png" alt="" class="ui centered image"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 2 - (800, 1280)</span></span><br><span class="line">probas_2 = forward_pass_resize(<span class="string">&quot;dog.jpg&quot;</span>, (<span class="number">800</span>, <span class="number">1280</span>))</span><br><span class="line">heatmap_2 = build_heatmap(probas_2, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">&quot;dog.jpg&quot;</span>, heatmap_2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 1280, 3)</span><br><span class="line">size of heatmap:(25, 40)</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/2.png"><img src="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/2.png" alt="" class="ui centered image"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 3 - (1600, 2560)</span></span><br><span class="line">probas_3 = forward_pass_resize(<span class="string">&quot;dog.jpg&quot;</span>, (<span class="number">1600</span>, <span class="number">2560</span>))</span><br><span class="line">heatmap_3 = build_heatmap(probas_3, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">&quot;dog.jpg&quot;</span>, heatmap_3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 1600, 2560, 3)</span><br><span class="line">size of heatmap:(50, 80)</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/3.png"><img src="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/3.png" alt="" class="ui centered image"></a></p>
+<p>&#x53EF;&#x4EE5;&#x89C2;&#x5BDF;&#x5230; heatmap_1 &#x548C; heatmap_2 &#x63D0;&#x4F9B;&#x4E86;&#x6BD4; heatmap_3 &#x66F4;&#x7C97;&#x7565;&#x7684;&#x5206;&#x4E2A;&#x3002;&#x4F46;&#x662F;&#xFF0C;heatmap_3 &#x5728;&#x72D7;&#x533A;&#x57DF;&#x5916;&#x9762;&#x6709;&#x4E00;&#x4E9B;&#x5C0F;&#x7684;&#x6742;&#x788E;&#xFF0C;heatmap_3 &#x4F1A;&#x7F16;&#x7801;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x72D7;&#x7684;&#x5C40;&#x90E8;&#x7EB9;&#x7406;&#x7EA7;&#x522B;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x8F83;&#x4F4E;&#x7684;&#x5206;&#x8FA8;&#x7387;&#x5219;&#x4F1A;&#x7F16;&#x7801;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x6574;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#x3002;&#x7ED3;&#x5408;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x4E3B;&#x610F;&#xFF01;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heatmap_1_r = imresize(heatmap_1, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line">heatmap_2_r = imresize(heatmap_2, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line">heatmap_3_r = imresize(heatmap_3, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line"></span><br><span class="line">heatmap_geom_avg = np.power(heatmap_1_r * heatmap_2_r * heatmap_3_r, <span class="number">0.333</span>)</span><br><span class="line">display_img_and_heatmap(<span class="string">&quot;dog.jpg&quot;</span>, heatmap_geom_avg)</span><br></pre></td></tr></table></figure>
+<p><a class="magnific-img" href="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/4.png"><img src="/2019/01/22/&#x521D;&#x8BC6;&#x8BED;&#x4E49;&#x5206;&#x5272;&#x4E0E;-FCN/4.png" alt="" class="ui centered image"></a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-01-22T13:28:26.000Z" itemprop="datePublished">2019-01-22</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/深度学习/">深度学习</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2019/01/22/记最近一段时间吃过的美食/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    记最近一段时间吃过的美食
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/17/LeetCode-101-Symmetric-Tree-解题思路/" class="ui tiny button">
+                    
+                    LeetCode#101-Symmetric Tree 解题思路
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#语义分割"><span>语义分割</span></a></li><li><a href="#练习目标"><span>练习目标</span></a></li><li><a href="#全卷积-ResNet"><span>全卷积 ResNet</span></a></li><li><a href="#加载权重"><span>加载权重</span></a></li><li><a href="#前向传播"><span>前向传播</span></a></li><li><a href="#找到与狗关联的类别"><span>找到与狗关联的类别</span></a></li><li><a href="#狗类热力图"><span>狗类热力图</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2019 <a href="/">caoqi95</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

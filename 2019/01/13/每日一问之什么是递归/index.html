@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="A boring person.">
+    <title>每日一问之什么是递归 | caoqi95&#39;blog</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x5728;&amp;#x5237; LeetCode &amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x53D1;&amp;#x73B0;&amp;#x5F88;&amp;#x591A;&amp;#x9898;&amp;#x7528;&amp;#x9012;&amp;#x5F52;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x89E3;&amp;#x4F1A;&amp;#x65B9;&amp;#x4FB">
+<meta name="keywords" content="算法知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一问之什么是递归">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/13/每日一问之什么是递归/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x5728;&amp;#x5237; LeetCode &amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x53D1;&amp;#x73B0;&amp;#x5F88;&amp;#x591A;&amp;#x9898;&amp;#x7528;&amp;#x9012;&amp;#x5F52;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x89E3;&amp;#x4F1A;&amp;#x65B9;&amp;#x4FB">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-27T09:06:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一问之什么是递归">
+<meta name="twitter:description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x5728;&amp;#x5237; LeetCode &amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x53D1;&amp;#x73B0;&amp;#x5F88;&amp;#x591A;&amp;#x9898;&amp;#x7528;&amp;#x9012;&amp;#x5F52;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#x6765;&amp;#x89E3;&amp;#x4F1A;&amp;#x65B9;&amp;#x4FB">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "caoqi95",
+  "url": "http://caoqi95.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>caoqi95&#39;blog</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">caoqi95</a>
+                    
+                        <div class="meta">
+                            Programer / Deep Learner
+                        </div>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        <div class="item">
+                            <i class="marker icon" style="float: left"></i>
+                            <div class="content">Wenzhou</div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+
+                                <a href="https://github.com/caoqi95"><i class="large github icon" style="float: left"></i></a>
+
+                            
+
+                                <a href="https://twitter.com/stayherewait"><i class="large twitter icon" style="float: left"></i></a>
+
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item">
+        <i class="home icon"></i>
+        caoqi95
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-每日一问之什么是递归" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    每日一问之什么是递归
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>&#x6700;&#x8FD1;&#x5728;&#x5237; LeetCode &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x73B0;&#x5F88;&#x591A;&#x9898;&#x7528;&#x9012;&#x5F52;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x89E3;&#x4F1A;&#x65B9;&#x4FBF;&#x5F88;&#x591A;&#xFF0C;&#x89E3;&#x9898;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E5F;&#x52A0;&#x6DF1;&#x4E86;&#x5BF9;&#x9012;&#x5F52;&#x65B9;&#x6CD5;&#x7684;&#x5370;&#x8C61;&#x3002;&#x4ECA;&#x5929;&#x6B63;&#x597D;&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x6574;&#x7406;&#x4E00;&#x4E0B;&#x5173;&#x4E8E;&#x9012;&#x5F52;&#x7684;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#x3002;</p>
+<ul class="ui list">
+<li>&#x4EC0;&#x4E48;&#x662F;&#x9012;&#x5F52;</li>
+<li>&#x9012;&#x5F52;&#x7684;&#x6761;&#x4EF6;&#x662F;&#x4EC0;&#x4E48;</li>
+<li>&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;</li>
+</ul>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;&#x9012;&#x5F52;"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x9012;&#x5F52;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x9012;&#x5F52;"></a>&#x4EC0;&#x4E48;&#x662F;&#x9012;&#x5F52;</h3><p>&#x7B80;&#x5355;&#x7684;&#x8BF4;&#xFF0C;&#x9012;&#x5F52;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x81EA;&#x5DF1;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x3002;&#x6839;&#x636E;&#x6211;&#x81EA;&#x5DF1;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x662F;&#x4E0D;&#x540C;&#x4E8E;&#x50CF; <code>for</code>&#xFF0C;<code>while</code> &#x8FD9;&#x79CD;&#x51FD;&#x6570;&#x5185;&#x7684;&#x5FAA;&#x73AF;&#xFF0C;&#x9012;&#x5F52;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x4E00;&#x79CD;&#x51FD;&#x6570;&#x5916;&#x7684;&#x5FAA;&#x73AF;&#x3002;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x7A0B;&#x6240;&#x793A;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x5178;&#x578B;&#x7684;&#x9012;&#x5F52;&#x51FD;&#x6570;&#xFF1A;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">return</span> countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x9012;&#x5F52;&#x7684;&#x6761;&#x4EF6;"><a href="#&#x9012;&#x5F52;&#x7684;&#x6761;&#x4EF6;" class="headerlink" title="&#x9012;&#x5F52;&#x7684;&#x6761;&#x4EF6;"></a>&#x9012;&#x5F52;&#x7684;&#x6761;&#x4EF6;</h3><p>&#x5728;&#x5199;&#x9012;&#x5F52;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x6EE1;&#x8DB3;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#xFF0C;&#x4E00;&#x4E2A;&#x662F; <strong>&#x57FA;&#x7EBF;&#x6761;&#x4EF6;</strong>&#xFF0C;&#x4E00;&#x4E2A;&#x662F; <strong>&#x9012;&#x5F52;&#x6761;&#x4EF6;</strong>&#x3002;&#x50CF;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x4E0D;&#x662F;&#x4E25;&#x683C;&#x610F;&#x4E49;&#x4E0A;&#x7684;&#x9012;&#x5F52;&#x51FD;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x4E0D;&#x6EE1;&#x8DB3;&#x57FA;&#x7EBF;&#x6761;&#x4EF6;&#x548C;&#x9012;&#x5F52;&#x6761;&#x4EF6;&#xFF0C;&#x800C;&#x4E14;&#x8BE5;&#x51FD;&#x6570;&#x4F1A;&#x9677;&#x5165;&#x6B7B;&#x5FAA;&#x73AF;&#x3002;</p>
+<p>&#x8BF4;&#x767D;&#x4E86;&#xFF0C;<strong>&#x9012;&#x5F52;&#x6761;&#x4EF6;</strong> &#x5C31;&#x662F;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#xFF1B;<strong>&#x57FA;&#x7EBF;&#x6761;&#x4EF6;</strong> &#x5C31;&#x662F;&#x51FD;&#x6570;&#x4E0D;&#x518D;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x9012;&#x5F52;&#x51FD;&#x6570;&#x4F1A;&#x5305;&#x542B;&#x57FA;&#x7EBF;&#x6761;&#x4EF6;&#x548C;&#x9012;&#x5F52;&#x6761;&#x4EF6;&#x8FD9;&#x4E24;&#x90E8;&#x5206;&#x3002;&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x5C06;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6539;&#x6210;&#x6B63;&#x786E;&#x5F62;&#x5F0F;&#xFF1A;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">if</span> i &lt;= <span class="number">1</span>:  <span class="comment"># &#x57FA;&#x7EBF;&#x6761;&#x4EF6; </span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">else</span>:      <span class="comment"># &#x9012;&#x5F52;&#x6761;&#x4EF6;</span></span><br><span class="line">        countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x51FD;&#x6570;&#x5C31;&#x4E0D;&#x4F1A;&#x9677;&#x5165;&#x6B7B;&#x5FAA;&#x73AF;&#x800C;&#x65E0;&#x7A77;&#x5C3D;&#x7684;&#x6267;&#x884C;&#x4E0B;&#x53BB;&#x4E86;&#x3002;<br><a class="magnific-img" href="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><img src="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" class="ui centered image"></a></p>
+<h3 id="&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;"><a href="#&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;" class="headerlink" title="&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;"></a>&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;</h3><p>&#x4E0B;&#x9762;&#x6765;&#x4E3E;&#x4E24;&#x4E2A;&#x9012;&#x5F52;&#x7684;&#x4F7F;&#x7528;&#x4F8B;&#x5B50;&#xFF0C;&#x4F8B;&#x5B50;&#x90FD;&#x6765;&#x81EA;&#x6700;&#x8FD1;&#x5237;&#x7684; LeetCode &#x7684; Easy &#x7EA7;&#x522B;&#x7684;&#x9898;&#x76EE;&#x3002;</p>
+<h6 id="1-Same-Tree"><a href="#1-Same-Tree" class="headerlink" title="1. Same Tree"></a>1. Same Tree</h6><p>&#x9898;&#x76EE;&#xFF1A;&#x7ED9;&#x5B9A;&#x4E24;&#x4E2A;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x68C0;&#x67E5;&#x5B83;&#x4EEC;&#x662F;&#x5426;&#x76F8;&#x540C;&#x3002; &#x5982;&#x679C;&#x4E24;&#x4E2A;&#x4E8C;&#x53C9;&#x6811;&#x5728;&#x7ED3;&#x6784;&#x4E0A;&#x76F8;&#x540C;&#x5E76;&#x4E14;&#x8282;&#x70B9;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x503C;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A;&#x5B83;&#x4EEC;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x5426;&#x5219;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x4F8B;&#x5B50;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Example <span class="number">1</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">3</span>     <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],   [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">Output: true</span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          /           \</span><br><span class="line">         <span class="number">2</span>             <span class="number">2</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>],     [<span class="number">1</span>,null,<span class="number">2</span>]</span><br><span class="line">Output: false</span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">1</span>     <span class="number">1</span>   <span class="number">2</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<p>&#x89E3;&#x6CD5;&#x5982;&#x4E0B;&#xFF0C;&#x5F53; p&#xFF0C;q &#x4E24;&#x4E2A;&#x4E8C;&#x53C9;&#x6811;&#x90FD;&#x4E3A;&#x7A7A;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE; True&#xFF1B;&#x5F53; p&#xFF0C;q &#x4E2D;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A; &#x7A7A;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x8FD4;&#x56DE; False&#xFF1B;&#x5F53; p&#xFF0C;q &#x7684;&#x503C;&#x4E0D;&#x76F8;&#x7B49;&#x4E5F;&#x76F4;&#x63A5;&#x8FD4;&#x56DE; False&#x3002;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x57FA;&#x7EBF;&#x6761;&#x4EF6;&#xFF0C;&#x5176;&#x4F59;&#x7684;&#x662F;&#x9012;&#x5F52;&#x6761;&#x4EF6;&#x3002;&#x5224;&#x65AD;&#x5B8C; p&#xFF0C;q &#x7684;&#x503C;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x5224;&#x65AD; p &#x548C; q &#x7684;&#x5B50;&#x6839;&#x7684;&#x4E24;&#x4E2A;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x90FD;&#x76F8;&#x7B49;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x4E8C;&#x53C9;&#x6811;&#x5C31;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment">#class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span><span class="params">(self, p, q)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type p: TreeNode</span></span><br><span class="line"><span class="string">        :type q: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> p.val != q.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Solution.isSameTree(self, p.left, q.left) <span class="keyword">and</span></span><br><span class="line">                   \ Solution.isSameTree(self, p.right, q.right)</span><br></pre></td></tr></table></figure></p>
+<h6 id="2-Symmetric-Tree"><a href="#2-Symmetric-Tree" class="headerlink" title="2. Symmetric Tree"></a>2. Symmetric Tree</h6><p>&#x9898;&#x76EE;&#xFF1A;&#x7ED9;&#x5B9A;&#x4E8C;&#x53C9;&#x6811;&#xFF0C;&#x68C0;&#x67E5;&#x5B83;&#x662F;&#x5426;&#x662F;&#x81EA;&#x8EAB;&#x7684;&#x955C;&#x50CF;&#xFF08;&#x5373;&#xFF0C;&#x56F4;&#x7ED5;&#x5176;&#x4E2D;&#x5FC3;&#x5BF9;&#x79F0;&#xFF09;&#x3002;&#x4F8B;&#x5B50;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">For example, this binary tree [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>] <span class="keyword">is</span> symmetric:</span><br><span class="line"></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> / \ / \</span><br><span class="line"><span class="number">3</span>  <span class="number">4</span> <span class="number">4</span>  <span class="number">3</span></span><br><span class="line">But the following [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,null,<span class="number">3</span>,null,<span class="number">3</span>] <span class="keyword">is</span> <span class="keyword">not</span>:</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line">   \   \</span><br><span class="line">   <span class="number">3</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>&#x89E3;&#x6CD5;&#x5982;&#x4E0B;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x9762;&#x89E3;&#x9898;&#xFF0C;&#x53E6;&#x5916;&#x5199;&#x4E86;&#x4E00;&#x4E2A;&#x9012;&#x5F52;&#x51FD;&#x6570; <code>fileAndCheck()</code>&#x3002;&#x8BE5;&#x51FD;&#x6570;&#x7684;&#x9012;&#x5F52;&#x6761;&#x4EF6;&#x662F;&#x4E24;&#x4E2A;&#x6839;&#x5747;&#x4E3A;&#x975E;&#x7A7A;&#xFF0C;&#x5373;&#x5747;&#x5B58;&#x5728;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x6839;&#x90FD;&#x5B58;&#x5728;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x8FD4;&#x56DE;&#x5224;&#x65AD;&#x4E24;&#x4E2A;&#x6839;&#x7684;&#x503C;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x4E14;&#x4E00;&#x4E2A;&#x6839;&#x7684;&#x4E24;&#x4E2A;&#x5B50;&#x6839;&#x662F;&#x5426;&#x4E0E;&#x53E6;&#x4E00;&#x4E2A;&#x6839;&#x7684;&#x5BF9;&#x5E94;&#x4E24;&#x4E2A;&#x5B50;&#x6839;&#x7684;&#x7FFB;&#x8F6C;&#x76F8;&#x7B49;&#x3002;<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filpAndCheck(root.left, root.right)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6B64;&#x5904;&#x4F7F;&#x7528;&#x9012;&#x5F52;</span></span><br><span class="line"><span class="comment"># 1. &#x5148;&#x786E;&#x4FDD;&#x4E24;&#x4E2A;&#x6839;&#x7684;&#x503C;&#x662F;&#x5426;&#x76F8;&#x7B49;</span></span><br><span class="line"><span class="comment"># 2. &#x518D;&#x786E;&#x4FDD;&#x4E00;&#x4E2A;&#x6839;&#x7684;&#x4E24;&#x4E2A;&#x5B50;&#x6839;&#x662F;&#x5426;&#x4E0E;&#x53E6;&#x4E00;&#x6839;&#x7684;&#x5BF9;&#x5E94;&#x7684;&#x4E24;&#x4E2A;&#x5B50;&#x6839;&#x7684;&#x7FFB;&#x8F6C;&#x76F8;&#x540C;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filpAndCheck</span><span class="params">(root1, root2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root1 <span class="keyword">and</span> root2:</span><br><span class="line">        <span class="keyword">return</span> root1.val == root2.val <span class="keyword">and</span> filpAndCheck(root1.left, root2.right) <span class="keyword">and</span> filpAndCheck(root1.right,</span><br><span class="line">                                                                                                 root2.left)</span><br><span class="line">    <span class="comment"># &#x5982;&#x679C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4E3A; null&#xFF0C;&#x5219;&#x8FD4;&#x56DE; False</span></span><br><span class="line">    <span class="comment"># &#x5982;&#x679C;&#x4E24;&#x4E2A;&#x90FD;&#x4E3A; null&#xFF0C;&#x5219;&#x8FD4;&#x56DE; True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> (root1 <span class="keyword">or</span> root2)</span><br></pre></td></tr></table></figure></p>
+<p><em>P.S&#xFF1A;&#x6587;&#x4E2D;&#x6709;&#x9519;&#x6B22;&#x8FCE;&#x6307;&#x51FA;&#xFF0C;&#x4E92;&#x76F8;&#x5B66;&#x4E60;&#x3002;</em></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2019-01-13T10:36:43.000Z" itemprop="datePublished">2019-01-13</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/算法知识/">算法知识</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2019/01/11/每日一问之算法的时间复杂度/" class="ui tiny button">
+                    
+                    每日一问之算法的时间复杂度
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#什么是递归"><span>什么是递归</span></a></li><li><a href="#递归的条件"><span>递归的条件</span></a></li><li><a href="#递归的使用例子"><span>递归的使用例子</span></a><ol><li><a href="#1-Same-Tree"><span>1. Same Tree</span></a></li><li><a href="#2-Symmetric-Tree"><span>2. Symmetric Tree</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2019 <a href="/">caoqi95</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
