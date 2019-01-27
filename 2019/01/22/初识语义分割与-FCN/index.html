@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文章来自: Fully_Convolutional_Neural_Networks_rendered.ipynb 因学习而翻译了该练习的内容，不妥删。转载也请说明情况。 语义分割在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识语义分割与 FCN">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="本文章来自: Fully_Convolutional_Neural_Networks_rendered.ipynb 因学习而翻译了该练习的内容，不妥删。转载也请说明情况。 语义分割在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/4.png">
+<meta property="og:updated_time" content="2019-01-27T08:44:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识语义分割与 FCN">
+<meta name="twitter:description" content="本文章来自: Fully_Convolutional_Neural_Networks_rendered.ipynb 因学习而翻译了该练习的内容，不妥删。转载也请说明情况。 语义分割在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>初识语义分割与 FCN | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初识语义分割与 FCN
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-22 22:28:26" itemprop="dateCreated datePublished" datetime="2019-01-22T22:28:26+09:00">2019-01-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-27 17:44:56" itemprop="dateModified" datetime="2019-01-27T17:44:56+09:00">2019-01-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文章来自: <a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener"><strong>Fully_Convolutional_Neural_Networks_rendered.ipynb</strong></a></p>
+<p>因学习而翻译了该练习的内容，不妥删。转载也请说明情况。</p>
+<h3 id="语义分割"><a href="#语义分割" class="headerlink" title="语义分割"></a>语义分割</h3><p>在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。</p>
+<p>为什么要进行语义分割？如果当精确的物体边界很重要的时候，比如，在自动驾驶中，需要精确地识别每个像素中的物体，这时候就需要用到语义分割。同时，在医学图像识别的问题上，也会用到语义分割。</p>
+<p>语义分割中是怎么进行数据标注的？看到关于语义分割的各种分类的结果通常都会如下所示，一片蓝，一片红的。这时候就会好奇语义分割是怎么进行数据标注的？其实语义分割分类的结果是为了便于展示，所以用不同的颜色块来区分。在语义分割中，数据标注也很简单。因为语义分割做的是对一张图片中的每一个像素进行分类，所以，数据标注的时候，就需要对每一个像素标注出标签。当然，标注的时候，还会对每一个类别和颜色进行一个颜色关联，这样就方便后续的展示。</p>
+<h3 id="练习目标"><a href="#练习目标" class="headerlink" title="练习目标"></a>练习目标</h3><ul>
+<li>加载一个在 ImageNet 上预训练过的模型 - ResNet50</li>
+<li>将 ResNet50 模型转换成全卷积网络</li>
+<li>应用该网络在图片上实行弱分割 - 利用热力图</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread <span class="keyword">as</span> scipy_imread, imresize <span class="keyword">as</span> scipy_imresize</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包装函数来禁用一些警告</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imread</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">"ignore"</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imread(*args, **kwargs)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imresize</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">"ignore"</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imresize(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载 ResNet50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> ResNet50</span><br><span class="line"></span><br><span class="line">base_model = ResNet50(include_top=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">print(base_model.output_shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res5c = base_model.layers[<span class="number">-1</span>]</span><br><span class="line">type(res5c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keras.layers.core.Activation</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res5c.output_shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
+<h3 id="全卷积-ResNet"><a href="#全卷积-ResNet" class="headerlink" title="全卷积 ResNet"></a>全卷积 ResNet</h3><ul>
+<li><p>除了残差块，resnet 输出形状为 WxHx2048</p>
+</li>
+<li><p>ImageNet 的默认输入形状为 224x224，其对应的输出为 7x7x2048</p>
+</li>
+</ul>
+<ul>
+<li>正规的 ResNet 的网络层：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = base_model.output</span><br><span class="line">x = Faltten()(x)</span><br><span class="line">x = Dense(1000)(x)</span><br><span class="line">x = softmax()(x)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>之后修正的版本：<ul>
+<li>我们想要检索存储在 Dense 图层中的标签信息。之后我们将加载这些权重。</li>
+<li>将 Dense 层更改为 Convolution2D 层以保留空间信息，输出为 WxHx1000</li>
+<li>对于新的 Convolution2D 层，可以使用（1,1）的 kernel 来保持前一层的空间组织不变（它称为逐点卷积）</li>
+<li>只想在最后一个维度上应用 softmax，以便保留空间信息。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的 softmax</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.engine <span class="keyword">import</span> Layer</span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoftmaxMap</span><span class="params">(Layer)</span>:</span></span><br><span class="line">    <span class="comment"># 初始化函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, axis=<span class="number">-1</span>, **kwargs)</span>:</span></span><br><span class="line">        self.axis = axis</span><br><span class="line">        super(SoftmaxMap, self).__init__(**kwargs)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 没有参数，所以不需要定义这个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 这里是我们感兴趣的地方</span></span><br><span class="line">    <span class="comment"># 和一般的 softmax 非常相似，但是需要注意额外的点：</span></span><br><span class="line">    <span class="comment"># 我们接受的 x 的形状为：x.shape == (batch_size, w, h, n_classes)</span></span><br><span class="line">    <span class="comment"># 默认情况下，在 Keras不是这种情况</span></span><br><span class="line">    <span class="comment"># 请注意，我们将 logits 的最大值减去以使 softmax 在数值上更稳定。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, mask=None)</span>:</span></span><br><span class="line">        e = K.exp(x - K.max(x, axis=self.axis, keepdims=<span class="keyword">True</span>))</span><br><span class="line">        s = K.sum(e, axis=self.axis, keepdims=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">return</span> e / s</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出的形状与输入一致</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_output_shape_for</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> input_shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 resnet 改成全卷积网络</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Convolution2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"></span><br><span class="line">input = base_model.layers[<span class="number">0</span>].input</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选取卷积层的最后一层输出</span></span><br><span class="line">x = base_model.layers[<span class="number">-1</span>].output</span><br><span class="line"></span><br><span class="line"><span class="comment"># Kernel 的大小为 (1,1), 输出通道为 1000</span></span><br><span class="line">x = Convolution2D(<span class="number">1000</span>, (<span class="number">1</span>, <span class="number">1</span>), name=<span class="string">'conv1000'</span>)(x)</span><br><span class="line"></span><br><span class="line">output = SoftmaxMap(axis=<span class="number">-1</span>)(x)</span><br><span class="line"></span><br><span class="line">fully_conv_ResNet = Model(inputs=input, outputs=output)</span><br></pre></td></tr></table></figure>
+<p>可以使用以下随机数据来检查是否可以在随机 RGB 图像上运行正向传递：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps = fully_conv_ResNet.predict(np.random.randn(<span class="number">1</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">3</span>))</span><br><span class="line">prediction_maps.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 7, 10, 1000)</span><br></pre></td></tr></table></figure>
+<p>如何解释最终的输出形状？ 一个类的概率应该在输出映射的每个区域中总和为 1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps.sum(axis=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array([[[1.        , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.        , 0.99999994, 0.9999999 , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 1.        , 1.        , 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.0000001 , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 0.99999994, 0.99999994, 1.        , 1.0000001 ],</span><br><span class="line">        [1.0000001 , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.0000001 , 1.0000001 , 1.        , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.0000001 , 0.99999994, 1.        ],</span><br><span class="line">        [1.0000001 , 1.        , 0.99999994, 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 0.99999994, 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.        , 1.        , 1.        ]]],</span><br><span class="line">      dtype=float32)</span><br></pre></td></tr></table></figure>
+<h3 id="加载权重"><a href="#加载权重" class="headerlink" title="加载权重"></a>加载权重</h3><ul>
+<li>在文件 <code>weights_dense.h5</code> 中提供 ResNet50 的最后一个 Dense 层的权重和偏差</li>
+<li>现在，最后一层现在是 1x1 卷积层而不是全连接层</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> h5py.File(<span class="string">'weights_dense.h5'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> h5f:</span><br><span class="line">    w = h5f[<span class="string">'w'</span>][:]</span><br><span class="line">    b = h5f[<span class="string">'b'</span>][:]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line">last_layer.get_weights()[<span class="number">0</span>].shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"加载的权重形状："</span>, w.shape)</span><br><span class="line">print(<span class="string">"最后的卷积层的权重形状："</span>, last_layer.get_weights()[<span class="number">0</span>].shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">加载的权重形状： (2048, 1000)</span><br><span class="line">最后的卷积层的权重形状： (1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重组权重的形状</span></span><br><span class="line">w_reshaped = w.reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2048</span>, <span class="number">1000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置卷积层的权重</span></span><br><span class="line">last_layer.set_weights([w_reshaped, b])</span><br></pre></td></tr></table></figure>
+<h3 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h3><ul>
+<li>定义下面的函数来测试我们的网络</li>
+<li>它将输入调整为给定大小，然后使用 <code>model.predict</code> 计算输出</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass_resize</span><span class="params">(img_path, img_size)</span>:</span></span><br><span class="line">    img_raw = imread(img_path)</span><br><span class="line">    print(<span class="string">'Image shape before resizing: %s'</span> %(img_raw.shape,))</span><br><span class="line">    img = imresize(img_raw, size=img_size).astype(<span class="string">"float32"</span>)</span><br><span class="line">    img = preprocess_input(img[np.newaxis])</span><br><span class="line">    print(<span class="string">"Image batch size shape before forward pass:"</span>, img.shape)</span><br><span class="line">    z = fully_conv_ResNet.predict(img)</span><br><span class="line">    <span class="keyword">return</span> z</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">800</span>, <span class="number">600</span>))</span><br><span class="line">print(<span class="string">"prediction map shape:"</span>, output.shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 600, 3)</span><br><span class="line">prediction map shape: (1, 25, 19, 1000)</span><br></pre></td></tr></table></figure>
+<h3 id="找到与狗关联的类别"><a href="#找到与狗关联的类别" class="headerlink" title="找到与狗关联的类别"></a>找到与狗关联的类别</h3><p>ImageNet 使用概念本体，从中派生类。 synset 对应于本体中的节点。</p>
+<p>例如，所有种类的狗都是同义词 <code>n02084071</code>（狗，家犬，犬科动物）的孩子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Helper file importing synsets from imagenet</span></span><br><span class="line"><span class="keyword">import</span> imagenet_tool</span><br><span class="line"></span><br><span class="line">synset = <span class="string">"n02084071"</span> <span class="comment"># 对应于狗</span></span><br><span class="line">ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">print(<span class="string">"All dog classes ids (%d):"</span> % len(ids))</span><br><span class="line">print(ids)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">All dog classes ids (118):</span><br><span class="line">[251, 268, 256, 253, 255, 254, 257, 159, 211, 210, 212, 214, 213, 216, 215, 219, 220, 221, 217, 218, 207, 209, 206, 205, 208, 193, 202, 194, 191, 204, 187, 203, 185, 192, 183, 199, 195, 181, 184, 201, 186, 200, 182, 188, 189, 190, 197, 196, 198, 179, 180, 177, 178, 175, 163, 174, 176, 160, 162, 161, 164, 168, 173, 170, 169, 165, 166, 167, 172, 171, 264, 263, 266, 265, 267, 262, 246, 242, 243, 248, 247, 229, 233, 234, 228, 231, 232, 230, 227, 226, 235, 225, 224, 223, 222, 236, 252, 237, 250, 249, 241, 239, 238, 240, 244, 245, 259, 261, 260, 258, 154, 153, 158, 152, 155, 151, 157, 156]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dog_id <span class="keyword">in</span> ids[:<span class="number">10</span>]:</span><br><span class="line">    print(imagenet_tool.id_to_words(dog_id))</span><br><span class="line">print(<span class="string">'...'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dalmatian, coach dog, carriage dog</span><br><span class="line">Mexican hairless</span><br><span class="line">Newfoundland, Newfoundland dog</span><br><span class="line">basenji</span><br><span class="line">Leonberg</span><br><span class="line">pug, pug-dog</span><br><span class="line">Great Pyrenees</span><br><span class="line">Rhodesian ridgeback</span><br><span class="line">vizsla, Hungarian pointer</span><br><span class="line">German short-haired pointer</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="狗类热力图"><a href="#狗类热力图" class="headerlink" title="狗类热力图"></a>狗类热力图</h3><p>下面的函数是从前向传播中建立热力图的辅助函数。它对与 synset 相对应的所有 id 的表示求和。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_heatmap</span><span class="params">(z, synset)</span>:</span></span><br><span class="line">    class_ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">    class_ids = np.array([id_ <span class="keyword">for</span> id_ <span class="keyword">in</span> class_ids <span class="keyword">if</span> id_ <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>])</span><br><span class="line">    x = z[<span class="number">0</span>, :, :, class_ids].sum(axis=<span class="number">0</span>)</span><br><span class="line">    print(<span class="string">"size of heatmap:"</span> + str(x.shape))</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_img_and_heatmap</span><span class="params">(img_path, heatmap)</span>:</span></span><br><span class="line">    dog = imread(img_path)</span><br><span class="line">    fig, (ax0, ax1) = plt.subplots(ncols=<span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">8</span>))</span><br><span class="line">    ax0.imshow(dog)</span><br><span class="line">    ax0.axis(<span class="string">'off'</span>)</span><br><span class="line">    ax1.imshow(heatmap, interpolation=<span class="string">'nearest'</span>, cmap=<span class="string">"viridis"</span>)</span><br><span class="line">    ax1.axis(<span class="string">'off'</span>)</span><br></pre></td></tr></table></figure>
+<p>下面用 3 种不同的大小：</p>
+<ul>
+<li>(400, 640)</li>
+<li>(800, 1280)</li>
+<li>(1600, 2560)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dog synset</span></span><br><span class="line">s = <span class="string">"n02084071"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># size 1 - (400, 640)</span></span><br><span class="line">probas_1 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">400</span>, <span class="number">640</span>))</span><br><span class="line">heatmap_1 = build_heatmap(probas_1, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 400, 640, 3)</span><br><span class="line">size of heatmap:(13, 20)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/初识语义分割与-FCN/1.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 2 - (800, 1280)</span></span><br><span class="line">probas_2 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">800</span>, <span class="number">1280</span>))</span><br><span class="line">heatmap_2 = build_heatmap(probas_2, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 1280, 3)</span><br><span class="line">size of heatmap:(25, 40)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/初识语义分割与-FCN/2.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 3 - (1600, 2560)</span></span><br><span class="line">probas_3 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">1600</span>, <span class="number">2560</span>))</span><br><span class="line">heatmap_3 = build_heatmap(probas_3, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 1600, 2560, 3)</span><br><span class="line">size of heatmap:(50, 80)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/初识语义分割与-FCN/3.png" alt=""></p>
+<p>可以观察到 heatmap_1 和 heatmap_2 提供了比 heatmap_3 更粗略的分个。但是，heatmap_3 在狗区域外面有一些小的杂碎，heatmap_3 会编码更多关于狗的局部纹理级别的信息，而较低的分辨率则会编码更多关于整个对象的语义信息。结合它们可能是一个好主意！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heatmap_1_r = imresize(heatmap_1, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line">heatmap_2_r = imresize(heatmap_2, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line">heatmap_3_r = imresize(heatmap_3, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line"></span><br><span class="line">heatmap_geom_avg = np.power(heatmap_1_r * heatmap_2_r * heatmap_3_r, <span class="number">0.333</span>)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_geom_avg)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/初识语义分割与-FCN/4.png" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/LeetCode-101-Symmetric-Tree-解题思路/" rel="next" title="LeetCode#101-Symmetric Tree 解题思路">
+                <i class="fa fa-chevron-left"></i> LeetCode#101-Symmetric Tree 解题思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/22/记最近一段时间吃过的美食/" rel="prev" title="记最近一段时间吃过的美食">
+                记最近一段时间吃过的美食 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#语义分割"><span class="nav-number">1.</span> <span class="nav-text">语义分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习目标"><span class="nav-number">2.</span> <span class="nav-text">练习目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全卷积-ResNet"><span class="nav-number">3.</span> <span class="nav-text">全卷积 ResNet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载权重"><span class="nav-number">4.</span> <span class="nav-text">加载权重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前向传播"><span class="nav-number">5.</span> <span class="nav-text">前向传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找到与狗关联的类别"><span class="nav-number">6.</span> <span class="nav-text">找到与狗关联的类别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#狗类热力图"><span class="nav-number">7.</span> <span class="nav-text">狗类热力图</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一问之 FCN 与语义分割">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/cat.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/object%20detec.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/semantic%20segmentation.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/FCN.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/pixelwise.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/deconv.gif">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/FCN-32s.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/results.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/fusion%20output.png">
+<meta property="og:updated_time" content="2019-01-27T08:22:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一问之 FCN 与语义分割">
+<meta name="twitter:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/cat.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>每日一问之 FCN 与语义分割 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每日一问之 FCN 与语义分割
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-27 16:07:05 / 修改时间：17:22:56" itemprop="dateCreated datePublished" datetime="2019-01-27T16:07:05+09:00">2019-01-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/每日一问/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。</p>
+<ul>
+<li>什么是语义分割</li>
+<li>什么是 FCN</li>
+<li>如何构建全卷积网络</li>
+<li>如何进行语义分割</li>
+<li>如何提高上采样的精度</li>
+</ul>
+<h3 id="什么是语义分割"><a href="#什么是语义分割" class="headerlink" title="什么是语义分割"></a>什么是语义分割</h3><p>第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。下面是语义分割与图像分类，目标检测的区别：</p>
+<ul>
+<li><p>图像分类（Image Classification）：对图像内的对象进行分类（识别对象类别）。如，识别一张图像是猫还是狗。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/cat.png" alt=""></p>
+</li>
+<li><p>目标检测（Object Detection）：对图像内的对象进行分类和检测，且标出每个对象的边界框，如下所示。这就意味着不仅要识别出图像中的对象类别，还需要知道它们的位置和大小。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/object detec.png" alt=""></p>
+</li>
+<li><p>语义分割（Semantic Segmentation）：对图像中的每个像素进行分类。这意味着每个像素都有一个标签。对语义分割模型来说，不仅要识别出汽车，道路，人等对象，还要标出每个对象的边界。因此，模型要具有像素级的密集预测能力。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/semantic segmentation.png" alt=""></p>
+</li>
+</ul>
+<h3 id="什么是-FCN"><a href="#什么是-FCN" class="headerlink" title="什么是 FCN"></a>什么是 FCN</h3><p>FCN，即全卷积神经网络（Fully Convolution Networks），是 2014 年，由加州大学伯克利分校的 Long 等人提出的。该论文中对 AlexNet，VGG net 以及 GoogLeNet 进行了一些改造，改造成全卷积网络，并进行迁移学习，应用在语义分割任务上。</p>
+<p>那什么是全卷积神经网络？顾名思义，就是网络中都是卷积层（包括池化层）的神经网络。一个 FCN 可以对任何大小的输入进行操作，并产生相应（可能重新采样的）空间维度的输出。</p>
+<h3 id="如何构建全卷积网络"><a href="#如何构建全卷积网络" class="headerlink" title="如何构建全卷积网络"></a>如何构建全卷积网络</h3><p>知道了全卷积网络的定义，我们该怎么构建它呢？在 FCN 的论文中，将一些模型（如，VGG）最后几层的全连接层替换成卷积层，就能够构建一个全卷积网络。如下所示，上面部分的过程是图像分类，最后 3 层网络是全连接层。在分类过程中，图像经过卷积操作，缩小尺寸，后经过全连接层，输出一个图像的预测标签。而将该网络的最后 3 层全连接层，全都替换成卷积层，就得到一个全卷积网络。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/FCN.png" alt=""></p>
+<p>该全卷积网络将会得到一个比输入图像要小的图像结果，且该结果通常是粗糙模糊的高维度特征图，常以热力图（heatmap）相称。想了解热力图生成的过程，可以查看这个练习：<a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener">链接</a>。</p>
+<h3 id="如何进行语义分割"><a href="#如何进行语义分割" class="headerlink" title="如何进行语义分割"></a>如何进行语义分割</h3><p>在上面构建全卷积网络的过程中，我们知道将原网络的最后几层的全连接层替换成卷积层，会得到一个粗糙的高纬度特征图。如果要进行语义分割，即进行像素级别的分类的话，我们需要将图片还原成原图片的像素级别，然后逐个像素进行分类。在 FCN 的论文中，作者用了上采样（Upsampling）的方法，对全卷积网络的最后的输出结果进行上采样，然后再逐像素进行分类预测，就能训练一个端到端的语义分割模型。如下图所示：</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/pixelwise.png" alt=""></p>
+<p>​        <em>图片来自：Review: FCN — <strong>Fully Convolutional Network </strong>(Semantic Segmentation)</em></p>
+<p>下面来讲一讲上采样，上采样其实就是反卷积（deconvolution）的过程，FCN 的作者称其为<strong>向后卷积</strong>（backwards convolution）的过程。对图像进行卷积的过程是一个使图像尺寸变小的过程，而反卷积的过程就是上采样使图像尺寸变大的过程。反卷积这个名字经常会引起人们的误解，被认为是卷积的逆过程。其实不是的，它还是一种卷积的过程，有时也称为转置卷积（transposed convolution）。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/deconv.gif" alt=""></p>
+<h3 id="如何提高上采样的精度"><a href="#如何提高上采样的精度" class="headerlink" title="如何提高上采样的精度"></a>如何提高上采样的精度</h3><p>FCN 的论文中，如下图所示，在对 conv7 的输出结果进行 32x 上采样，得到与输入一样的尺寸大小。但是输出的结果还是不够精准，如下 FCN-32s 所示，将其与 Ground truth 相比，会发现结果还是太粗糙。为什么？<strong>因为在不断的增加深度的时候，可以得到深度的图像信息，但是也因为深度及池化的作用会损失空间信息。</strong></p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/FCN-32s.png" alt=""></p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/results.png" alt=""></p>
+<p>后面论文作者使用了 _skip <em>skip</em> 的结构如下所示，就是一种<strong>融合输出</strong>的想法。将底层的信息和后面高层的信息结合起来，这样就会还原一些空间信息。</p>
+<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/fusion output.png" alt=""></p>
+<p>FCN-16s 的过程是，对 pool5 进行 2x 上采样，然后和 pool4 的预测结果融合再进行 16x 上采样。FCN-8s 是对 FCN-16s 的结果进行 2x 上采样，然后和 pool3 的预测结构融合再进行过 8x 上采样。后面实验得出 FCN-8s 的结果是最精确的。</p>
+<p>以上就是关于 FCN 和 语义分割的内容。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1" target="_blank" rel="noopener">https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1</a></li>
+<li>Fully Convolutional Networks for Semantic Segmentation Paper</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/记最近一段时间吃过的美食/" rel="next" title="记最近一段时间吃过的美食">
+                <i class="fa fa-chevron-left"></i> 记最近一段时间吃过的美食
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/27/Hexo-博客问题汇总/" rel="prev" title="Hexo 博客问题汇总">
+                Hexo 博客问题汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是语义分割"><span class="nav-number">1.</span> <span class="nav-text">什么是语义分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-FCN"><span class="nav-number">2.</span> <span class="nav-text">什么是 FCN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何构建全卷积网络"><span class="nav-number">3.</span> <span class="nav-text">如何构建全卷积网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行语义分割"><span class="nav-number">4.</span> <span class="nav-text">如何进行语义分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何提高上采样的精度"><span class="nav-number">5.</span> <span class="nav-text">如何提高上采样的精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

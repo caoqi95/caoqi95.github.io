@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：https://arxiv.org/pdf/1805.00794.pdf 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。 实验的数据集 MIT-BIH 心律">
+<meta name="keywords" content="生物医学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：https://arxiv.org/pdf/1805.00794.pdf 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。 实验的数据集 MIT-BIH 心律">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png">
+<meta property="og:updated_time" content="2019-01-27T09:19:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》">
+<meta name="twitter:description" content="这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：https://arxiv.org/pdf/1805.00794.pdf 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。 实验的数据集 MIT-BIH 心律">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-15 15:55:56" itemprop="dateCreated datePublished" datetime="2019-01-15T15:55:56+09:00">2019-01-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-27 18:19:26" itemprop="dateModified" datetime="2019-01-27T18:19:26+09:00">2019-01-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：<a href="https://arxiv.org/pdf/1805.00794.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1805.00794.pdf</a> 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。</p>
+<h3 id="实验的数据集"><a href="#实验的数据集" class="headerlink" title="实验的数据集"></a>实验的数据集</h3><ul>
+<li><p><a href="https://www.physionet.org/physiobank/database/mitdb/" target="_blank" rel="noopener">MIT-BIH 心律失常数据集</a>：</p>
+<ul>
+<li>47 个不同对象</li>
+<li>采样频率：360 Hz</li>
+<li>由 2 个心脏病专家标记</li>
+</ul>
+<p>论文中将专家的标记按照 AAMI 的标准分成下面 5 中不同的类别：</p>
+</li>
+</ul>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png" alt=""></p>
+<ul>
+<li><a href="https://physionet.org/physiobank/database/ptbdb/" target="_blank" rel="noopener">PTB 诊断心电图数据库</a>：<ul>
+<li>290 个不同的对象：<ul>
+<li>148 个被诊断为 MI</li>
+<li>52 个健康</li>
+<li>其余被诊断为 7 种不同的疾病</li>
+</ul>
+</li>
+<li>采用 12 导联</li>
+<li>采样频率：1000 Hz</li>
+</ul>
+</li>
+</ul>
+<p>在实验中，只使用 ECG 导联 II，MI 及健康的样本。且在实验中，重新的采样频率为 125 Hz。</p>
+<p>kaggle 上的<a href="https://www.kaggle.com/shayanfazeli/heartbeat/home" target="_blank" rel="noopener"> 数据集 </a>已经把上面两个数据集合在一起了，后面复现就是使用这两个数据集。</p>
+<h3 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h3><ul>
+<li><p><strong>预处理</strong></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png" alt=""><br>值得一提的是，论文中建议的节拍数据提取方法，可以简单有效地从具有不同形态的信号中提取 R-R 间隔。例如，没有使用任何形式的滤波，或任何对信号形态或频谱做出任何假设的处理。另外，所有提取的节拍数据具有相同的长度，这对于用作后续处理的输入是必不可少的。<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png" alt=""></p>
+<p>kaggle 上的数据集是处理过后的。</p>
+</li>
+</ul>
+<ul>
+<li><strong>训练心律跳动分类器</strong><br>在 MIT-BIH 的数据集上，采用卷积神经网络，来训练一个分类器。经过训练的网络不仅可以用于心脏跳动分类，而且在下一节的实验中，还可以看到它可以用作心跳的信息表示。模型的结构如下所示：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png" alt=""></li>
+</ul>
+<blockquote>
+<p>Here, all convolution layers are applying 1-D convolution through time and each have 32 kernels of size 5. We also use max pooling of size 5 and stride 2 in all pooling layers. The predictor network consists of ﬁve residual blocks followed by two fully-connected layers with 32 neurons each and a softmax layer to predict output class probabilities. Each residual block contains two convolutional layers, two ReLU nonlinearities [19], a residual skip connection [20], and a pooling layer. In total, the resulting network is a deep network consisting of 13 weight layers.</p>
+</blockquote>
+<ul>
+<li><strong>训练 MI 预测器</strong></li>
+</ul>
+<p>训练完心脏跳动分类器后，使用最后一个卷积层的输出激活作为输入表示。。然后，将其输入有个两层的全连接层，每一层包含 32 个神经元。在训练过程中，只训练最后这两层的参数，其余层的参数都冻结。这里就是一个二分类的问题。</p>
+<ul>
+<li><strong>参数细节</strong></li>
+</ul>
+<blockquote>
+<p>Cross entropy loss on the softmax outputs is used as the loss function. For training the networks, we used Adam optimization method [22] with the learning rate, beta-1, and beta-2 of 0.001, 0.9, and 0.999, respectively. Learning rate is decayed exponentially with the decay factor of 0.75 every 10000 iterations. Training all the networks took less than two hours on a GeForce GTX 1080Ti processor.</p>
+</blockquote>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><ul>
+<li><strong>心律跳动分类器的结果</strong>：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png" alt=""></li>
+</ul>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png" alt=""></p>
+<p>表 II 列出了所提方法的平均准确度，并将其与文献中的其他相关方法进行了比较。该论文建议 MIT-BIH 的预测器并不是研究的唯一目的，但根据结果，该论文所取得的准确性与最先进的方法相比具有竞争力。这背后的主要原因可能是在网络架构中使用了 <strong>残差连接</strong> 这一事实，与使用传统的卷积架构相比，可以训练更深的网络。</p>
+<ul>
+<li><p><strong>MI 预测器的结果</strong></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png" alt=""></p>
+<p>表 III 给出了所提出的 MI 分类方法和文献中其他工作的平均准确度，精确度和召回率之间的比较。除 Sharma 等人提出的方法外，该论文所提方法的性能优于其他所有工作。 实验结果显示了更高的准确度和精确度值。但是， Sharma 等人，使用 12 导联心电图而不是只使用导联 II。</p>
+</li>
+</ul>
+<h3 id="复现代码地址"><a href="#复现代码地址" class="headerlink" title="复现代码地址"></a>复现代码地址</h3><ul>
+<li>下面的链接只复现了论文中的第一个实验：<ul>
+<li>参考的 Kaggle Kernels 原地址：<a href="https://www.kaggle.com/coni57/model-from-arxiv-1805-00794" target="_blank" rel="noopener">点击</a></li>
+<li>根据 Kaggle Kernels 完成的 Jupyter Notebook：<a href="https://github.com/caoqi95/My_Kaggle_Journey/blob/master/LearnFromKernels/ECG%20Heartbeat%20Classification.ipynb" target="_blank" rel="noopener">点击</a></li>
+</ul>
+</li>
+<li>两个实验都复现了：<ul>
+<li>完整实验的代码地址：<a href="https://github.com/caoqi95/ECG-Projects/tree/master/ECG_Heart_Classification" target="_blank" rel="noopener">点击</a></li>
+<li>推荐一个代码实现，这个作者还与从头训练的方法和在学习到的特征上完整训练的方法进行了比较：[点击](</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生物医学/" rel="tag"># 生物医学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/13/每日一问之什么是递归/" rel="next" title="每日一问之什么是递归">
+                <i class="fa fa-chevron-left"></i> 每日一问之什么是递归
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/16/假期太短了/" rel="prev" title="假期太短了">
+                假期太短了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验的数据集"><span class="nav-number">1.</span> <span class="nav-text">实验的数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验方法"><span class="nav-number">2.</span> <span class="nav-text">实验方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复现代码地址"><span class="nav-number">4.</span> <span class="nav-text">复现代码地址</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

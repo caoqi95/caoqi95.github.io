@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="为了加快 Arduino 的学习，决定周一这一天的上午也用来学习 Arduino。今天还是继续学习蓝牙模块的使用。实现通过蓝牙模块，在手机端语音控制 LED 的功能。这种思路后续再扩宽的话，加上动手能力强的话，完全自己搭建智能家居系统。 本文章主要参考的是这篇：Android 通过蓝牙语音控制 Arduino，非常感谢作者的教程！ 设置蓝牙本人使用的蓝牙模块是 HC-05，由实验室的小伙伴友情提供">
+<meta name="keywords" content="Arduino 学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino 入门项目系列(5) - Android 手机通过蓝牙语音控制 LED">
+<meta property="og:url" content="http://caoqi95.github.io/2018/11/19/Arduino-入门项目系列-5-Android-手机通过蓝牙语音控制-LED/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="为了加快 Arduino 的学习，决定周一这一天的上午也用来学习 Arduino。今天还是继续学习蓝牙模块的使用。实现通过蓝牙模块，在手机端语音控制 LED 的功能。这种思路后续再扩宽的话，加上动手能力强的话，完全自己搭建智能家居系统。 本文章主要参考的是这篇：Android 通过蓝牙语音控制 Arduino，非常感谢作者的教程！ 设置蓝牙本人使用的蓝牙模块是 HC-05，由实验室的小伙伴友情提供">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-6ecd1227154726c9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-5e18cd448c27ea30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-d898f3850e4a44bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-10T02:07:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arduino 入门项目系列(5) - Android 手机通过蓝牙语音控制 LED">
+<meta name="twitter:description" content="为了加快 Arduino 的学习，决定周一这一天的上午也用来学习 Arduino。今天还是继续学习蓝牙模块的使用。实现通过蓝牙模块，在手机端语音控制 LED 的功能。这种思路后续再扩宽的话，加上动手能力强的话，完全自己搭建智能家居系统。 本文章主要参考的是这篇：Android 通过蓝牙语音控制 Arduino，非常感谢作者的教程！ 设置蓝牙本人使用的蓝牙模块是 HC-05，由实验室的小伙伴友情提供">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2759738-6ecd1227154726c9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2018/11/19/Arduino-入门项目系列-5-Android-手机通过蓝牙语音控制-LED/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Arduino 入门项目系列(5) - Android 手机通过蓝牙语音控制 LED | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2018/11/19/Arduino-入门项目系列-5-Android-手机通过蓝牙语音控制-LED/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Arduino 入门项目系列(5) - Android 手机通过蓝牙语音控制 LED
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-19 10:52:57" itemprop="dateCreated datePublished" datetime="2018-11-19T10:52:57+09:00">2018-11-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-10 11:07:34" itemprop="dateModified" datetime="2019-01-10T11:07:34+09:00">2019-01-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Arduino/" itemprop="url" rel="index"><span itemprop="name">Arduino</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为了加快 Arduino 的学习，决定周一这一天的上午也用来学习 Arduino。今天还是继续学习蓝牙模块的使用。实现通过蓝牙模块，在手机端语音控制 LED 的功能。这种思路后续再扩宽的话，加上动手能力强的话，完全自己搭建智能家居系统。</p>
+<p>本文章主要参考的是这篇：<a href="https://www.jianshu.com/p/981266b507f5" target="_blank" rel="noopener">Android 通过蓝牙语音控制 Arduino</a>，非常感谢作者的教程！</p>
+<h2 id="设置蓝牙"><a href="#设置蓝牙" class="headerlink" title="设置蓝牙"></a>设置蓝牙</h2><p>本人使用的蓝牙模块是 HC-05，由实验室的小伙伴友情提供。因为是他人使用过的，所以得进行初始化设置。</p>
+<ul>
+<li>进入 AT 模式：具体参考这篇文章：<a href="https://www.jianshu.com/p/4ebf1a01df51" target="_blank" rel="noopener">Arduino使用HC05蓝牙模块与手机连接</a></li>
+<li>AT 模式的一些命令：<br>进入 AT 模式后，重新设置名称和密码，并将蓝牙设置为从模式，因为这个项目中，手机是主机。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AT+ORGL    # 恢复出厂模式</span><br><span class="line">AT+NAME=Bluetooth    # 设置蓝牙名称为 Bluetooth</span><br><span class="line">AT+ROLE=0    # 设置蓝牙为从模式</span><br><span class="line">AT+CMODE=1    # 设置蓝牙为任意设备连接模式</span><br><span class="line">AT+PSWD=1234    # 设置蓝牙匹配密码为1234</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
+<li>Arduino UNO 一个</li>
+<li>蓝牙模块 HC-05 一个</li>
+<li>红色和黄色 LED 各一个</li>
+<li>Android 手机（<strong>有谷歌套件</strong>）</li>
+<li>面包板一块</li>
+<li>连接线若干</li>
+</ul>
+<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
+<li>Arduino IDE</li>
+<li>在 Google APP Store 或者其他安卓市场下载 Arduino Voice Control</li>
+</ul>
+<h2 id="电路连接"><a href="#电路连接" class="headerlink" title="电路连接"></a>电路连接</h2><p>黄色 LED 的连线：长脚 ——&gt;先接个电阻，再连接 13，短脚 ——&gt; GND<br>红色 LED 的连线：长脚 ——&gt;先接个电阻，再连接 12，短脚 ——&gt; GND<br>蓝牙的连线：VCC ——&gt; 5V，GND ——&gt; GND，RXD ——&gt; TXD，TXD ——&gt; RXD，这里需要注意蓝牙的 RXD 要与 Arduino 的 TXD 连接，TXD 要与 Arduino 的 RXD 连接，<strong>两者是交错连接的</strong>。<strong>同时在烧录的时候，注意断开 TXD 和 RXD 的连接</strong>，要不然烧录的时候会受到干扰，继而会报错。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2759738-6ecd1227154726c9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p><a href="https://github.com/caoqi95/Arduino_Learning/blob/master/Projects/VoiceControlLed/VoiceControlLed.ino" target="_blank" rel="noopener">Arduino_Learning/VoiceControlLed</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 通过蓝牙，实现手机语音控制 LED</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> YELLOW_PIN 13</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RED_PIN 12</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String voice;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 设置串行波特率</span></span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  <span class="comment">// 将 led 引脚设为输出模式</span></span><br><span class="line">  pinMode(YELLOW_PIN, OUTPUT);</span><br><span class="line">  pinMode(RED_PIN, OUTPUT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取指令函数。将串口传输的字符连接成完整的字符串指令</span></span><br><span class="line"><span class="function">String <span class="title">getVoice</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(Serial.available())&#123;</span><br><span class="line">    delay(<span class="number">50</span>);</span><br><span class="line">    <span class="keyword">char</span> orderChar = Serial.read();</span><br><span class="line">    <span class="comment">// 如果按下“#”号键的话，停止获取语音</span></span><br><span class="line">    <span class="keyword">if</span>(orderChar == <span class="string">"#"</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      voice += orderChar;</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">return</span> voice;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// 使 LED 闪烁</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">blink</span><span class="params">()</span></span>&#123;</span><br><span class="line">  digitalWrite(YELLOW_PIN, HIGH);</span><br><span class="line">  digitalWrite(RED_PIN, HIGH);</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">  digitalWrite(YELLOW_PIN, LOW);</span><br><span class="line">  digitalWrite(RED_PIN, LOW); </span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// 控制函数。解析字符串指令并执行相应动作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">control</span><span class="params">(String voice)</span></span>&#123;</span><br><span class="line">  <span class="comment">// 打开黄色 LED </span></span><br><span class="line">  <span class="keyword">if</span>(voice.endsWith(<span class="string">"yellow"</span>))&#123;</span><br><span class="line">    digitalWrite(YELLOW_PIN, HIGH);</span><br><span class="line">    <span class="comment">//Serial.println("Light ON");</span></span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">// 打开红色 LED</span></span><br><span class="line">  <span class="keyword">if</span>(voice.endsWith(<span class="string">"red"</span>))&#123;</span><br><span class="line">    digitalWrite(RED_PIN, HIGH);</span><br><span class="line">    <span class="comment">//Serial.println("Light ON");</span></span><br><span class="line">    &#125;  </span><br><span class="line">  <span class="comment">// 闪烁</span></span><br><span class="line">  <span class="keyword">if</span>(voice.endsWith(<span class="string">"blink"</span>))&#123;</span><br><span class="line">    blink();</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">// 停止闪烁</span></span><br><span class="line">  <span class="keyword">if</span>(voice.endsWith(<span class="string">"stop"</span>))&#123;</span><br><span class="line">    digitalWrite(YELLOW_PIN, HIGH);</span><br><span class="line">    digitalWrite(RED_PIN, HIGH);&#125;</span><br><span class="line">  <span class="comment">// 关闭 LED</span></span><br><span class="line">  <span class="keyword">if</span>(voice.endsWith(<span class="string">"off"</span>))&#123;</span><br><span class="line">    digitalWrite(YELLOW_PIN, LOW);</span><br><span class="line">    digitalWrite(RED_PIN, LOW);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  String voice = getVoice();</span><br><span class="line">  control(voice);</span><br><span class="line">  voice = <span class="string">""</span>; <span class="comment">// 将 voice 清空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="烧录代码"><a href="#烧录代码" class="headerlink" title="烧录代码"></a>烧录代码</h2><p>代码编译完没问题后，点击图中所选按钮将其上传至 Arduino UNO 板上。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2759738-5e18cd448c27ea30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="手机设置"><a href="#手机设置" class="headerlink" title="手机设置"></a>手机设置</h2><ol>
+<li><p>点击 <code>CONNECT</code>，选择蓝牙，点击连接。<br> <img src="https://upload-images.jianshu.io/upload_images/2759738-d898f3850e4a44bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>点击中间的麦克风，进行语音输入</p>
+</li>
+</ol>
+<h2 id="实际结果"><a href="#实际结果" class="headerlink" title="实际结果"></a>实际结果</h2><ul>
+<li>语音输入 <code>turn on the yellow</code>：黄色的灯会打开</li>
+<li>语音输入 <code>turn on the red</code>：红色的灯会打开</li>
+<li>语音输入 <code>blink</code>：两个灯会一起闪烁</li>
+<li>语音输入 <code>stop</code>：两个灯会停止闪烁，并保持常亮</li>
+<li>语音输入 <code>turn off</code>：两个灯都会熄灭</li>
+</ul>
+<p>这个项目的结果最好的显示方式是录视频，但我一个人忙不过来，就放弃了。结果可以参考上面那篇文章的结果。我主要增加了按颜色实现语音控制 LED ，以及 LED 闪烁功能的开启和关闭这些功能。只是代码方面的修改，及语音方面输入的不同。</p>
+<h2 id="心得总结"><a href="#心得总结" class="headerlink" title="心得总结"></a>心得总结</h2><p>刚开始在看到一篇用 BitVoice 这个工具实现语音控制的文章，但下载了 BitVoice 这个软件后，没有搞懂怎么使用，就放弃了。后来在收藏夹里又突然发现上面这篇文章，就赶紧参考写代码实现了。在实现的过程中，感觉英文发音比较准的话，会比较容易控制；发音不好的话，就会识别不清，得多次输入。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>[1]. <a href="https://www.jianshu.com/p/981266b507f5" target="_blank" rel="noopener">Android 通过蓝牙语音控制 Arduino</a></p>
+<p>[2]. <a href="https://www.jianshu.com/p/4ebf1a01df51" target="_blank" rel="noopener">Arduino使用HC05蓝牙模块与手机连接</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Arduino-学习/" rel="tag"># Arduino 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/15/Arduino-入门项目系列-4-Android-手机通过蓝牙远程控制-LED/" rel="next" title="Arduino 入门项目系列(4) - Android 手机通过蓝牙远程控制 LED">
+                <i class="fa fa-chevron-left"></i> Arduino 入门项目系列(4) - Android 手机通过蓝牙远程控制 LED
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/21/Arduino-中关于字符串的处理/" rel="prev" title="Arduino 中关于字符串的处理">
+                Arduino 中关于字符串的处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置蓝牙"><span class="nav-number">1.</span> <span class="nav-text">设置蓝牙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件准备"><span class="nav-number">2.</span> <span class="nav-text">硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件准备"><span class="nav-number">3.</span> <span class="nav-text">软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电路连接"><span class="nav-number">4.</span> <span class="nav-text">电路连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现代码"><span class="nav-number">5.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#烧录代码"><span class="nav-number">6.</span> <span class="nav-text">烧录代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手机设置"><span class="nav-number">7.</span> <span class="nav-text">手机设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际结果"><span class="nav-number">8.</span> <span class="nav-text">实际结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得总结"><span class="nav-number">9.</span> <span class="nav-text">心得总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">10.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

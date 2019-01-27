@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
+<meta name="keywords" content="生物医学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-3667a1c5709fbaa9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-14T12:15:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》">
+<meta name="twitter:description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-10 17:56:20" itemprop="dateCreated datePublished" datetime="2019-01-10T17:56:20+09:00">2019-01-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-14 21:15:48" itemprop="dateModified" datetime="2019-01-14T21:15:48+09:00">2019-01-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，总共 12 种信号进行分类，并将其性能与心脏病专家的结果进行比较。</p>
+<p>目前可能还看不了 nature 上的 <a href="https://www.nature.com/articles/s41591-018-0268-3" target="_blank" rel="noopener">论文</a>（不过发现使用实验室的校园网就可以查看并下载论文了），但是可以从 <a href="https://stanfordmlgroup.github.io/projects/ecg2/" target="_blank" rel="noopener">这个</a> 网站能够了解一些信息。</p>
+<p>该篇论文构建了一个深度神经网络，使用了 53549 名病人的单导联 ECG 数据来对 12 种节律类别进行分类。同时，在这项研究中，构建了一个大型，新颖的 ECG 数据集，该数据集经过专家注释，适用于广泛的心电图节律类别。数据收集主要使用 Zio 监测器连续监测，采样频率为 200Hz。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>该 DNN 旨在对 10 种心律失常以及窦性心律和噪声进行分类，总共 12 种输出节律类别，结构如下所示。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2759738-3667a1c5709fbaa9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这个深度神经网络的架构共有 34 层。其将原始的 ECG 数据（以 200 Hz 采样，或者每秒 200 个样本）作为输入，不考虑其他与患者或者 ECG 相关的特征。并且每 256 个样本（或者每 1.28 秒）输出一个预测，这样的输出被称之为 <strong>输出间隔</strong>。同时为了网络的优化及易于处理，采用了类似残差网络的快捷连接的结构。该网络由 16 残差块组成，每个块中有 2 个卷积层。卷积层具有16 个滤波器和 32*2<sup>k</sup> 的滤波器宽度，其中 k 是超参数，其从 0 开始并且每 4 个残差块递增 1。每个残差块都对输入进行下采样操作。</p>
+<blockquote>
+<p>In general, the hyper-parameters of the network architecture and optimization algorithm were chosen via a combination of grid search and manual tuning. For the architecture, we searched primarily over the number of convolutional layers, the size and number of the convolutional filters, as well as the use of residual connections. We found the residual connections useful once the depth of the model exceeded eight layers. We also experimented with recurrent layers including long short-term memory cells<sup><a href="https://www.nature.com/articles/s41591-018-0268-3#ref-CR46" title="Hochreiter, S. &amp; Schmidhuber, J. Long short-term memory. Neural Comput. 9, 1735–1780 (1997)." target="_blank" rel="noopener">46</a></sup> and bidirectional recurrence, but found no improvement in accuracy and a substantial increase in runtime; thus, we abandoned this class of models. We manually tuned the learning rate to achieve fastest convergence.</p>
+</blockquote>
+<p>对于该模型结构，作者们主要改变卷积层的数量，卷积滤波器的大小和数量，以及残差连接的使用来调参，并且手动改变学习率以使模型快速收敛。 在实验过程中，他们发现，<strong>一旦模型的深度超过 8 层，残差连接就很有用</strong>。 还尝试了包括 LSTM 的 RNN 层和双向循环结构，但发现准确性并没有提高，运行时间也大幅增加。所以，就抛弃了循环网络这类模型。</p>
+<h3 id="算法评估"><a href="#算法评估" class="headerlink" title="算法评估"></a>算法评估</h3><blockquote>
+<p>Since the DNN outputs one class prediction every output interval, it makes a series of 23 rhythm predictions for every 30-s record. The cardiologists annotated the start and end point of each rhythm class in the record. We used this to construct a cardiologist label at every output interval by rounding the annotation to the nearest interval boundary. Therefore, model accuracy can be assessed at the level of every output interval, which we call ‘sequence-level’, or at the record level, which we call ‘set-level’.</p>
+</blockquote>
+<p>DNN 模型每个输出间隔输出一个预测，因此，每 30 秒输出 23（30/1.28，再向下取整）个预测。心脏病家在数据记录中标注了每个节奏类别的起点和终点。在实验中使用它并通过将标注四舍五入到最近的间隔边界来在每个输出间隔构建心脏病专家标签。因此，<strong>模型精度可以在每个输出间隔的级别进行评估，称之为“序列级别”，或者在整个记录级别中，称之为“数据集级别”</strong>。</p>
+<blockquote>
+<p>To compare model predictions at the sequence level, the model predictions at each output interval were compared with the corresponding committee consensus labels for that same output interval. At the set level, the set of unique rhythm classes across a given ECG record that was predicted by the DNN was compared with the set of rhythm classes annotated across the record by the committee consensus. The set-level evaluation, unlike the sequence-level, does not penalize for time misalignment of a rhythm classification within a record.</p>
+</blockquote>
+<p>为了在<strong>序列级别</strong>中比较输出预测，将每个输出间隔的模型预测与相同输出间隔的相应委员会的标注进行比较。<br>在<strong>数据集级别</strong>上，由 DNN 预测的给定 ECG 记录中的一组独特节律类别与委员会标注的一组节奏类别进行比较。与序列级别不同，数据集级别评估不会对记录中的节奏分类的时间错位进行惩罚。</p>
+<p><strong>序列级别</strong>的算法评估允许在每个输出间隔与黄金标准进行比较，从而提供最全面的算法性能度量，所以将它用于大多数的度量中。序列级评估也类似于遥测或 Holter 监测分析的临床应用，因此识别节律的起始和偏移至关重要。在<strong>数据集级别</strong>上的评估是很有用的抽象，近似于如何将 DNN 算法应用于单个 ECG 记录以识别给定记录中存在哪些诊断。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>原论文代码已公开：<a href="https://github.com/awni/ecg" target="_blank" rel="noopener">https://github.com/awni/ecg</a></p>
+<p>训练数据集目前没公开，归 iRhythm 技术公司所有，将来可能考虑会公开。但是测试集数据是可用的：<a href="https://irhythm.github.io/cardiol_test_set" target="_blank" rel="noopener">https://irhythm.github.io/cardiol_test_set</a></p>
+<p>论文中还使用到 PhysioNet 的 ECG 数据集，具体访问：<a href="https://physionet.org/challenge/2017/" target="_blank" rel="noopener">https://physionet.org/challenge/2017/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生物医学/" rel="tag"># 生物医学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/09/GitHub-Hexo-个人博客再搭建/" rel="next" title="GitHub + Hexo 个人博客再搭建">
+                <i class="fa fa-chevron-left"></i> GitHub + Hexo 个人博客再搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/11/今天去牙科医院了/" rel="prev" title="今天去牙科医院了">
+                今天去牙科医院了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构"><span class="nav-number">1.</span> <span class="nav-text">模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法评估"><span class="nav-number">2.</span> <span class="nav-text">算法评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
