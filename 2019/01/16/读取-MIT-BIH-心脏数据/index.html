@@ -96,22 +96,22 @@
 
 
 
-  <meta name="description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。 下载数据集在自己的项目目录下克隆：   12git clone https://github.com/Nospoko/qrs-tutorial.gitcd qrs-tutorial 这个包是用于下载数据集的，但是这个包目前只基于 Python2.7 ，不嫌麻">
+  <meta name="description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
 <meta name="keywords" content="生物医学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读取 MIT-BIH 心脏数据">
 <meta property="og:url" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。 下载数据集在自己的项目目录下克隆：   12git clone https://github.com/Nospoko/qrs-tutorial.gitcd qrs-tutorial 这个包是用于下载数据集的，但是这个包目前只基于 Python2.7 ，不嫌麻">
+<meta property="og:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/1.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/2.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/3.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/4.png">
-<meta property="og:updated_time" content="2019-01-27T08:50:28.000Z">
+<meta property="og:updated_time" content="2019-01-28T03:57:10.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读取 MIT-BIH 心脏数据">
-<meta name="twitter:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。 下载数据集在自己的项目目录下克隆：   12git clone https://github.com/Nospoko/qrs-tutorial.gitcd qrs-tutorial 这个包是用于下载数据集的，但是这个包目前只基于 Python2.7 ，不嫌麻">
+<meta name="twitter:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
 <meta name="twitter:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/1.png">
 
 
@@ -371,7 +371,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 17:50:28" itemprop="dateModified" datetime="2019-01-27T17:50:28+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:57:10" itemprop="dateModified" datetime="2019-01-28T12:57:10+09:00">2019-01-28</time>
               
             
           </span>
@@ -453,6 +453,7 @@
       
         <h3 id="安装-wfdb"><a href="#安装-wfdb" class="headerlink" title="安装 wfdb"></a>安装 wfdb</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install wfdb</span><br></pre></td></tr></table></figure>
 <p>这个包是专门用来读取 <a href="https://www.physionet.org/" target="_blank" rel="noopener">PhysioNet</a> 这个网站的数据集的内容的。具体内容可以参考<a href="https://wfdb.readthedocs.io/en/latest/" target="_blank" rel="noopener">文档</a>。</p>
+<a id="more"></a>
 <h3 id="下载数据集"><a href="#下载数据集" class="headerlink" title="下载数据集"></a>下载数据集</h3><p>在自己的项目目录下克隆：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Nospoko/qrs-tutorial.git</span><br><span class="line">cd qrs-tutorial</span><br></pre></td></tr></table></figure>
 <p>这个包是用于下载数据集的，但是这个包目前只基于 <code>Python2.7</code> ，不嫌麻烦的话，可以自己进行简单的修改。<code>mitdb.py</code> 和 <code>download.py</code> 两个文件是我进行修改过的，可以在<a href="[caoqi95](https://github.com/caoqi95">这个链接</a>/<a href="https://github.com/caoqi95/ECG-Read-Examples" target="_blank" rel="noopener">ECG-Read-Examples</a><br>)上查看。修改完后，可以成功下载 MIT-BIH 的心律数据集，其他数据集没有尝试。修改完成后，编写下面的代码下载数据集：</p>

@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/2.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/3.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/22/初识语义分割与-FCN/4.png">
-<meta property="og:updated_time" content="2019-01-27T08:44:56.000Z">
+<meta property="og:updated_time" content="2019-01-28T03:56:30.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识语义分割与 FCN">
 <meta name="twitter:description" content="本文章来自: Fully_Convolutional_Neural_Networks_rendered.ipynb 因学习而翻译了该练习的内容，不妥删。转载也请说明情况。 语义分割在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一">
@@ -371,7 +371,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 17:44:56" itemprop="dateModified" datetime="2019-01-27T17:44:56+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:56:30" itemprop="dateModified" datetime="2019-01-28T12:56:30+09:00">2019-01-28</time>
               
             
           </span>
@@ -454,6 +454,7 @@
         <p>本文章来自: <a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener"><strong>Fully_Convolutional_Neural_Networks_rendered.ipynb</strong></a></p>
 <p>因学习而翻译了该练习的内容，不妥删。转载也请说明情况。</p>
 <h3 id="语义分割"><a href="#语义分割" class="headerlink" title="语义分割"></a>语义分割</h3><p>在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。</p>
+<a id="more"></a>
 <p>为什么要进行语义分割？如果当精确的物体边界很重要的时候，比如，在自动驾驶中，需要精确地识别每个像素中的物体，这时候就需要用到语义分割。同时，在医学图像识别的问题上，也会用到语义分割。</p>
 <p>语义分割中是怎么进行数据标注的？看到关于语义分割的各种分类的结果通常都会如下所示，一片蓝，一片红的。这时候就会好奇语义分割是怎么进行数据标注的？其实语义分割分类的结果是为了便于展示，所以用不同的颜色块来区分。在语义分割中，数据标注也很简单。因为语义分割做的是对一张图片中的每一个像素进行分类，所以，数据标注的时候，就需要对每一个像素标注出标签。当然，标注的时候，还会对每一个类别和颜色进行一个颜色关联，这样就方便后续的展示。</p>
 <h3 id="练习目标"><a href="#练习目标" class="headerlink" title="练习目标"></a>练习目标</h3><ul>

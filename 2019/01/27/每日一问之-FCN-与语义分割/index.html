@@ -96,13 +96,13 @@
 
 
 
-  <meta name="description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+  <meta name="description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日一问之 FCN 与语义分割">
 <meta property="og:url" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+<meta property="og:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/cat.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/object%20detec.png">
@@ -113,10 +113,10 @@
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/FCN-32s.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/results.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/fusion%20output.png">
-<meta property="og:updated_time" content="2019-01-27T08:22:56.000Z">
+<meta property="og:updated_time" content="2019-01-28T03:54:15.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一问之 FCN 与语义分割">
-<meta name="twitter:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度  什么是语义分割第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就">
+<meta name="twitter:description" content="这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。  什么是语义分割 什么是 FCN 如何构建全卷积网络 如何进行语义分割 如何提高上采样的精度">
 <meta name="twitter:image" content="http://caoqi95.github.io/2019/01/27/每日一问之-FCN-与语义分割/cat.png">
 
 
@@ -359,12 +359,24 @@
                 
               
 
-              <time title="创建时间：2019-01-27 16:07:05 / 修改时间：17:22:56" itemprop="dateCreated datePublished" datetime="2019-01-27T16:07:05+09:00">2019-01-27</time>
+              <time title="创建时间：2019-01-27 16:07:05" itemprop="dateCreated datePublished" datetime="2019-01-27T16:07:05+09:00">2019-01-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 12:54:15" itemprop="dateModified" datetime="2019-01-28T12:54:15+09:00">2019-01-28</time>
               
             
           </span>
@@ -452,6 +464,7 @@
 <li>如何进行语义分割</li>
 <li>如何提高上采样的精度</li>
 </ul>
+<a id="more"></a>
 <h3 id="什么是语义分割"><a href="#什么是语义分割" class="headerlink" title="什么是语义分割"></a>什么是语义分割</h3><p>第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。下面是语义分割与图像分类，目标检测的区别：</p>
 <ul>
 <li><p>图像分类（Image Classification）：对图像内的对象进行分类（识别对象类别）。如，识别一张图像是猫还是狗。</p>

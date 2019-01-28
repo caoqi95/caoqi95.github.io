@@ -367,7 +367,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-28 12:05:07" itemprop="dateModified" datetime="2019-01-28T12:05:07+09:00">2019-01-28</time>
+                <time title="修改时间：2019-01-28 12:53:01" itemprop="dateModified" datetime="2019-01-28T12:53:01+09:00">2019-01-28</time>
               
             
           </span>
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">616</span>
+                <span title="本文字数">617</span>
               
 
               
@@ -448,21 +448,16 @@
 
       
         
+          <h3 id="图片显示问题"><a href="#图片显示问题" class="headerlink" title="图片显示问题"></a>图片显示问题</h3><p>最近部署博客的时候，发现使用简书的图片外链，博客的图片大部分都显示不出来。经过一番查找，解决了这个问题。下面的方法适用于 <code>hexo - 3.8.0</code> 版本。</p>
+          <!--noindex-->
           
-            <h3 id="图片显示问题"><a href="#图片显示问题" class="headerlink" title="图片显示问题"></a>图片显示问题</h3><p>最近部署博客的时候，发现使用简书的图片外链，博客的图片大部分都显示不出来。经过一番查找，解决了这个问题。下面的方法适用于 <code>hexo - 3.8.0</code> 版本。</p>
-<h5 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1. 安装插件"></a>1. 安装插件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<h5 id="2-更改-config-yml"><a href="#2-更改-config-yml" class="headerlink" title="2. 更改 _config.yml"></a>2. 更改 <code>_config.yml</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
-<p>更改完配置后，当执行 <code>hexo new &quot;xxxx&quot;</code> 的时候，会生成一个同名的文件夹。</p>
-<h5 id="3-插入图片"><a href="#3-插入图片" class="headerlink" title="3. 插入图片"></a>3. 插入图片</h5><p>使用 <code>![](文章同名的目录/xxx.png)</code>，即可插入图片。如下示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](初识语义分割与-FCN/1.png)</span><br></pre></td></tr></table></figure>
-<h3 id="博客迁移"><a href="#博客迁移" class="headerlink" title="博客迁移"></a>博客迁移</h3><p>配置了 git，node.js 后，只需要复制下面几个文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line">package.json</span><br><span class="line">scaffolds/</span><br><span class="line">source/</span><br><span class="line">themes/</span><br></pre></td></tr></table></figure>
-<p>然后安装 hexo：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure></p>
-<p>安装完之后，进入（或者新建子目录）博客目录，再执行下面命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure></p>
-<p>最后，执行下面命令查看结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
-<p>没问题之后，最后再部署博客。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/27/Hexo-博客问题汇总/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -562,12 +557,24 @@
                 
               
 
-              <time title="创建时间：2019-01-27 16:07:05 / 修改时间：17:22:56" itemprop="dateCreated datePublished" datetime="2019-01-27T16:07:05+09:00">2019-01-27</time>
+              <time title="创建时间：2019-01-27 16:07:05" itemprop="dateCreated datePublished" datetime="2019-01-27T16:07:05+09:00">2019-01-27</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 12:54:15" itemprop="dateModified" datetime="2019-01-28T12:54:15+09:00">2019-01-28</time>
               
             
           </span>
@@ -648,8 +655,7 @@
 
       
         
-          
-            <p>这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。</p>
+          <p>这个星期状态不太好，只看了一篇 FCN 的论文和一些其他相关的资料。今天按照下面来总结一下关于语义分割的一些基础方面的内容。</p>
 <ul>
 <li>什么是语义分割</li>
 <li>什么是 FCN</li>
@@ -657,41 +663,15 @@
 <li>如何进行语义分割</li>
 <li>如何提高上采样的精度</li>
 </ul>
-<h3 id="什么是语义分割"><a href="#什么是语义分割" class="headerlink" title="什么是语义分割"></a>什么是语义分割</h3><p>第一次看到 “语义分割” 这个词的时候会觉得很高深，且很容易和自然语言处理联系在一起。其实语义分割还是计算机视觉的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。下面是语义分割与图像分类，目标检测的区别：</p>
-<ul>
-<li><p>图像分类（Image Classification）：对图像内的对象进行分类（识别对象类别）。如，识别一张图像是猫还是狗。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/cat.png" alt=""></p>
-</li>
-<li><p>目标检测（Object Detection）：对图像内的对象进行分类和检测，且标出每个对象的边界框，如下所示。这就意味着不仅要识别出图像中的对象类别，还需要知道它们的位置和大小。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/object detec.png" alt=""></p>
-</li>
-<li><p>语义分割（Semantic Segmentation）：对图像中的每个像素进行分类。这意味着每个像素都有一个标签。对语义分割模型来说，不仅要识别出汽车，道路，人等对象，还要标出每个对象的边界。因此，模型要具有像素级的密集预测能力。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/semantic segmentation.png" alt=""></p>
-</li>
-</ul>
-<h3 id="什么是-FCN"><a href="#什么是-FCN" class="headerlink" title="什么是 FCN"></a>什么是 FCN</h3><p>FCN，即全卷积神经网络（Fully Convolution Networks），是 2014 年，由加州大学伯克利分校的 Long 等人提出的。该论文中对 AlexNet，VGG net 以及 GoogLeNet 进行了一些改造，改造成全卷积网络，并进行迁移学习，应用在语义分割任务上。</p>
-<p>那什么是全卷积神经网络？顾名思义，就是网络中都是卷积层（包括池化层）的神经网络。一个 FCN 可以对任何大小的输入进行操作，并产生相应（可能重新采样的）空间维度的输出。</p>
-<h3 id="如何构建全卷积网络"><a href="#如何构建全卷积网络" class="headerlink" title="如何构建全卷积网络"></a>如何构建全卷积网络</h3><p>知道了全卷积网络的定义，我们该怎么构建它呢？在 FCN 的论文中，将一些模型（如，VGG）最后几层的全连接层替换成卷积层，就能够构建一个全卷积网络。如下所示，上面部分的过程是图像分类，最后 3 层网络是全连接层。在分类过程中，图像经过卷积操作，缩小尺寸，后经过全连接层，输出一个图像的预测标签。而将该网络的最后 3 层全连接层，全都替换成卷积层，就得到一个全卷积网络。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/FCN.png" alt=""></p>
-<p>该全卷积网络将会得到一个比输入图像要小的图像结果，且该结果通常是粗糙模糊的高维度特征图，常以热力图（heatmap）相称。想了解热力图生成的过程，可以查看这个练习：<a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener">链接</a>。</p>
-<h3 id="如何进行语义分割"><a href="#如何进行语义分割" class="headerlink" title="如何进行语义分割"></a>如何进行语义分割</h3><p>在上面构建全卷积网络的过程中，我们知道将原网络的最后几层的全连接层替换成卷积层，会得到一个粗糙的高纬度特征图。如果要进行语义分割，即进行像素级别的分类的话，我们需要将图片还原成原图片的像素级别，然后逐个像素进行分类。在 FCN 的论文中，作者用了上采样（Upsampling）的方法，对全卷积网络的最后的输出结果进行上采样，然后再逐像素进行分类预测，就能训练一个端到端的语义分割模型。如下图所示：</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/pixelwise.png" alt=""></p>
-<p>​        <em>图片来自：Review: FCN — <strong>Fully Convolutional Network </strong>(Semantic Segmentation)</em></p>
-<p>下面来讲一讲上采样，上采样其实就是反卷积（deconvolution）的过程，FCN 的作者称其为<strong>向后卷积</strong>（backwards convolution）的过程。对图像进行卷积的过程是一个使图像尺寸变小的过程，而反卷积的过程就是上采样使图像尺寸变大的过程。反卷积这个名字经常会引起人们的误解，被认为是卷积的逆过程。其实不是的，它还是一种卷积的过程，有时也称为转置卷积（transposed convolution）。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/deconv.gif" alt=""></p>
-<h3 id="如何提高上采样的精度"><a href="#如何提高上采样的精度" class="headerlink" title="如何提高上采样的精度"></a>如何提高上采样的精度</h3><p>FCN 的论文中，如下图所示，在对 conv7 的输出结果进行 32x 上采样，得到与输入一样的尺寸大小。但是输出的结果还是不够精准，如下 FCN-32s 所示，将其与 Ground truth 相比，会发现结果还是太粗糙。为什么？<strong>因为在不断的增加深度的时候，可以得到深度的图像信息，但是也因为深度及池化的作用会损失空间信息。</strong></p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/FCN-32s.png" alt=""></p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/results.png" alt=""></p>
-<p>后面论文作者使用了 _skip <em>skip</em> 的结构如下所示，就是一种<strong>融合输出</strong>的想法。将底层的信息和后面高层的信息结合起来，这样就会还原一些空间信息。</p>
-<p><img src="/2019/01/27/每日一问之-FCN-与语义分割/fusion output.png" alt=""></p>
-<p>FCN-16s 的过程是，对 pool5 进行 2x 上采样，然后和 pool4 的预测结果融合再进行 16x 上采样。FCN-8s 是对 FCN-16s 的结果进行 2x 上采样，然后和 pool3 的预测结构融合再进行过 8x 上采样。后面实验得出 FCN-8s 的结果是最精确的。</p>
-<p>以上就是关于 FCN 和 语义分割的内容。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
-<li><a href="https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1" target="_blank" rel="noopener">https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1</a></li>
-<li>Fully Convolutional Networks for Semantic Segmentation Paper</li>
-</ol>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/27/每日一问之-FCN-与语义分割/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -808,7 +788,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-28 12:00:09" itemprop="dateModified" datetime="2019-01-28T12:00:09+09:00">2019-01-28</time>
+                <time title="修改时间：2019-01-28 12:55:39" itemprop="dateModified" datetime="2019-01-28T12:55:39+09:00">2019-01-28</time>
               
             
           </span>
@@ -889,40 +869,21 @@
 
       
         
-          
-            <p>这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。</p>
+          <p>这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。</p>
 <p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/1.png" alt=""></p>
 <blockquote>
 <p>Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁcient inference and learning.</p>
 </blockquote>
 <p>论文的核心是建立 「全卷积」网络，来接受任意大小的输入，并通过有效的推理和学习产生对应大小的输出。论文中对 AlexNet，VGG net 以及 GoogLeNet 进行一些改造，改造成全卷积网络，并进行迁移学习，应用在语义分割任务上。</p>
-<h3 id="全卷积网络"><a href="#全卷积网络" class="headerlink" title="全卷积网络"></a>全卷积网络</h3><blockquote>
-<p>Each layer of data in a convnet is a three-dimensional array of size h×w×d, where h and w are spatial dimensions, and d is the feature or channel dimension. The ﬁrst layer is the image, with pixel size h×w, and d color channels. Locations in higher layers correspond to the locations in the image they are path-connected to, which are called their receptive ﬁelds.</p>
-</blockquote>
-<p>在一个卷积层中，数据都是一个三维的结构 -  <em>h x w x d</em>，其中 <em>h</em>，<em>w</em> 都是空间维度，<em>d</em> 是特征维度或者说通道（channel）维度。比如，第一层是输入的图片，像素的大小是 <em>h x w</em>，<em>d</em> 表示颜色通道。较高的网络层的位置对应于其路径连接的图像的位置，这些位置被称为 <em>receptive field</em>，即感受野。</p>
-<p>那么全卷积网络的定义是什么？顾名思义，<strong>当整个网络都是由这些非线性的卷积层组成的时候，就是全卷积网络</strong>，简称 FCN。一个 FCN 对任何大小的输入进行操作，并产生相应（可能重新采样的）空间维度的输出。</p>
-<h3 id="如何构建全卷积网络"><a href="#如何构建全卷积网络" class="headerlink" title="如何构建全卷积网络"></a>如何构建全卷积网络</h3><p>经典的识别网络，包括 LeNet，AlexNet，以及它们的继承者，都是采用固定大小的输入并产生非空间输出。这些网络的全连接层具有固定的尺寸并且<strong>丢弃了空间坐标</strong>。但是这些全连接层可以用卷积层来替代，这样就可以转换成<strong>全卷积网络</strong>，然后可以输入任何大小的图片和输出对应的分类图。 这种转变如下所示：</p>
-<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/2.png" alt=""> </p>
-<p>网络被改成全卷积网络后，输入的大小可以是任意的，输出是通常通过下采样（subsampling）来减少维度的。分类网络下采样可以保持过滤器的小型化和计算要求的合理性。但是，这使得这些网络的全卷积版本的输出变得粗糙，如上图所示，最后卷积之后得到的一个粗糙的结果，也就是一个很高维的特征图，称为 heatmap，热力图（感兴趣的，具体可以查看这个练习：<a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener">链接</a>）</p>
-<h3 id="还原像素操作-shift-and-stitch"><a href="#还原像素操作-shift-and-stitch" class="headerlink" title="还原像素操作 - shift-and-stitch"></a>还原像素操作 - <em>shift-and-stitch</em></h3><p>构建全卷积网络会使得输出变得粗糙。但是，为了像素分类，需要将这些粗糙的输出连接回像素级别。第一种方法是 <em>shift-and-stitch</em>，即移动和缝合，通过对输入的移位并将其对应的输出缝合在一起，可以从粗糙的输出中获得密集预测（Dense prediction）。<strong>具体操作</strong>是：假设一个输出是通过一个因子 <em>f</em> 进行下采样的，移动输入的 x 轴的像素向右以及 y 轴的像素向下，那么对于每个 (x,y)，都有 <em>0&lt;= x, y &lt; f</em> ，处理每一个 <em>f</em> 输入，并交错输出，使预测对应于其感受野中心的像素。但是这种方法会因为因子 <em>f</em> 而<strong>计算消耗特别大</strong>。</p>
-<p>但是还有一种特别有名的技巧，是来自 wavelet 社区的一种算法。现在思考一个带有输入步幅 <em>s</em> 的层(卷积或池化)，以及一个带有滤波器权重 <em>f<sub>ij</sub></em> 的后续卷积层(省略无关的特征维数)。将下层的输入步幅设置为 1，将其输出的上采样数增加到 <em>s</em>。然而，将原始滤波器与上采样输出进行卷积并不会产生与 <em>shift-and-stitch</em> 相同的结果，因为原始滤波器只会看到它的(目前是上采样的)输入减少了一部分。要复现这个技巧，通过放大滤波器，使其变得稀疏，如下所示：</p>
-<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/3.png" alt=""></p>
-<p>要复现上面的技巧，即需要一层一层地重复这个过滤器放大的过程，直到所有的子采样都被删除。(实际上，这可以通过处理上采样输入的次采样版本来有效地完成。)</p>
-<p>减少网络中的下采样是一种权衡：过滤器可以看到更精细的信息，但感受野更小，计算时间更长。 <em>shift-and-stitch</em> 技巧是另一种折衷：在不减少过滤器感受野大小的情况下，输出密度更大，但过滤器被禁止在比原始设计更细的范围内存取信息。</p>
-<p>虽然论文作者已经用这个技巧做了初步的实验，但是没有在实验的模型中使用它。他们发现通过<strong>上采样</strong>学习，正如下一节所描述的那样，会更有效，效率更高，尤其是与后面所描述的 _skip _结构相结合时。</p>
-<h3 id="还原像素操作-Upsampling"><a href="#还原像素操作-Upsampling" class="headerlink" title="还原像素操作 - Upsampling"></a>还原像素操作 - <em>Upsampling</em></h3><p>还有一种将粗糙输出还原成像素的方法是 <em>interpolation</em>，插值法。例如，简单的双线性插值法，通过一个只依赖于输入和输出单元相对位置的线性映射，来计算最近的 4 个输入所对应的每个输出 <em>y<sub>ij</sub></em>。</p>
-<p>在某种意义上，使用因子 <em>f</em> 的上采样（upsampling）也是卷积操作，但是其输入步幅（stride）为分数  -  <em>1/f</em>。 只要 <em>1/f</em> 是积分，因此<strong>上采样的自然方式是向后卷积（有时称为反卷积</strong>），其输出步幅为 <em>f</em>。这样的操作实现起来很简单，因为它只是对卷积的前向和后向传递进行了反转。因此，通过来自逐像素损失（pixelwise loss）的反向传播，在网络中执行上采样来进行端到端学习。</p>
-<p>需要注意，这种层中的反卷积滤波器不需要固定（如双线性上采样），而是可以学习的。一堆反卷积层和激活函数扫描甚至可以学习非线性上采样。</p>
-<p>在实验中，发现对于密集学习，在网络中进行<strong>上采样是快而高效的</strong>。下面的分割结构就是使用这些层来学习上采样，进行精准预测的。</p>
-<blockquote>
-<p><strong>整个语义分割的流程就是</strong>：先是用全卷积层得到粗糙的高纬度信息，然后对最后一个卷积层的 feature map 应用反卷积层进行上采样，最后得到和输入图像一样的尺寸，从而对每个像素都产生了一个预测, 同时又保留了原始输入图像中的空间信息, 最后在上采样的特征图上进行逐像素分类。</p>
-</blockquote>
-<h3 id="Segmentation-Architecture-“skip”"><a href="#Segmentation-Architecture-“skip”" class="headerlink" title="Segmentation Architecture - “skip”"></a>Segmentation Architecture - “skip”</h3><p>将一些 AlexNet，VGG 等网络的全连接成改为卷积层，再进行微调及上采样的操作，应用于图像分割任务。在标准的评估下，可以得到当时比较好的结果。但是，它们的输出仍旧不尽人意，如下 FCN-32S 所示，分割的结果还是不够精确。<strong>这是因为，当深入时可以获得深度特征，当深入时也会丢失空间位置信息。这意味着较浅层的输出具有更多位置信息。</strong>如果我们将两者结合起来，我们就可以提高结果。</p>
-<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/4.png" alt=""></p>
-<p>后面作者通过添加链接来解决这个问题，这些链接将最终预测层与较低层组合在一起。这会将线性拓扑结构变为DAG，其边缘从较低层跳到较高层，如下图所示。</p>
-<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/5.png" alt="">Figure 4 的图像中就显示了，FCN-16s 比 FCN-32s 要精确，FCN-8s 比 FCN-16s 要精确。作者做到 FCN-8s 就没有继续了。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1039,7 +1000,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 17:52:58" itemprop="dateModified" datetime="2019-01-27T17:52:58+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:54:46" itemprop="dateModified" datetime="2019-01-28T12:54:46+09:00">2019-01-28</time>
               
             
           </span>
@@ -1085,7 +1046,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">968</span>
+                <span title="本文字数">967</span>
               
 
               
@@ -1120,52 +1081,20 @@
 
       
         
-          
-            <p>日子太无聊，记录一下最近吃的美食吧。自从没在宿舍食堂吃饭，发现学校附近还是有很多美食的。</p>
+          <p>日子太无聊，记录一下最近吃的美食吧。自从没在宿舍食堂吃饭，发现学校附近还是有很多美食的。</p>
 <ul>
 <li><p><strong>宿舍后门的汤饭</strong></p>
 <p><img src="/2019/01/22/记最近一段时间吃过的美食/宿舍后汤饭.jpg" alt=""></p>
-<p>  发现宿舍后门也有家汤饭店，有天早上去吃，发现没有人文大后门的汤饭好吃，还贵，要 6000 韩元一碗。点的是所有类型的汤饭，即是一碗猪杂碎汤饭。感觉这家汤饭的汤的味道不好，没有很香。但是上来的韭菜小菜，意外地好吃，最后都快吃完了。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>宿舍楼下的鸡肉卷</strong></p>
-<p><img src="/2019/01/22/记最近一段时间吃过的美食/宿舍下鸡肉卷.jpg" alt=""></p>
-<p>  之前一直以为是一家汉堡店，没想到买的是鸡肉卷和猪排饭。有天晚上去吃，感觉味道还不错。鸡肉卷 + 可乐 + 薯条，是 6500 韩元；鸡肉卷 + 可乐，是 4200 韩元。一般鸡肉卷加可乐就吃得很饱了，比较划算，可以划为长期吃饭的地点。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>工大小门对面的烤肉包饭</strong></p>
-<p>  <img src="/2019/01/22/记最近一段时间吃过的美食/烤肉饭.jpg" alt=""></p>
-<p> 这也是一家意外发现的店，之前一直以为是卖猪肉的，因为看名字很像是卖猪肉的店。一天早上起晚了，想着吃饱点就不用再跑出来吃午饭了，然后就发现了这家店。这家上的小菜很多，而且有些算是比较贵的小菜（不能无限续餐），有鸡蛋，鱼豆腐，紫菜。中间的一盘是烤肉，看着不多，其实挺多的。和生菜，米饭一起包着吃，特别香。这么一餐是 4500 韩元，很值，也划为长期吃饭的地点了。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>烤肉包饭家的香肠白饭</strong></p>
-<p>  <img src="/2019/01/22/记最近一段时间吃过的美食/香肠白饭.jpg" alt=""></p>
-<p>  同样的一家店，店里还提供其他种类的食物。有天尝试了一下，香肠白饭，也很好吃，不贵，才 4000 韩元。中间的就是蛋煎香肠，旁边的是丰富的小菜，这么一餐也可以吃得很饱。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>宿舍后门的虾仁炒饭</strong></p>
-<p>  <img src="/2019/01/22/记最近一段时间吃过的美食/虾仁炒饭.jpg" alt=""></p>
-<p>  一家有名的连锁店，有机会进去尝了下味道。点的是虾仁炒饭， 6500 韩币，略贵。但是挺好的，很香，虾仁的量也多。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>人文大的汤饭</strong></p>
-<p>  <img src="/2019/01/22/记最近一段时间吃过的美食/汤饭.jpg" alt=""></p>
-<p>  有名的人文大的汤饭，去了的都说好吃。一开始闻不惯汤饭的味道，因为大多都是猪头，猪肠等这些部位熬制的汤，所以气味会有些不好闻（个人感觉）。但是，一旦喝起汤来，就可以忽略气味了，小肠这些东西混合着汤，也能吃下去了。属于越吃越好吃的类型，一顿是 4500 韩元。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>吃过的最贵的食物参鸡汤</strong></p>
-<p>   <img src="/2019/01/22/记最近一段时间吃过的美食/参鸡汤.jpg" alt=""></p>
-<p>   之前和室友决定要补一下虚弱的身体，因此找了家百年老店来品尝参鸡汤，点了药味参鸡汤，一餐 20000 韩元，折合人民币 120 元，主要是人参贵，还附赠人参酒。总体来说，一只鸡吃得超饱，但味道有点点淡。吃完后，走出饭店门，都不觉得冷了。</p>
-</li>
-</ul>
-
+<p>  发现宿舍后门也有家汤饭店，有天早上去吃，发现没有人文大后门的汤饭好吃，还贵，要 6000 韩元一碗。点的是所有类型的汤饭，即是一碗猪杂碎汤饭。感觉这家汤饭的汤的味道不好，没有很香。但是上来的韭菜小菜，意外地好吃，最后都快吃完了。</p></li></ul>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/22/记最近一段时间吃过的美食/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1282,7 +1211,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 17:44:56" itemprop="dateModified" datetime="2019-01-27T17:44:56+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:56:30" itemprop="dateModified" datetime="2019-01-28T12:56:30+09:00">2019-01-28</time>
               
             
           </span>
@@ -1363,98 +1292,18 @@
 
       
         
-          
-            <p>本文章来自: <a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener"><strong>Fully_Convolutional_Neural_Networks_rendered.ipynb</strong></a></p>
+          <p>本文章来自: <a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener"><strong>Fully_Convolutional_Neural_Networks_rendered.ipynb</strong></a></p>
 <p>因学习而翻译了该练习的内容，不妥删。转载也请说明情况。</p>
 <h3 id="语义分割"><a href="#语义分割" class="headerlink" title="语义分割"></a>语义分割</h3><p>在练习前，先了解下关于语义分割的一些知识。刚开始看到语义分割这个词的时候，以为是自然语言处理里面的知识，后来看的多了，就知道还是计算机视觉中的内容。那么什么是语义分割？别看名字这么高级，其实就是像素级别的分类问题。即对一张图片中的每一个像素进行分类。</p>
-<p>为什么要进行语义分割？如果当精确的物体边界很重要的时候，比如，在自动驾驶中，需要精确地识别每个像素中的物体，这时候就需要用到语义分割。同时，在医学图像识别的问题上，也会用到语义分割。</p>
-<p>语义分割中是怎么进行数据标注的？看到关于语义分割的各种分类的结果通常都会如下所示，一片蓝，一片红的。这时候就会好奇语义分割是怎么进行数据标注的？其实语义分割分类的结果是为了便于展示，所以用不同的颜色块来区分。在语义分割中，数据标注也很简单。因为语义分割做的是对一张图片中的每一个像素进行分类，所以，数据标注的时候，就需要对每一个像素标注出标签。当然，标注的时候，还会对每一个类别和颜色进行一个颜色关联，这样就方便后续的展示。</p>
-<h3 id="练习目标"><a href="#练习目标" class="headerlink" title="练习目标"></a>练习目标</h3><ul>
-<li>加载一个在 ImageNet 上预训练过的模型 - ResNet50</li>
-<li>将 ResNet50 模型转换成全卷积网络</li>
-<li>应用该网络在图片上实行弱分割 - 利用热力图</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread <span class="keyword">as</span> scipy_imread, imresize <span class="keyword">as</span> scipy_imresize</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包装函数来禁用一些警告</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imread</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">"ignore"</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imread(*args, **kwargs)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">imresize</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> warnings.catch_warnings():</span><br><span class="line">        warnings.simplefilter(<span class="string">"ignore"</span>)</span><br><span class="line">        <span class="keyword">return</span> scipy_imresize(*args, **kwargs)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载 ResNet50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.applications.resnet50 <span class="keyword">import</span> ResNet50</span><br><span class="line"></span><br><span class="line">base_model = ResNet50(include_top=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">print(base_model.output_shape)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res5c = base_model.layers[<span class="number">-1</span>]</span><br><span class="line">type(res5c)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keras.layers.core.Activation</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res5c.output_shape</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(None, None, None, 2048)</span><br></pre></td></tr></table></figure>
-<h3 id="全卷积-ResNet"><a href="#全卷积-ResNet" class="headerlink" title="全卷积 ResNet"></a>全卷积 ResNet</h3><ul>
-<li><p>除了残差块，resnet 输出形状为 WxHx2048</p>
-</li>
-<li><p>ImageNet 的默认输入形状为 224x224，其对应的输出为 7x7x2048</p>
-</li>
-</ul>
-<ul>
-<li>正规的 ResNet 的网络层：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = base_model.output</span><br><span class="line">x = Faltten()(x)</span><br><span class="line">x = Dense(1000)(x)</span><br><span class="line">x = softmax()(x)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>之后修正的版本：<ul>
-<li>我们想要检索存储在 Dense 图层中的标签信息。之后我们将加载这些权重。</li>
-<li>将 Dense 层更改为 Convolution2D 层以保留空间信息，输出为 WxHx1000</li>
-<li>对于新的 Convolution2D 层，可以使用（1,1）的 kernel 来保持前一层的空间组织不变（它称为逐点卷积）</li>
-<li>只想在最后一个维度上应用 softmax，以便保留空间信息。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的 softmax</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras.engine <span class="keyword">import</span> Layer</span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SoftmaxMap</span><span class="params">(Layer)</span>:</span></span><br><span class="line">    <span class="comment"># 初始化函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, axis=<span class="number">-1</span>, **kwargs)</span>:</span></span><br><span class="line">        self.axis = axis</span><br><span class="line">        super(SoftmaxMap, self).__init__(**kwargs)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 没有参数，所以不需要定义这个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 这里是我们感兴趣的地方</span></span><br><span class="line">    <span class="comment"># 和一般的 softmax 非常相似，但是需要注意额外的点：</span></span><br><span class="line">    <span class="comment"># 我们接受的 x 的形状为：x.shape == (batch_size, w, h, n_classes)</span></span><br><span class="line">    <span class="comment"># 默认情况下，在 Keras不是这种情况</span></span><br><span class="line">    <span class="comment"># 请注意，我们将 logits 的最大值减去以使 softmax 在数值上更稳定。</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, mask=None)</span>:</span></span><br><span class="line">        e = K.exp(x - K.max(x, axis=self.axis, keepdims=<span class="keyword">True</span>))</span><br><span class="line">        s = K.sum(e, axis=self.axis, keepdims=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">return</span> e / s</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出的形状与输入一致</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_output_shape_for</span><span class="params">(self, input_shape)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> input_shape</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 resnet 改成全卷积网络</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Convolution2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"></span><br><span class="line">input = base_model.layers[<span class="number">0</span>].input</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选取卷积层的最后一层输出</span></span><br><span class="line">x = base_model.layers[<span class="number">-1</span>].output</span><br><span class="line"></span><br><span class="line"><span class="comment"># Kernel 的大小为 (1,1), 输出通道为 1000</span></span><br><span class="line">x = Convolution2D(<span class="number">1000</span>, (<span class="number">1</span>, <span class="number">1</span>), name=<span class="string">'conv1000'</span>)(x)</span><br><span class="line"></span><br><span class="line">output = SoftmaxMap(axis=<span class="number">-1</span>)(x)</span><br><span class="line"></span><br><span class="line">fully_conv_ResNet = Model(inputs=input, outputs=output)</span><br></pre></td></tr></table></figure>
-<p>可以使用以下随机数据来检查是否可以在随机 RGB 图像上运行正向传递：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps = fully_conv_ResNet.predict(np.random.randn(<span class="number">1</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">3</span>))</span><br><span class="line">prediction_maps.shape</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 7, 10, 1000)</span><br></pre></td></tr></table></figure>
-<p>如何解释最终的输出形状？ 一个类的概率应该在输出映射的每个区域中总和为 1：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction_maps.sum(axis=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array([[[1.        , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.        , 0.99999994, 0.9999999 , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 1.        , 1.        , 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.0000001 , 1.        , 1.        , 1.        ,</span><br><span class="line">         0.99999994, 0.99999994, 0.99999994, 1.        , 1.0000001 ],</span><br><span class="line">        [1.0000001 , 1.        , 1.        , 1.        , 0.99999994,</span><br><span class="line">         1.0000001 , 1.0000001 , 1.        , 1.        , 1.        ],</span><br><span class="line">        [0.99999994, 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.0000001 , 0.99999994, 1.        ],</span><br><span class="line">        [1.0000001 , 1.        , 0.99999994, 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 0.99999994, 1.        , 1.        ],</span><br><span class="line">        [1.        , 1.        , 1.        , 1.        , 1.        ,</span><br><span class="line">         1.        , 1.        , 1.        , 1.        , 1.        ]]],</span><br><span class="line">      dtype=float32)</span><br></pre></td></tr></table></figure>
-<h3 id="加载权重"><a href="#加载权重" class="headerlink" title="加载权重"></a>加载权重</h3><ul>
-<li>在文件 <code>weights_dense.h5</code> 中提供 ResNet50 的最后一个 Dense 层的权重和偏差</li>
-<li>现在，最后一层现在是 1x1 卷积层而不是全连接层</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> h5py.File(<span class="string">'weights_dense.h5'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> h5f:</span><br><span class="line">    w = h5f[<span class="string">'w'</span>][:]</span><br><span class="line">    b = h5f[<span class="string">'b'</span>][:]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line">last_layer.get_weights()[<span class="number">0</span>].shape</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">last_layer = fully_conv_ResNet.layers[<span class="number">-2</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"加载的权重形状："</span>, w.shape)</span><br><span class="line">print(<span class="string">"最后的卷积层的权重形状："</span>, last_layer.get_weights()[<span class="number">0</span>].shape)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">加载的权重形状： (2048, 1000)</span><br><span class="line">最后的卷积层的权重形状： (1, 1, 2048, 1000)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重组权重的形状</span></span><br><span class="line">w_reshaped = w.reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2048</span>, <span class="number">1000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置卷积层的权重</span></span><br><span class="line">last_layer.set_weights([w_reshaped, b])</span><br></pre></td></tr></table></figure>
-<h3 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h3><ul>
-<li>定义下面的函数来测试我们的网络</li>
-<li>它将输入调整为给定大小，然后使用 <code>model.predict</code> 计算输出</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_pass_resize</span><span class="params">(img_path, img_size)</span>:</span></span><br><span class="line">    img_raw = imread(img_path)</span><br><span class="line">    print(<span class="string">'Image shape before resizing: %s'</span> %(img_raw.shape,))</span><br><span class="line">    img = imresize(img_raw, size=img_size).astype(<span class="string">"float32"</span>)</span><br><span class="line">    img = preprocess_input(img[np.newaxis])</span><br><span class="line">    print(<span class="string">"Image batch size shape before forward pass:"</span>, img.shape)</span><br><span class="line">    z = fully_conv_ResNet.predict(img)</span><br><span class="line">    <span class="keyword">return</span> z</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">800</span>, <span class="number">600</span>))</span><br><span class="line">print(<span class="string">"prediction map shape:"</span>, output.shape)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 600, 3)</span><br><span class="line">prediction map shape: (1, 25, 19, 1000)</span><br></pre></td></tr></table></figure>
-<h3 id="找到与狗关联的类别"><a href="#找到与狗关联的类别" class="headerlink" title="找到与狗关联的类别"></a>找到与狗关联的类别</h3><p>ImageNet 使用概念本体，从中派生类。 synset 对应于本体中的节点。</p>
-<p>例如，所有种类的狗都是同义词 <code>n02084071</code>（狗，家犬，犬科动物）的孩子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Helper file importing synsets from imagenet</span></span><br><span class="line"><span class="keyword">import</span> imagenet_tool</span><br><span class="line"></span><br><span class="line">synset = <span class="string">"n02084071"</span> <span class="comment"># 对应于狗</span></span><br><span class="line">ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">print(<span class="string">"All dog classes ids (%d):"</span> % len(ids))</span><br><span class="line">print(ids)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">All dog classes ids (118):</span><br><span class="line">[251, 268, 256, 253, 255, 254, 257, 159, 211, 210, 212, 214, 213, 216, 215, 219, 220, 221, 217, 218, 207, 209, 206, 205, 208, 193, 202, 194, 191, 204, 187, 203, 185, 192, 183, 199, 195, 181, 184, 201, 186, 200, 182, 188, 189, 190, 197, 196, 198, 179, 180, 177, 178, 175, 163, 174, 176, 160, 162, 161, 164, 168, 173, 170, 169, 165, 166, 167, 172, 171, 264, 263, 266, 265, 267, 262, 246, 242, 243, 248, 247, 229, 233, 234, 228, 231, 232, 230, 227, 226, 235, 225, 224, 223, 222, 236, 252, 237, 250, 249, 241, 239, 238, 240, 244, 245, 259, 261, 260, 258, 154, 153, 158, 152, 155, 151, 157, 156]</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dog_id <span class="keyword">in</span> ids[:<span class="number">10</span>]:</span><br><span class="line">    print(imagenet_tool.id_to_words(dog_id))</span><br><span class="line">print(<span class="string">'...'</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dalmatian, coach dog, carriage dog</span><br><span class="line">Mexican hairless</span><br><span class="line">Newfoundland, Newfoundland dog</span><br><span class="line">basenji</span><br><span class="line">Leonberg</span><br><span class="line">pug, pug-dog</span><br><span class="line">Great Pyrenees</span><br><span class="line">Rhodesian ridgeback</span><br><span class="line">vizsla, Hungarian pointer</span><br><span class="line">German short-haired pointer</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h3 id="狗类热力图"><a href="#狗类热力图" class="headerlink" title="狗类热力图"></a>狗类热力图</h3><p>下面的函数是从前向传播中建立热力图的辅助函数。它对与 synset 相对应的所有 id 的表示求和。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_heatmap</span><span class="params">(z, synset)</span>:</span></span><br><span class="line">    class_ids = imagenet_tool.synset_to_dfs_ids(synset)</span><br><span class="line">    class_ids = np.array([id_ <span class="keyword">for</span> id_ <span class="keyword">in</span> class_ids <span class="keyword">if</span> id_ <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>])</span><br><span class="line">    x = z[<span class="number">0</span>, :, :, class_ids].sum(axis=<span class="number">0</span>)</span><br><span class="line">    print(<span class="string">"size of heatmap:"</span> + str(x.shape))</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">display_img_and_heatmap</span><span class="params">(img_path, heatmap)</span>:</span></span><br><span class="line">    dog = imread(img_path)</span><br><span class="line">    fig, (ax0, ax1) = plt.subplots(ncols=<span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">8</span>))</span><br><span class="line">    ax0.imshow(dog)</span><br><span class="line">    ax0.axis(<span class="string">'off'</span>)</span><br><span class="line">    ax1.imshow(heatmap, interpolation=<span class="string">'nearest'</span>, cmap=<span class="string">"viridis"</span>)</span><br><span class="line">    ax1.axis(<span class="string">'off'</span>)</span><br></pre></td></tr></table></figure>
-<p>下面用 3 种不同的大小：</p>
-<ul>
-<li>(400, 640)</li>
-<li>(800, 1280)</li>
-<li>(1600, 2560)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dog synset</span></span><br><span class="line">s = <span class="string">"n02084071"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># size 1 - (400, 640)</span></span><br><span class="line">probas_1 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">400</span>, <span class="number">640</span>))</span><br><span class="line">heatmap_1 = build_heatmap(probas_1, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_1)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 400, 640, 3)</span><br><span class="line">size of heatmap:(13, 20)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/22/初识语义分割与-FCN/1.png" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 2 - (800, 1280)</span></span><br><span class="line">probas_2 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">800</span>, <span class="number">1280</span>))</span><br><span class="line">heatmap_2 = build_heatmap(probas_2, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_2)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 800, 1280, 3)</span><br><span class="line">size of heatmap:(25, 40)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/22/初识语义分割与-FCN/2.png" alt=""></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># size 3 - (1600, 2560)</span></span><br><span class="line">probas_3 = forward_pass_resize(<span class="string">"dog.jpg"</span>, (<span class="number">1600</span>, <span class="number">2560</span>))</span><br><span class="line">heatmap_3 = build_heatmap(probas_3, synset=s)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_3)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image shape before resizing: (1600, 2560, 3)</span><br><span class="line">Image batch size shape before forward pass: (1, 1600, 2560, 3)</span><br><span class="line">size of heatmap:(50, 80)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/22/初识语义分割与-FCN/3.png" alt=""></p>
-<p>可以观察到 heatmap_1 和 heatmap_2 提供了比 heatmap_3 更粗略的分个。但是，heatmap_3 在狗区域外面有一些小的杂碎，heatmap_3 会编码更多关于狗的局部纹理级别的信息，而较低的分辨率则会编码更多关于整个对象的语义信息。结合它们可能是一个好主意！</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">heatmap_1_r = imresize(heatmap_1, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line">heatmap_2_r = imresize(heatmap_2, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line">heatmap_3_r = imresize(heatmap_3, (<span class="number">50</span>,<span class="number">80</span>)).astype(<span class="string">"float32"</span>)</span><br><span class="line"></span><br><span class="line">heatmap_geom_avg = np.power(heatmap_1_r * heatmap_2_r * heatmap_3_r, <span class="number">0.333</span>)</span><br><span class="line">display_img_and_heatmap(<span class="string">"dog.jpg"</span>, heatmap_geom_avg)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/22/初识语义分割与-FCN/4.png" alt=""></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/22/初识语义分割与-FCN/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1554,12 +1403,24 @@
                 
               
 
-              <time title="创建时间：2019-01-17 21:17:04 / 修改时间：22:10:10" itemprop="dateCreated datePublished" datetime="2019-01-17T21:17:04+09:00">2019-01-17</time>
+              <time title="创建时间：2019-01-17 21:17:04" itemprop="dateCreated datePublished" datetime="2019-01-17T21:17:04+09:00">2019-01-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 13:00:37" itemprop="dateModified" datetime="2019-01-28T13:00:37+09:00">2019-01-28</time>
               
             
           </span>
@@ -1640,20 +1501,16 @@
 
       
         
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, check whether it <span class="keyword">is</span> a mirror of itself (ie, symmetric around its center).</span><br><span class="line"></span><br><span class="line">For example, this binary tree [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>] <span class="keyword">is</span> symmetric:</span><br><span class="line"></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> / \ / \</span><br><span class="line"><span class="number">3</span>  <span class="number">4</span> <span class="number">4</span>  <span class="number">3</span></span><br><span class="line">But the following [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,null,<span class="number">3</span>,null,<span class="number">3</span>] <span class="keyword">is</span> <span class="keyword">not</span>:</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line">   \   \</span><br><span class="line">   <span class="number">3</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
           
-            <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, check whether it <span class="keyword">is</span> a mirror of itself (ie, symmetric around its center).</span><br><span class="line"></span><br><span class="line">For example, this binary tree [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>] <span class="keyword">is</span> symmetric:</span><br><span class="line"></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> / \ / \</span><br><span class="line"><span class="number">3</span>  <span class="number">4</span> <span class="number">4</span>  <span class="number">3</span></span><br><span class="line">But the following [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,null,<span class="number">3</span>,null,<span class="number">3</span>] <span class="keyword">is</span> <span class="keyword">not</span>:</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line">   \   \</span><br><span class="line">   <span class="number">3</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>即检查一个二叉树是否围绕其中心对称。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>另外写一个函数 <code>flipAndCheck()</code>，对于两个非空且值相等的根，递归判断该根的两个子根是否与另一根的子根的翻转相等。再在主函数里再调用这个函数。解法如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> flipAndCheck(root.left, root.right)</span><br><span class="line">    	</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">flipAndCheck</span><span class="params">(root1, root2)</span>:</span></span><br><span class="line">            <span class="comment"># 基线条件</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root1 <span class="keyword">and</span> <span class="keyword">not</span> root2：</span><br><span class="line">            	<span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root1 <span class="keyword">or</span> <span class="keyword">not</span> root2：</span><br><span class="line">            	<span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">if</span> root1.val != root2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="comment"># 递归</span></span><br><span class="line">            <span class="keyword">return</span> flipAndCheck(root1.left, root2.right) <span class="keyword">and</span> flipAndCheck(root1.right, root2.left)</span><br></pre></td></tr></table></figure>
-<p>感觉不好直观地理解，可以将下面这个二叉树进行验证，但也挺绕的orz：</p>
-<ul>
-<li>首先是判断<code>flipAndCheck(l_2,r_2)</code></li>
-<li>再判断<code>flipAndCheck(l_2.left=3, r_2.right=3)</code> and <code>flipAndCheck(l_2.right=4, r_2.left=4)</code></li>
-<li>再判断 <code>flipAndCheck(l_2_3.left=5, r_2_3.right=5)</code> and <code>flipAndCheck(l_2_3.right=6, r_2_3.left=6)</code> and  <code>flipAndCheck(l_2_4.left=6, r_2_4.right=6)</code> and <code>flipAndCheck(l_2_4.right=5, r_2_4.left=5)</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">         1</span><br><span class="line">       /   \</span><br><span class="line">     2       2</span><br><span class="line">   /  \     /  \</span><br><span class="line">  3    4    4   3</span><br><span class="line"> / \  / \  / \  / \</span><br><span class="line">5   6 6  5 5  6 6  5</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/17/LeetCode-101-Symmetric-Tree-解题思路/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1753,12 +1610,24 @@
                 
               
 
-              <time title="创建时间：2019-01-17 20:54:23 / 修改时间：21:17:42" itemprop="dateCreated datePublished" datetime="2019-01-17T20:54:23+09:00">2019-01-17</time>
+              <time title="创建时间：2019-01-17 20:54:23" itemprop="dateCreated datePublished" datetime="2019-01-17T20:54:23+09:00">2019-01-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 13:00:06" itemprop="dateModified" datetime="2019-01-28T13:00:06+09:00">2019-01-28</time>
               
             
           </span>
@@ -1839,13 +1708,16 @@
 
       
         
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Given two binary trees, write a function to check <span class="keyword">if</span> they are the same <span class="keyword">or</span> <span class="keyword">not</span>.</span><br><span class="line"></span><br><span class="line">Two binary trees are considered the same <span class="keyword">if</span> they are structurally identical <span class="keyword">and</span> the nodes have the same value.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">3</span>     <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],   [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">Output: true</span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          /           \</span><br><span class="line">         <span class="number">2</span>             <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>],     [<span class="number">1</span>,null,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">Output: false</span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">1</span>     <span class="number">1</span>   <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
           
-            <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Given two binary trees, write a function to check <span class="keyword">if</span> they are the same <span class="keyword">or</span> <span class="keyword">not</span>.</span><br><span class="line"></span><br><span class="line">Two binary trees are considered the same <span class="keyword">if</span> they are structurally identical <span class="keyword">and</span> the nodes have the same value.</span><br><span class="line"></span><br><span class="line">Example <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">3</span>     <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],   [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">Output: true</span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          /           \</span><br><span class="line">         <span class="number">2</span>             <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>],     [<span class="number">1</span>,null,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">Output: false</span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">1</span>     <span class="number">1</span>   <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p>题目主要是判断两个二叉树是否相等。如果两个二叉树在结构上相同，且节点具有相同的值，则认为它们是相同的。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>采用<strong>递归</strong>的方法。先设置递归条件，如果两个二叉树都是非空的，且值也相等，那么就判断子根的情况；如果不满足这个条件则跳出循环。所以，解法如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span><span class="params">(self, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type p: TreeNode</span></span><br><span class="line"><span class="string">        :type q: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 基线条件</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q</span><br><span class="line">        	<span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> p.val != q.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="comment"># 递归</span></span><br><span class="line">        <span class="keyword">return</span> self.isSameTree(p.left, q.left) <span class="keyword">and</span> self.isSameTree(p.right, q.right)</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/17/LeetCode-100-SameTree-解题思路/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1962,7 +1834,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 17:50:28" itemprop="dateModified" datetime="2019-01-27T17:50:28+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:57:10" itemprop="dateModified" datetime="2019-01-28T12:57:10+09:00">2019-01-28</time>
               
             
           </span>
@@ -2043,30 +1915,17 @@
 
       
         
-          
-            <h3 id="安装-wfdb"><a href="#安装-wfdb" class="headerlink" title="安装 wfdb"></a>安装 wfdb</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install wfdb</span><br></pre></td></tr></table></figure>
+          <h3 id="安装-wfdb"><a href="#安装-wfdb" class="headerlink" title="安装 wfdb"></a>安装 wfdb</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install wfdb</span><br></pre></td></tr></table></figure>
 <p>这个包是专门用来读取 <a href="https://www.physionet.org/" target="_blank" rel="noopener">PhysioNet</a> 这个网站的数据集的内容的。具体内容可以参考<a href="https://wfdb.readthedocs.io/en/latest/" target="_blank" rel="noopener">文档</a>。</p>
-<h3 id="下载数据集"><a href="#下载数据集" class="headerlink" title="下载数据集"></a>下载数据集</h3><p>在自己的项目目录下克隆：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Nospoko/qrs-tutorial.git</span><br><span class="line">cd qrs-tutorial</span><br></pre></td></tr></table></figure>
-<p>这个包是用于下载数据集的，但是这个包目前只基于 <code>Python2.7</code> ，不嫌麻烦的话，可以自己进行简单的修改。<code>mitdb.py</code> 和 <code>download.py</code> 两个文件是我进行修改过的，可以在<a href="[caoqi95](https://github.com/caoqi95">这个链接</a>/<a href="https://github.com/caoqi95/ECG-Read-Examples" target="_blank" rel="noopener">ECG-Read-Examples</a><br>)上查看。修改完后，可以成功下载 MIT-BIH 的心律数据集，其他数据集没有尝试。修改完成后，编写下面的代码下载数据集：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wfdb <span class="keyword">as</span> wf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> mitdb <span class="keyword">as</span> dm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load paths of avaliable data files</span></span><br><span class="line">records = dm.get_records()</span><br><span class="line">print(<span class="string">'There are &#123;&#125; record files'</span>.format(len(records)))</span><br></pre></td></tr></table></figure>
-<h3 id="读取心律数据"><a href="#读取心律数据" class="headerlink" title="读取心律数据"></a>读取心律数据</h3><p>这部分参考 <a href="https://github.com/MIT-LCP/wfdb-python/blob/master/demo.ipynb" target="_blank" rel="noopener">demo.ipynb</a></p>
-<h5 id="使用-rdrecord-函数读取数据记录"><a href="#使用-rdrecord-函数读取数据记录" class="headerlink" title="使用 rdrecord 函数读取数据记录"></a>使用 <code>rdrecord</code> 函数读取数据记录</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select one of them</span></span><br><span class="line">path = records[<span class="number">0</span>]</span><br><span class="line">print(<span class="string">'Loading file:'</span>, path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the record and plot the data by using 'rdrecord' function</span></span><br><span class="line">record = wf.rdrecord(path)</span><br><span class="line">wf.plot_wfdb(record=record, </span><br><span class="line">              title=<span class="string">'Record 100 from MIT-BIH Arrhythmia Database'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/1.png" alt=""></p>
-<h5 id="使用简化的-rdsamp-函数读取某些通道和截取部分"><a href="#使用简化的-rdsamp-函数读取某些通道和截取部分" class="headerlink" title="使用简化的 rdsamp 函数读取某些通道和截取部分"></a>使用简化的 <code>rdsamp</code> 函数读取某些通道和截取部分</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">signals, fields = wf.rdsamp(path)</span><br><span class="line">print(fields)</span><br><span class="line">=============</span><br><span class="line">&#123;<span class="string">'fs'</span>: <span class="number">360</span>,</span><br><span class="line"> <span class="string">'sig_len'</span>: <span class="number">650000</span>,</span><br><span class="line"> <span class="string">'n_sig'</span>: <span class="number">2</span>,</span><br><span class="line"> <span class="string">'base_date'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'base_time'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'units'</span>: [<span class="string">'mV'</span>, <span class="string">'mV'</span>],</span><br><span class="line"> <span class="string">'sig_name'</span>: [<span class="string">'MLII'</span>, <span class="string">'V5'</span>],</span><br><span class="line"> <span class="string">'comments'</span>: [<span class="string">'69 M 1085 1629 x1'</span>, <span class="string">'Aldomet, Inderal'</span>]&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用-rdann-读取注释"><a href="#使用-rdann-读取注释" class="headerlink" title="使用 rdann 读取注释"></a>使用 <code>rdann</code> 读取注释</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">annotation = wf.rdann(path, <span class="string">'atr'</span>)</span><br><span class="line">annotation.fs <span class="comment">### 获取采样频率</span></span><br><span class="line">===============</span><br><span class="line"><span class="number">360</span></span><br></pre></td></tr></table></figure>
-<h5 id="读取记录和注释"><a href="#读取记录和注释" class="headerlink" title="读取记录和注释"></a>读取记录和注释</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># read a wfdb record and annotation. </span></span><br><span class="line"><span class="comment"># Plot all channels, and the annotation on top of channel 0</span></span><br><span class="line"></span><br><span class="line">record = wf.rdrecord(path, sampto=<span class="number">15000</span>)</span><br><span class="line">annotation = wf.rdann(path, <span class="string">'atr'</span>, sampto=<span class="number">15000</span>)</span><br><span class="line"></span><br><span class="line">wf.plot_wfdb(record=record, annotation=annotation,</span><br><span class="line">               title=<span class="string">'Record 100 from MIT-BIH Arrhythmia Database'</span>,</span><br><span class="line">               time_units=<span class="string">'seconds'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/2.png" alt=""></p>
-<h5 id="读取一小片段-ECG-数据"><a href="#读取一小片段-ECG-数据" class="headerlink" title="读取一小片段 ECG 数据"></a>读取一小片段 ECG 数据</h5><p>ECG 信号的实际数值存储在属性 <code>p_signal</code> 数组中，我们可以从其中一个通道绘制一个小片段：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select one of the channels (there are two)</span></span><br><span class="line">chid = <span class="number">0</span></span><br><span class="line">data = record.p_signal</span><br><span class="line">channel = data[:, chid]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">'ECG channel type:'</span>, record.sig_name[chid])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot only the first 2000 samples</span></span><br><span class="line">howmany = <span class="number">2000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate time values in seconds</span></span><br><span class="line">times = np.arange(howmany, dtype = <span class="string">'float'</span>) / record.fs</span><br><span class="line">plt.plot(times, channel[ : howmany])</span><br><span class="line">plt.xlabel(<span class="string">'Time [s]'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/3.png" alt=""></p>
-<p>想获取更多的信息可以使用 <code>help()</code>，比如想获得更多的 <code>record</code> 信息：</p>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/4.png" alt=""></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://github.com/MIT-LCP/wfdb-python" target="_blank" rel="noopener">wfdb-python</a></p>
-<p>[2]. <a href="https://github.com/Nospoko" target="_blank" rel="noopener">Nospoko</a>/<a href="https://github.com/Nospoko/qrs-tutorial" target="_blank" rel="noopener">qrs-tutorial</a></p>
-<p>[3]. <a href="https://medium.com/@roszcz/machine-learning-for-medicine-qrs-detection-in-a-single-channel-ecg-signal-part-1-data-set-be36f70bbd38" target="_blank" rel="noopener">Machine Learning for medicine: QRS detection in a single channel ECG signal (Part 1: data-set creation)</a></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/16/读取-MIT-BIH-心脏数据/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2166,12 +2025,24 @@
                 
               
 
-              <time title="创建时间：2019-01-16 13:10:11 / 修改时间：13:12:44" itemprop="dateCreated datePublished" datetime="2019-01-16T13:10:11+09:00">2019-01-16</time>
+              <time title="创建时间：2019-01-16 13:10:11" itemprop="dateCreated datePublished" datetime="2019-01-16T13:10:11+09:00">2019-01-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 12:58:10" itemprop="dateModified" datetime="2019-01-28T12:58:10+09:00">2019-01-28</time>
               
             
           </span>
@@ -2217,7 +2088,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">331</span>
+                <span title="本文字数">330</span>
               
 
               
@@ -2252,16 +2123,16 @@
 
       
         
+          <p>研究生是没有假期的，假期完全看教授给多少。一般寒暑假都会给两周的假期。寒假会在过年前后的两周，暑假估计就是开学前的两周了。其余的时间都要在实验室里，正常学习及上下班。</p>
+          <!--noindex-->
           
-            <p>研究生是没有假期的，假期完全看教授给多少。一般寒暑假都会给两周的假期。寒假会在过年前后的两周，暑假估计就是开学前的两周了。其余的时间都要在实验室里，正常学习及上下班。</p>
-<p>寒假已经不打算回家了。一是，回国南方冬天太冷了，没有暖气；二是，回去行李都是厚衣服，加上代购的东西，实在是太重了，来去也折腾；三是，回去过年太累了，年纪大了会被催婚，还得每天串亲戚，起不到好好休息的效果。所以，就不回国休假了。</p>
-<p>不过，第一学期也还好，没有项目的压力，从期末考完之后到开学前就都是假期了。每天就学学自己感兴趣的内容，看看论文，写写代码，练练口语，聊聊天。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-0b574b0fea828f4a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>但是也过得太快了。距离期末考完，已经一个月过去了，相当于过了一半了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-be5326db422f03e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>有点点慌张，希望，最后假期规划里的事情都能完成。</p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/16/假期太短了/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -2378,7 +2249,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 18:19:26" itemprop="dateModified" datetime="2019-01-27T18:19:26+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 12:58:29" itemprop="dateModified" datetime="2019-01-28T12:58:29+09:00">2019-01-28</time>
               
             
           </span>
@@ -2459,81 +2330,16 @@
 
       
         
+          <p>这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：<a href="https://arxiv.org/pdf/1805.00794.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1805.00794.pdf</a> 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。</p>
+          <!--noindex-->
           
-            <p>这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：<a href="https://arxiv.org/pdf/1805.00794.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1805.00794.pdf</a> 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。</p>
-<h3 id="实验的数据集"><a href="#实验的数据集" class="headerlink" title="实验的数据集"></a>实验的数据集</h3><ul>
-<li><p><a href="https://www.physionet.org/physiobank/database/mitdb/" target="_blank" rel="noopener">MIT-BIH 心律失常数据集</a>：</p>
-<ul>
-<li>47 个不同对象</li>
-<li>采样频率：360 Hz</li>
-<li>由 2 个心脏病专家标记</li>
-</ul>
-<p>论文中将专家的标记按照 AAMI 的标准分成下面 5 中不同的类别：</p>
-</li>
-</ul>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png" alt=""></p>
-<ul>
-<li><a href="https://physionet.org/physiobank/database/ptbdb/" target="_blank" rel="noopener">PTB 诊断心电图数据库</a>：<ul>
-<li>290 个不同的对象：<ul>
-<li>148 个被诊断为 MI</li>
-<li>52 个健康</li>
-<li>其余被诊断为 7 种不同的疾病</li>
-</ul>
-</li>
-<li>采用 12 导联</li>
-<li>采样频率：1000 Hz</li>
-</ul>
-</li>
-</ul>
-<p>在实验中，只使用 ECG 导联 II，MI 及健康的样本。且在实验中，重新的采样频率为 125 Hz。</p>
-<p>kaggle 上的<a href="https://www.kaggle.com/shayanfazeli/heartbeat/home" target="_blank" rel="noopener"> 数据集 </a>已经把上面两个数据集合在一起了，后面复现就是使用这两个数据集。</p>
-<h3 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h3><ul>
-<li><p><strong>预处理</strong></p>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png" alt=""><br>值得一提的是，论文中建议的节拍数据提取方法，可以简单有效地从具有不同形态的信号中提取 R-R 间隔。例如，没有使用任何形式的滤波，或任何对信号形态或频谱做出任何假设的处理。另外，所有提取的节拍数据具有相同的长度，这对于用作后续处理的输入是必不可少的。<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png" alt=""></p>
-<p>kaggle 上的数据集是处理过后的。</p>
-</li>
-</ul>
-<ul>
-<li><strong>训练心律跳动分类器</strong><br>在 MIT-BIH 的数据集上，采用卷积神经网络，来训练一个分类器。经过训练的网络不仅可以用于心脏跳动分类，而且在下一节的实验中，还可以看到它可以用作心跳的信息表示。模型的结构如下所示：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png" alt=""></li>
-</ul>
-<blockquote>
-<p>Here, all convolution layers are applying 1-D convolution through time and each have 32 kernels of size 5. We also use max pooling of size 5 and stride 2 in all pooling layers. The predictor network consists of ﬁve residual blocks followed by two fully-connected layers with 32 neurons each and a softmax layer to predict output class probabilities. Each residual block contains two convolutional layers, two ReLU nonlinearities [19], a residual skip connection [20], and a pooling layer. In total, the resulting network is a deep network consisting of 13 weight layers.</p>
-</blockquote>
-<ul>
-<li><strong>训练 MI 预测器</strong></li>
-</ul>
-<p>训练完心脏跳动分类器后，使用最后一个卷积层的输出激活作为输入表示。。然后，将其输入有个两层的全连接层，每一层包含 32 个神经元。在训练过程中，只训练最后这两层的参数，其余层的参数都冻结。这里就是一个二分类的问题。</p>
-<ul>
-<li><strong>参数细节</strong></li>
-</ul>
-<blockquote>
-<p>Cross entropy loss on the softmax outputs is used as the loss function. For training the networks, we used Adam optimization method [22] with the learning rate, beta-1, and beta-2 of 0.001, 0.9, and 0.999, respectively. Learning rate is decayed exponentially with the decay factor of 0.75 every 10000 iterations. Training all the networks took less than two hours on a GeForce GTX 1080Ti processor.</p>
-</blockquote>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><ul>
-<li><strong>心律跳动分类器的结果</strong>：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png" alt=""></li>
-</ul>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png" alt=""></p>
-<p>表 II 列出了所提方法的平均准确度，并将其与文献中的其他相关方法进行了比较。该论文建议 MIT-BIH 的预测器并不是研究的唯一目的，但根据结果，该论文所取得的准确性与最先进的方法相比具有竞争力。这背后的主要原因可能是在网络架构中使用了 <strong>残差连接</strong> 这一事实，与使用传统的卷积架构相比，可以训练更深的网络。</p>
-<ul>
-<li><p><strong>MI 预测器的结果</strong></p>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png" alt=""></p>
-<p>表 III 给出了所提出的 MI 分类方法和文献中其他工作的平均准确度，精确度和召回率之间的比较。除 Sharma 等人提出的方法外，该论文所提方法的性能优于其他所有工作。 实验结果显示了更高的准确度和精确度值。但是， Sharma 等人，使用 12 导联心电图而不是只使用导联 II。</p>
-</li>
-</ul>
-<h3 id="复现代码地址"><a href="#复现代码地址" class="headerlink" title="复现代码地址"></a>复现代码地址</h3><ul>
-<li>下面的链接只复现了论文中的第一个实验：<ul>
-<li>参考的 Kaggle Kernels 原地址：<a href="https://www.kaggle.com/coni57/model-from-arxiv-1805-00794" target="_blank" rel="noopener">点击</a></li>
-<li>根据 Kaggle Kernels 完成的 Jupyter Notebook：<a href="https://github.com/caoqi95/My_Kaggle_Journey/blob/master/LearnFromKernels/ECG%20Heartbeat%20Classification.ipynb" target="_blank" rel="noopener">点击</a></li>
-</ul>
-</li>
-<li>两个实验都复现了：<ul>
-<li>完整实验的代码地址：<a href="https://github.com/caoqi95/ECG-Projects/tree/master/ECG_Heart_Classification" target="_blank" rel="noopener">点击</a></li>
-<li>推荐一个代码实现，这个作者还与从头训练的方法和在学习到的特征上完整训练的方法进行了比较：[点击](</li>
-</ul>
-</li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
