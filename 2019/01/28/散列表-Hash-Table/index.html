@@ -96,25 +96,24 @@
 
 
 
-  <meta name="description" content="今天，经历了一次算是成功的发表，但此发表不是论文发表，而是韩国课程中的常规操作。在国内就相当于一次课堂演讲，展示并陈述自己的项目过程。在韩国，发表会特别多，有小组发表，也有个人发表；有期中小发表，也有期末的大发表；有实验室研讨会的发表，也有学校学术会议的发表。对于文科来说，尤为如此。理工科的话，基础课基本是数学之类的，这些课就是正常的考试了。而其他专业应用方向的课程的话，基本是发表为主了。">
-<meta name="keywords" content="个人成长">
+  <meta name="description" content="「总结自《Grokking Algotithms》这本书第五章内容」 散列函数哈希表（Hash Table），学名散列表。散列表最核心的部分就是散列函数。有了散列函数，无论你给它什么输入数据，它都还你一个数字。专业一点的话，就是散列函数将输入映射到数字。 散列函数必须满足以下条件：  必须是一致的。即对于同样的输出数据，都返回相同的结果。比如，每次输入 apple，返回结果都是 4。 应将不同的输">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次算是成功的发表">
-<meta property="og:url" content="http://caoqi95.github.io/2018/12/22/记一次算是成功的发表/index.html">
+<meta property="og:title" content="散列表 - Hash Table">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/28/散列表-Hash-Table/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="今天，经历了一次算是成功的发表，但此发表不是论文发表，而是韩国课程中的常规操作。在国内就相当于一次课堂演讲，展示并陈述自己的项目过程。在韩国，发表会特别多，有小组发表，也有个人发表；有期中小发表，也有期末的大发表；有实验室研讨会的发表，也有学校学术会议的发表。对于文科来说，尤为如此。理工科的话，基础课基本是数学之类的，这些课就是正常的考试了。而其他专业应用方向的课程的话，基本是发表为主了。">
+<meta property="og:description" content="「总结自《Grokking Algotithms》这本书第五章内容」 散列函数哈希表（Hash Table），学名散列表。散列表最核心的部分就是散列函数。有了散列函数，无论你给它什么输入数据，它都还你一个数字。专业一点的话，就是散列函数将输入映射到数字。 散列函数必须满足以下条件：  必须是一致的。即对于同样的输出数据，都返回相同的结果。比如，每次输入 apple，返回结果都是 4。 应将不同的输">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-28T04:06:01.889Z">
+<meta property="og:updated_time" content="2019-01-28T12:17:35.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次算是成功的发表">
-<meta name="twitter:description" content="今天，经历了一次算是成功的发表，但此发表不是论文发表，而是韩国课程中的常规操作。在国内就相当于一次课堂演讲，展示并陈述自己的项目过程。在韩国，发表会特别多，有小组发表，也有个人发表；有期中小发表，也有期末的大发表；有实验室研讨会的发表，也有学校学术会议的发表。对于文科来说，尤为如此。理工科的话，基础课基本是数学之类的，这些课就是正常的考试了。而其他专业应用方向的课程的话，基本是发表为主了。">
+<meta name="twitter:title" content="散列表 - Hash Table">
+<meta name="twitter:description" content="「总结自《Grokking Algotithms》这本书第五章内容」 散列函数哈希表（Hash Table），学名散列表。散列表最核心的部分就是散列函数。有了散列函数，无论你给它什么输入数据，它都还你一个数字。专业一点的话，就是散列函数将输入映射到数字。 散列函数必须满足以下条件：  必须是一致的。即对于同样的输出数据，都返回相同的结果。比如，每次输入 apple，返回结果都是 4。 应将不同的输">
 
 
 
 
 
 
-  <link rel="canonical" href="http://caoqi95.github.io/2018/12/22/记一次算是成功的发表/">
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/28/散列表-Hash-Table/">
 
 
 
@@ -124,7 +123,7 @@
   };
 </script>
 
-  <title>记一次算是成功的发表 | caoqi95'blog</title>
+  <title>散列表 - Hash Table | caoqi95'blog</title>
   
 
 
@@ -323,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2018/12/22/记一次算是成功的发表/">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/28/散列表-Hash-Table/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoqi95">
@@ -340,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">记一次算是成功的发表
+          <h1 class="post-title" itemprop="name headline">散列表 - Hash Table
 
               
             
@@ -366,24 +365,12 @@
                 
               
 
-              <time title="创建时间：2018-12-22 20:19:08" itemprop="dateCreated datePublished" datetime="2018-12-22T20:19:08+09:00">2018-12-22</time>
+              <time title="创建时间：2019-01-28 21:07:40 / 修改时间：21:17:35" itemprop="dateCreated datePublished" datetime="2019-01-28T21:07:40+09:00">2019-01-28</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:06:01" itemprop="dateModified" datetime="2019-01-28T13:06:01+09:00">2019-01-28</time>
               
             
           </span>
@@ -400,7 +387,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/个人成长/" itemprop="url" rel="index"><span itemprop="name">个人成长</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-算法笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记 - 算法笔记</span></a></span>
 
                 
                 
@@ -429,7 +416,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.1k</span>
+                <span title="本文字数">1.9k</span>
               
 
               
@@ -443,7 +430,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -463,13 +450,66 @@
       
 
       
-        <p>今天，经历了一次算是成功的发表，但此发表不是论文发表，而是韩国课程中的常规操作。在国内就相当于一次课堂演讲，展示并陈述自己的项目过程。在韩国，发表会特别多，有小组发表，也有个人发表；有期中小发表，也有期末的大发表；有实验室研讨会的发表，也有学校学术会议的发表。对于文科来说，尤为如此。理工科的话，基础课基本是数学之类的，这些课就是正常的考试了。而其他专业应用方向的课程的话，基本是发表为主了。</p>
-<a id="more"></a>
-<h3 id="失败的经历"><a href="#失败的经历" class="headerlink" title="失败的经历"></a>失败的经历</h3><p>期中发表的时候，因为是第一次用英文发表，且准备的不是很充分，所以发表过程中，全程低头不敢看同学和教授的脸。而且声音也发抖，异常紧张。所以，发表的过程不是很好，最后说完结论就匆匆下去了。</p>
-<h3 id="另寻他法准备"><a href="#另寻他法准备" class="headerlink" title="另寻他法准备"></a>另寻他法准备</h3><p>这次公布课程作业的时候，就打算充分的准备，不能像上次一样失败。课程项目的准备时间是两周。所以，当天就开始找数据找论文写代码实现。在一星期内，完成了课程的项目，并写完了 report。然后当周的周日，按照 report 的内容写了 1 篇演讲稿。周一开始熟读并记忆演讲稿的内容，离开实验室经过操场的时候，刻意在操场上绕圈背诵。之后的每天就在修改 report 和熟悉演讲稿的过程中度过。然后，上周末，趁没人的时候，挑了一个空教室，自己模仿场景来演讲，并录音。之后，根据录音的结果，反复调整内容和说话的音量（我说话的声音偏轻，教授抱怨过好多次）。周六的时候，练习了 3 遍；周日，练习了 2 遍。昨天周一，又练习了 1 遍。就准备的效果上看来，还是不错的。其中录音这个方法是从知乎上学来的，感觉真的挺有用的。</p>
-<h3 id="正式发表"><a href="#正式发表" class="headerlink" title="正式发表"></a>正式发表</h3><p>这次发表也和上次一样拖到最后一个发表。上去的时候，被教授吐槽 「我等你很久了」。从面向同学和教授说 「Good afternoon！」 开始，演讲就正式开始了。说的过程中，声音还是会有些轻微的颤抖，但比起上一次好多了。 但是，卡壳的时候，脑子里自动就会出现要说的话，这就是练习及熟悉演讲稿的好处。</p>
-<h3 id="为什么用英语发表呢"><a href="#为什么用英语发表呢" class="headerlink" title="为什么用英语发表呢"></a>为什么用英语发表呢</h3><p>教授的要求是，即可以用韩语发表，也可以用英语发表。我虽然韩语的口语比英语好，但还是选择英语的原因包含以下几点。一是，因为课程是全英文授课，非韩国本国的学生很多，越南学生占 50 % 以上，用英语发表的话，谁都可以理解。二是，越南学生，韩国学生，印度学生和中国学生，这些学生的英语发音都是不标准的，带有浓浓的本国口音。所以，用英语发表的压力会小一点，不用怕发音不准。三是，用韩语发表的话，得非常注意敬语的部分，这就有些麻烦，不小心使用不正确，可能会不尊敬教授。</p>
-<h3 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h3><p>最后，希望自己能越来越适应并熟悉韩国的各种大大小小的发表。同时希望韩语和英语的口语都能够得到提升。</p>
+        <p>「总结自《Grokking Algotithms》这本书第五章内容」</p>
+<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>哈希表（Hash Table），学名散列表。散列表最核心的部分就是散列函数。有了散列函数，无论你给它什么输入数据，它都还你一个数字。专业一点的话，就是散列函数<strong>将输入映射到数字</strong>。</p>
+<p>散列函数必须满足以下条件：</p>
+<ul>
+<li><strong>必须是一致的</strong>。即对于同样的输出数据，都返回相同的结果。比如，每次输入 apple，返回结果都是 4。</li>
+<li><strong>应将不同的输入映射到不同的输出</strong>。如果一个散列表无论对于什么输入，返回的结果都是 1，那它就不是一个好的散列表。一个好的散列表应该对于不同的输入映射到不同的数字。</li>
+</ul>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>散列函数表示了一种映射关系。可以用这种映射关系来建立一个商品价格存储的表。而存储这种映射记录的表就是散列表。<strong>散列表由键和值组成</strong>。例如，在建立的商品价格列表中，键就是商品名，值就是商品对应的价格。在Python 中，使用字典（dict）就可以建立一个散列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>food = dict()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"apple"</span>]=<span class="number">0.67</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"milk"</span>]=<span class="number">2.18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"tea"</span>]=<span class="number">24.4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food</span><br><span class="line">&#123;<span class="string">'apple'</span>: <span class="number">0.67</span>, <span class="string">'milk'</span>: <span class="number">2.18</span>, <span class="string">'tea'</span>: <span class="number">24.4</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'apple'</span>]</span><br><span class="line"><span class="number">0.67</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'milk'</span>]</span><br><span class="line"><span class="number">2.18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'tea'</span>]</span><br><span class="line"><span class="number">24.4</span></span><br></pre></td></tr></table></figure>
+<p>散列表可以用于很多地方。比如，用于电话簿的查找；用于浏览器缓存；还能用于防止重复。</p>
+<h3 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h3><p>前面提到散列函数，应该将不同的输入映射到不同的输出。但实际上，这很难做到。有时候会发生冲突，即：<strong>给两个键分配同一个位置</strong>。这就引起了问题，后面保存的值会将之前的值给覆盖掉，使之前的键，不能对应正确的值。</p>
+<p>产生冲突了有解决办法吗？当然有，最简单的方法如下：<strong>如果两个键映射到了同一个位置，就在这个位置存储一个链表</strong>。但是这种解决方法存在弊端。如果该位置上的链表很长，则查找的时间就会很长。而除这个位置外，散列表其他位置的查找时间则依然很快。如果将所有的键都对应到一个值的位置上，该值的位置上用一个链表来连接所有的值。那么就和一开始就将所有的值都存储在链表中一样，查找的速度会很慢。</p>
+<p>这里可以看出，<strong>如何设计散列函数是很重要的</strong>。最理想的状态是，将所有的键都均匀地映射到散列表的不同位置上。而且，如果散列函数设置好的话，链表就不会很长而导致速度很慢。</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>在平均情况下，散列表执行各种操作的时间都为 <em>O(1)</em>，即为常量时间。常量时间不并不意味着马上，而是说不管散列表有多大，所需的时间都相同。而在最糟的情况下，散列表执行各种操作的时间都为 <em>O(n)</em>，即为线性时间。下面是散列表和数组，链表的对比：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">数组</th>
+<th style="text-align:center">链表</th>
+<th style="text-align:center">散列表(平均情况)</th>
+<th style="text-align:center">散列表(最糟情况)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td>查找</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+</tbody>
+</table>
+<p>在平均情况下，散列表的查找速度与数组一样快，而插入和删除都与链表一样快，这相当于吸收了数组和链表两者的优点。但在最糟的情况下，是两者中的最差者，所有的操作都很慢。</p>
+<p>所以，在使用散列表的时候，要避开最糟的情况。即，需要避开冲突。避开冲突有下面两种办法：</p>
+<ul>
+<li>降低填装因子</li>
+<li>使用良好的散列函数</li>
+</ul>
+<h3 id="填装因子"><a href="#填装因子" class="headerlink" title="填装因子"></a>填装因子</h3><p>什么是填装因子呢？很简单，公式如下：</p>
+<p>$$\frac{散列表包含的元素数}{位置总数}$$</p>
+<p>在散列表中，使用数组来存储数据。因此，需要计算数组中被占用的位置数。比如，一共有 10 个位置，而被元素占用的为 2 个，填装因子就为 2 / 10。最佳的情况是：10 个位置恰好被存在的 10 个元素占用，填装因子为 1。如果为 5 个位置的话，填装因子将为 2。即，散列表中的位置不够用，不可能让每个元素都有自己的位置。</p>
+<p>所以，填装因子大于 1 意味着元素数量超过了数组的位置数量。一旦填装因子开始增大（经验表明大于 0.7 的时候），就需要在散列表中添加位置，即<strong>调整长度</strong>。这是一种非常麻烦的方法，一旦不够用就需要调整长度，开销很大，没人愿意频繁地做这种事。</p>
+<h3 id="良好的散列函数"><a href="#良好的散列函数" class="headerlink" title="良好的散列函数"></a>良好的散列函数</h3><p>上面的方法很麻烦，让我们来看看第二种方法。什么样的散列函数是良好的呢？良好的散列函数能够让数组中的值呈均匀分布，而糟糕的散列函数则会让值扎堆，导致大量的冲突。</p>
+<p>现实生活中，有一个函数非常好用 - <a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" target="_blank" rel="noopener">SHA 函数</a>。感兴趣的可以深入研究一下。</p>
 
       
     </div>
@@ -491,12 +531,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/个人成长/" rel="tag"># 个人成长</a>
-          
-        </div>
-      
 
       
       
@@ -506,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/17/2018-年终总结/" rel="next" title="2018 年终总结">
-                <i class="fa fa-chevron-left"></i> 2018 年终总结
+              <a href="/2019/01/27/Hexo-博客问题汇总/" rel="next" title="Hexo 博客问题汇总">
+                <i class="fa fa-chevron-left"></i> Hexo 博客问题汇总
               </a>
             
           </div>
@@ -515,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/02/忘记准考证如何查询-TOPIK-成绩/" rel="prev" title="忘记准考证如何查询 TOPIK 成绩">
-                忘记准考证如何查询 TOPIK 成绩 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -725,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#失败的经历"><span class="nav-number">1.</span> <span class="nav-text">失败的经历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#另寻他法准备"><span class="nav-number">2.</span> <span class="nav-text">另寻他法准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正式发表"><span class="nav-number">3.</span> <span class="nav-text">正式发表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么用英语发表呢"><span class="nav-number">4.</span> <span class="nav-text">为什么用英语发表呢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展望"><span class="nav-number">5.</span> <span class="nav-text">展望</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#散列函数"><span class="nav-number">1.</span> <span class="nav-text">散列函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列表"><span class="nav-number">2.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">3.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能"><span class="nav-number">4.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填装因子"><span class="nav-number">5.</span> <span class="nav-text">填装因子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#良好的散列函数"><span class="nav-number">6.</span> <span class="nav-text">良好的散列函数</span></a></li></ol></div>
             
 
           </div>
@@ -910,6 +940,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
