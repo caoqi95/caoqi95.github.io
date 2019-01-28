@@ -96,19 +96,19 @@
 
 
 
-  <meta name="description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子  什么是递归简单的说，递归就是函数自己调用自己。根据我自己的理解，我觉得是不同于像 for，while 这种函数内的循环，递归可以说是一种函数外的循环。如下面的方程所示，就是一种典型的递归函数：1">
+  <meta name="description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子">
 <meta name="keywords" content="算法知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日一问之什么是递归">
 <meta property="og:url" content="http://caoqi95.github.io/2019/01/13/每日一问之什么是递归/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子  什么是递归简单的说，递归就是函数自己调用自己。根据我自己的理解，我觉得是不同于像 for，while 这种函数内的循环，递归可以说是一种函数外的循环。如下面的方程所示，就是一种典型的递归函数：1">
+<meta property="og:description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-27T09:06:00.000Z">
+<meta property="og:updated_time" content="2019-01-28T04:03:09.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日一问之什么是递归">
-<meta name="twitter:description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子  什么是递归简单的说，递归就是函数自己调用自己。根据我自己的理解，我觉得是不同于像 for，while 这种函数内的循环，递归可以说是一种函数外的循环。如下面的方程所示，就是一种典型的递归函数：1">
+<meta name="twitter:description" content="最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。  什么是递归 递归的条件是什么 递归的使用例子">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -368,7 +368,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-27 18:06:00" itemprop="dateModified" datetime="2019-01-27T18:06:00+09:00">2019-01-27</time>
+                <time title="修改时间：2019-01-28 13:03:09" itemprop="dateModified" datetime="2019-01-28T13:03:09+09:00">2019-01-28</time>
               
             
           </span>
@@ -454,6 +454,7 @@
 <li>递归的条件是什么</li>
 <li>递归的使用例子</li>
 </ul>
+<a id="more"></a>
 <h3 id="什么是递归"><a href="#什么是递归" class="headerlink" title="什么是递归"></a>什么是递归</h3><p>简单的说，递归就是函数自己调用自己。根据我自己的理解，我觉得是不同于像 <code>for</code>，<code>while</code> 这种函数内的循环，递归可以说是一种函数外的循环。如下面的方程所示，就是一种典型的递归函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">return</span> countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
 <h3 id="递归的条件"><a href="#递归的条件" class="headerlink" title="递归的条件"></a>递归的条件</h3><p>在写递归函数的时候，需满足两个条件，一个是 <strong>基线条件</strong>，一个是 <strong>递归条件</strong>。像上面的代码就不是严格意义上的递归函数，因为其不满足基线条件和递归条件，而且该函数会陷入死循环。</p>
 <p>说白了，<strong>递归条件</strong> 就是函数调用自己；<strong>基线条件</strong> 就是函数不再调用自己。所以，递归函数会包含基线条件和递归条件这两部分。现在可以将上面的代码改成正确形式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">if</span> i &lt;= <span class="number">1</span>:  <span class="comment"># 基线条件 </span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">else</span>:      <span class="comment"># 递归条件</span></span><br><span class="line">        countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
@@ -583,7 +584,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -755,7 +756,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">69k</span>
+    <span title="站点总字数">67k</span>
   
 
   
@@ -764,7 +765,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:02</span>
+    <span title="站点阅读时长">1:01</span>
   
 </div>
 
