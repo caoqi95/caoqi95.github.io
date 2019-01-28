@@ -367,7 +367,7 @@
                 
               
 
-              <time title="创建时间：2019-01-28 21:07:40 / 修改时间：21:17:35" itemprop="dateCreated datePublished" datetime="2019-01-28T21:07:40+09:00">2019-01-28</time>
+              <time title="创建时间：2019-01-28 21:07:40 / 修改时间：21:19:57" itemprop="dateCreated datePublished" datetime="2019-01-28T21:07:40+09:00">2019-01-28</time>
             
 
             
@@ -389,7 +389,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记-算法笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记 - 算法笔记</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
                 
                 
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -453,69 +453,17 @@
 
       
         
-          
-            <p>「总结自《Grokking Algotithms》这本书第五章内容」</p>
+          <p>「总结自《Grokking Algotithms》这本书第五章内容」</p>
 <h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>哈希表（Hash Table），学名散列表。散列表最核心的部分就是散列函数。有了散列函数，无论你给它什么输入数据，它都还你一个数字。专业一点的话，就是散列函数<strong>将输入映射到数字</strong>。</p>
-<p>散列函数必须满足以下条件：</p>
-<ul>
-<li><strong>必须是一致的</strong>。即对于同样的输出数据，都返回相同的结果。比如，每次输入 apple，返回结果都是 4。</li>
-<li><strong>应将不同的输入映射到不同的输出</strong>。如果一个散列表无论对于什么输入，返回的结果都是 1，那它就不是一个好的散列表。一个好的散列表应该对于不同的输入映射到不同的数字。</li>
-</ul>
-<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>散列函数表示了一种映射关系。可以用这种映射关系来建立一个商品价格存储的表。而存储这种映射记录的表就是散列表。<strong>散列表由键和值组成</strong>。例如，在建立的商品价格列表中，键就是商品名，值就是商品对应的价格。在Python 中，使用字典（dict）就可以建立一个散列表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>food = dict()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"apple"</span>]=<span class="number">0.67</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"milk"</span>]=<span class="number">2.18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">"tea"</span>]=<span class="number">24.4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food</span><br><span class="line">&#123;<span class="string">'apple'</span>: <span class="number">0.67</span>, <span class="string">'milk'</span>: <span class="number">2.18</span>, <span class="string">'tea'</span>: <span class="number">24.4</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'apple'</span>]</span><br><span class="line"><span class="number">0.67</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'milk'</span>]</span><br><span class="line"><span class="number">2.18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>food[<span class="string">'tea'</span>]</span><br><span class="line"><span class="number">24.4</span></span><br></pre></td></tr></table></figure>
-<p>散列表可以用于很多地方。比如，用于电话簿的查找；用于浏览器缓存；还能用于防止重复。</p>
-<h3 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h3><p>前面提到散列函数，应该将不同的输入映射到不同的输出。但实际上，这很难做到。有时候会发生冲突，即：<strong>给两个键分配同一个位置</strong>。这就引起了问题，后面保存的值会将之前的值给覆盖掉，使之前的键，不能对应正确的值。</p>
-<p>产生冲突了有解决办法吗？当然有，最简单的方法如下：<strong>如果两个键映射到了同一个位置，就在这个位置存储一个链表</strong>。但是这种解决方法存在弊端。如果该位置上的链表很长，则查找的时间就会很长。而除这个位置外，散列表其他位置的查找时间则依然很快。如果将所有的键都对应到一个值的位置上，该值的位置上用一个链表来连接所有的值。那么就和一开始就将所有的值都存储在链表中一样，查找的速度会很慢。</p>
-<p>这里可以看出，<strong>如何设计散列函数是很重要的</strong>。最理想的状态是，将所有的键都均匀地映射到散列表的不同位置上。而且，如果散列函数设置好的话，链表就不会很长而导致速度很慢。</p>
-<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>在平均情况下，散列表执行各种操作的时间都为 <em>O(1)</em>，即为常量时间。常量时间不并不意味着马上，而是说不管散列表有多大，所需的时间都相同。而在最糟的情况下，散列表执行各种操作的时间都为 <em>O(n)</em>，即为线性时间。下面是散列表和数组，链表的对比：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">数组</th>
-<th style="text-align:center">链表</th>
-<th style="text-align:center">散列表(平均情况)</th>
-<th style="text-align:center">散列表(最糟情况)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>插入</td>
-<td style="text-align:center">O(n)</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-<tr>
-<td>查找</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(n)</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-<tr>
-<td>删除</td>
-<td style="text-align:center">O(n)</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(1)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-</tbody>
-</table>
-<p>在平均情况下，散列表的查找速度与数组一样快，而插入和删除都与链表一样快，这相当于吸收了数组和链表两者的优点。但在最糟的情况下，是两者中的最差者，所有的操作都很慢。</p>
-<p>所以，在使用散列表的时候，要避开最糟的情况。即，需要避开冲突。避开冲突有下面两种办法：</p>
-<ul>
-<li>降低填装因子</li>
-<li>使用良好的散列函数</li>
-</ul>
-<h3 id="填装因子"><a href="#填装因子" class="headerlink" title="填装因子"></a>填装因子</h3><p>什么是填装因子呢？很简单，公式如下：</p>
-<p>$$\frac{散列表包含的元素数}{位置总数}$$</p>
-<p>在散列表中，使用数组来存储数据。因此，需要计算数组中被占用的位置数。比如，一共有 10 个位置，而被元素占用的为 2 个，填装因子就为 2 / 10。最佳的情况是：10 个位置恰好被存在的 10 个元素占用，填装因子为 1。如果为 5 个位置的话，填装因子将为 2。即，散列表中的位置不够用，不可能让每个元素都有自己的位置。</p>
-<p>所以，填装因子大于 1 意味着元素数量超过了数组的位置数量。一旦填装因子开始增大（经验表明大于 0.7 的时候），就需要在散列表中添加位置，即<strong>调整长度</strong>。这是一种非常麻烦的方法，一旦不够用就需要调整长度，开销很大，没人愿意频繁地做这种事。</p>
-<h3 id="良好的散列函数"><a href="#良好的散列函数" class="headerlink" title="良好的散列函数"></a>良好的散列函数</h3><p>上面的方法很麻烦，让我们来看看第二种方法。什么样的散列函数是良好的呢？良好的散列函数能够让数组中的值呈均匀分布，而糟糕的散列函数则会让值扎堆，导致大量的冲突。</p>
-<p>现实生活中，有一个函数非常好用 - <a href="https://zh.wikipedia.org/wiki/SHA%E5%AE%B6%E6%97%8F" target="_blank" rel="noopener">SHA 函数</a>。感兴趣的可以深入研究一下。</p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/28/散列表-Hash-Table/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2515,9 +2463,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
