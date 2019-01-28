@@ -96,28 +96,31 @@
 
 
 
-  <meta name="description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
-<meta name="keywords" content="生物医学">
+  <meta name="description" content="这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。   Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁ">
+<meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》">
-<meta property="og:url" content="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/index.html">
+<meta property="og:title" content="论文阅读 《Fully Convolutional Networks for Semantic Segmentation》">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
+<meta property="og:description" content="这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。   Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-3667a1c5709fbaa9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-14T12:15:48.000Z">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/5.png">
+<meta property="og:updated_time" content="2019-01-28T03:00:09.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》">
-<meta name="twitter:description" content="斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="论文阅读 《Fully Convolutional Networks for Semantic Segmentation》">
+<meta name="twitter:description" content="这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。   Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁ">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/">
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/">
 
 
 
@@ -127,7 +130,7 @@
   };
 </script>
 
-  <title>论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》 | caoqi95'blog</title>
+  <title>论文阅读 《Fully Convolutional Networks for Semantic Segmentation》 | caoqi95'blog</title>
   
 
 
@@ -309,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/10/论文阅读《Cardiologist-level-arrhythmia-detection-and-classification-in-ambulatory-electrocardiograms-using-a-deep-neural-network》/">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoqi95">
@@ -326,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">论文阅读《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》
+          <h1 class="post-title" itemprop="name headline">论文阅读 《Fully Convolutional Networks for Semantic Segmentation》
 
               
             
@@ -352,7 +355,7 @@
                 
               
 
-              <time title="创建时间：2019-01-10 17:56:20" itemprop="dateCreated datePublished" datetime="2019-01-10T17:56:20+09:00">2019-01-10</time>
+              <time title="创建时间：2019-01-26 13:26:52" itemprop="dateCreated datePublished" datetime="2019-01-26T13:26:52+09:00">2019-01-26</time>
             
 
             
@@ -369,7 +372,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-14 21:15:48" itemprop="dateModified" datetime="2019-01-14T21:15:48+09:00">2019-01-14</time>
+                <time title="修改时间：2019-01-28 12:00:09" itemprop="dateModified" datetime="2019-01-28T12:00:09+09:00">2019-01-28</time>
               
             
           </span>
@@ -421,29 +424,37 @@
       
 
       
-        <p>斯坦福团队在 Nature Medicine 上发表了一篇论文 《Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network》，他们开发了一种深度神经网络，用于对单导联心电图信号中的 10 种心律失常以及窦性心律和噪声，总共 12 种信号进行分类，并将其性能与心脏病专家的结果进行比较。</p>
-<p>目前可能还看不了 nature 上的 <a href="https://www.nature.com/articles/s41591-018-0268-3" target="_blank" rel="noopener">论文</a>（不过发现使用实验室的校园网就可以查看并下载论文了），但是可以从 <a href="https://stanfordmlgroup.github.io/projects/ecg2/" target="_blank" rel="noopener">这个</a> 网站能够了解一些信息。</p>
-<p>该篇论文构建了一个深度神经网络，使用了 53549 名病人的单导联 ECG 数据来对 12 种节律类别进行分类。同时，在这项研究中，构建了一个大型，新颖的 ECG 数据集，该数据集经过专家注释，适用于广泛的心电图节律类别。数据收集主要使用 Zio 监测器连续监测，采样频率为 200Hz。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2759738-d18ca8d5bd51b391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>该 DNN 旨在对 10 种心律失常以及窦性心律和噪声进行分类，总共 12 种输出节律类别，结构如下所示。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-3667a1c5709fbaa9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这个深度神经网络的架构共有 34 层。其将原始的 ECG 数据（以 200 Hz 采样，或者每秒 200 个样本）作为输入，不考虑其他与患者或者 ECG 相关的特征。并且每 256 个样本（或者每 1.28 秒）输出一个预测，这样的输出被称之为 <strong>输出间隔</strong>。同时为了网络的优化及易于处理，采用了类似残差网络的快捷连接的结构。该网络由 16 残差块组成，每个块中有 2 个卷积层。卷积层具有16 个滤波器和 32*2<sup>k</sup> 的滤波器宽度，其中 k 是超参数，其从 0 开始并且每 4 个残差块递增 1。每个残差块都对输入进行下采样操作。</p>
+        <p>这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/1.png" alt=""></p>
 <blockquote>
-<p>In general, the hyper-parameters of the network architecture and optimization algorithm were chosen via a combination of grid search and manual tuning. For the architecture, we searched primarily over the number of convolutional layers, the size and number of the convolutional filters, as well as the use of residual connections. We found the residual connections useful once the depth of the model exceeded eight layers. We also experimented with recurrent layers including long short-term memory cells<sup><a href="https://www.nature.com/articles/s41591-018-0268-3#ref-CR46" title="Hochreiter, S. &amp; Schmidhuber, J. Long short-term memory. Neural Comput. 9, 1735–1780 (1997)." target="_blank" rel="noopener">46</a></sup> and bidirectional recurrence, but found no improvement in accuracy and a substantial increase in runtime; thus, we abandoned this class of models. We manually tuned the learning rate to achieve fastest convergence.</p>
+<p>Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁcient inference and learning.</p>
 </blockquote>
-<p>对于该模型结构，作者们主要改变卷积层的数量，卷积滤波器的大小和数量，以及残差连接的使用来调参，并且手动改变学习率以使模型快速收敛。 在实验过程中，他们发现，<strong>一旦模型的深度超过 8 层，残差连接就很有用</strong>。 还尝试了包括 LSTM 的 RNN 层和双向循环结构，但发现准确性并没有提高，运行时间也大幅增加。所以，就抛弃了循环网络这类模型。</p>
-<h3 id="算法评估"><a href="#算法评估" class="headerlink" title="算法评估"></a>算法评估</h3><blockquote>
-<p>Since the DNN outputs one class prediction every output interval, it makes a series of 23 rhythm predictions for every 30-s record. The cardiologists annotated the start and end point of each rhythm class in the record. We used this to construct a cardiologist label at every output interval by rounding the annotation to the nearest interval boundary. Therefore, model accuracy can be assessed at the level of every output interval, which we call ‘sequence-level’, or at the record level, which we call ‘set-level’.</p>
+<p>论文的核心是建立 「全卷积」网络，来接受任意大小的输入，并通过有效的推理和学习产生对应大小的输出。论文中对 AlexNet，VGG net 以及 GoogLeNet 进行一些改造，改造成全卷积网络，并进行迁移学习，应用在语义分割任务上。</p>
+<h3 id="全卷积网络"><a href="#全卷积网络" class="headerlink" title="全卷积网络"></a>全卷积网络</h3><blockquote>
+<p>Each layer of data in a convnet is a three-dimensional array of size h×w×d, where h and w are spatial dimensions, and d is the feature or channel dimension. The ﬁrst layer is the image, with pixel size h×w, and d color channels. Locations in higher layers correspond to the locations in the image they are path-connected to, which are called their receptive ﬁelds.</p>
 </blockquote>
-<p>DNN 模型每个输出间隔输出一个预测，因此，每 30 秒输出 23（30/1.28，再向下取整）个预测。心脏病家在数据记录中标注了每个节奏类别的起点和终点。在实验中使用它并通过将标注四舍五入到最近的间隔边界来在每个输出间隔构建心脏病专家标签。因此，<strong>模型精度可以在每个输出间隔的级别进行评估，称之为“序列级别”，或者在整个记录级别中，称之为“数据集级别”</strong>。</p>
+<p>在一个卷积层中，数据都是一个三维的结构 -  <em>h x w x d</em>，其中 <em>h</em>，<em>w</em> 都是空间维度，<em>d</em> 是特征维度或者说通道（channel）维度。比如，第一层是输入的图片，像素的大小是 <em>h x w</em>，<em>d</em> 表示颜色通道。较高的网络层的位置对应于其路径连接的图像的位置，这些位置被称为 <em>receptive field</em>，即感受野。</p>
+<p>那么全卷积网络的定义是什么？顾名思义，<strong>当整个网络都是由这些非线性的卷积层组成的时候，就是全卷积网络</strong>，简称 FCN。一个 FCN 对任何大小的输入进行操作，并产生相应（可能重新采样的）空间维度的输出。</p>
+<h3 id="如何构建全卷积网络"><a href="#如何构建全卷积网络" class="headerlink" title="如何构建全卷积网络"></a>如何构建全卷积网络</h3><p>经典的识别网络，包括 LeNet，AlexNet，以及它们的继承者，都是采用固定大小的输入并产生非空间输出。这些网络的全连接层具有固定的尺寸并且<strong>丢弃了空间坐标</strong>。但是这些全连接层可以用卷积层来替代，这样就可以转换成<strong>全卷积网络</strong>，然后可以输入任何大小的图片和输出对应的分类图。 这种转变如下所示：</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/2.png" alt=""> </p>
+<p>网络被改成全卷积网络后，输入的大小可以是任意的，输出是通常通过下采样（subsampling）来减少维度的。分类网络下采样可以保持过滤器的小型化和计算要求的合理性。但是，这使得这些网络的全卷积版本的输出变得粗糙，如上图所示，最后卷积之后得到的一个粗糙的结果，也就是一个很高维的特征图，称为 heatmap，热力图（感兴趣的，具体可以查看这个练习：<a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener">链接</a>）</p>
+<h3 id="还原像素操作-shift-and-stitch"><a href="#还原像素操作-shift-and-stitch" class="headerlink" title="还原像素操作 - shift-and-stitch"></a>还原像素操作 - <em>shift-and-stitch</em></h3><p>构建全卷积网络会使得输出变得粗糙。但是，为了像素分类，需要将这些粗糙的输出连接回像素级别。第一种方法是 <em>shift-and-stitch</em>，即移动和缝合，通过对输入的移位并将其对应的输出缝合在一起，可以从粗糙的输出中获得密集预测（Dense prediction）。<strong>具体操作</strong>是：假设一个输出是通过一个因子 <em>f</em> 进行下采样的，移动输入的 x 轴的像素向右以及 y 轴的像素向下，那么对于每个 (x,y)，都有 <em>0&lt;= x, y &lt; f</em> ，处理每一个 <em>f</em> 输入，并交错输出，使预测对应于其感受野中心的像素。但是这种方法会因为因子 <em>f</em> 而<strong>计算消耗特别大</strong>。</p>
+<p>但是还有一种特别有名的技巧，是来自 wavelet 社区的一种算法。现在思考一个带有输入步幅 <em>s</em> 的层(卷积或池化)，以及一个带有滤波器权重 <em>f<sub>ij</sub></em> 的后续卷积层(省略无关的特征维数)。将下层的输入步幅设置为 1，将其输出的上采样数增加到 <em>s</em>。然而，将原始滤波器与上采样输出进行卷积并不会产生与 <em>shift-and-stitch</em> 相同的结果，因为原始滤波器只会看到它的(目前是上采样的)输入减少了一部分。要复现这个技巧，通过放大滤波器，使其变得稀疏，如下所示：</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/3.png" alt=""></p>
+<p>要复现上面的技巧，即需要一层一层地重复这个过滤器放大的过程，直到所有的子采样都被删除。(实际上，这可以通过处理上采样输入的次采样版本来有效地完成。)</p>
+<p>减少网络中的下采样是一种权衡：过滤器可以看到更精细的信息，但感受野更小，计算时间更长。 <em>shift-and-stitch</em> 技巧是另一种折衷：在不减少过滤器感受野大小的情况下，输出密度更大，但过滤器被禁止在比原始设计更细的范围内存取信息。</p>
+<p>虽然论文作者已经用这个技巧做了初步的实验，但是没有在实验的模型中使用它。他们发现通过<strong>上采样</strong>学习，正如下一节所描述的那样，会更有效，效率更高，尤其是与后面所描述的 _skip _结构相结合时。</p>
+<h3 id="还原像素操作-Upsampling"><a href="#还原像素操作-Upsampling" class="headerlink" title="还原像素操作 - Upsampling"></a>还原像素操作 - <em>Upsampling</em></h3><p>还有一种将粗糙输出还原成像素的方法是 <em>interpolation</em>，插值法。例如，简单的双线性插值法，通过一个只依赖于输入和输出单元相对位置的线性映射，来计算最近的 4 个输入所对应的每个输出 <em>y<sub>ij</sub></em>。</p>
+<p>在某种意义上，使用因子 <em>f</em> 的上采样（upsampling）也是卷积操作，但是其输入步幅（stride）为分数  -  <em>1/f</em>。 只要 <em>1/f</em> 是积分，因此<strong>上采样的自然方式是向后卷积（有时称为反卷积</strong>），其输出步幅为 <em>f</em>。这样的操作实现起来很简单，因为它只是对卷积的前向和后向传递进行了反转。因此，通过来自逐像素损失（pixelwise loss）的反向传播，在网络中执行上采样来进行端到端学习。</p>
+<p>需要注意，这种层中的反卷积滤波器不需要固定（如双线性上采样），而是可以学习的。一堆反卷积层和激活函数扫描甚至可以学习非线性上采样。</p>
+<p>在实验中，发现对于密集学习，在网络中进行<strong>上采样是快而高效的</strong>。下面的分割结构就是使用这些层来学习上采样，进行精准预测的。</p>
 <blockquote>
-<p>To compare model predictions at the sequence level, the model predictions at each output interval were compared with the corresponding committee consensus labels for that same output interval. At the set level, the set of unique rhythm classes across a given ECG record that was predicted by the DNN was compared with the set of rhythm classes annotated across the record by the committee consensus. The set-level evaluation, unlike the sequence-level, does not penalize for time misalignment of a rhythm classification within a record.</p>
+<p><strong>整个语义分割的流程就是</strong>：先是用全卷积层得到粗糙的高纬度信息，然后对最后一个卷积层的 feature map 应用反卷积层进行上采样，最后得到和输入图像一样的尺寸，从而对每个像素都产生了一个预测, 同时又保留了原始输入图像中的空间信息, 最后在上采样的特征图上进行逐像素分类。</p>
 </blockquote>
-<p>为了在<strong>序列级别</strong>中比较输出预测，将每个输出间隔的模型预测与相同输出间隔的相应委员会的标注进行比较。<br>在<strong>数据集级别</strong>上，由 DNN 预测的给定 ECG 记录中的一组独特节律类别与委员会标注的一组节奏类别进行比较。与序列级别不同，数据集级别评估不会对记录中的节奏分类的时间错位进行惩罚。</p>
-<p><strong>序列级别</strong>的算法评估允许在每个输出间隔与黄金标准进行比较，从而提供最全面的算法性能度量，所以将它用于大多数的度量中。序列级评估也类似于遥测或 Holter 监测分析的临床应用，因此识别节律的起始和偏移至关重要。在<strong>数据集级别</strong>上的评估是很有用的抽象，近似于如何将 DNN 算法应用于单个 ECG 记录以识别给定记录中存在哪些诊断。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>原论文代码已公开：<a href="https://github.com/awni/ecg" target="_blank" rel="noopener">https://github.com/awni/ecg</a></p>
-<p>训练数据集目前没公开，归 iRhythm 技术公司所有，将来可能考虑会公开。但是测试集数据是可用的：<a href="https://irhythm.github.io/cardiol_test_set" target="_blank" rel="noopener">https://irhythm.github.io/cardiol_test_set</a></p>
-<p>论文中还使用到 PhysioNet 的 ECG 数据集，具体访问：<a href="https://physionet.org/challenge/2017/" target="_blank" rel="noopener">https://physionet.org/challenge/2017/</a></p>
+<h3 id="Segmentation-Architecture-“skip”"><a href="#Segmentation-Architecture-“skip”" class="headerlink" title="Segmentation Architecture - “skip”"></a>Segmentation Architecture - “skip”</h3><p>将一些 AlexNet，VGG 等网络的全连接成改为卷积层，再进行微调及上采样的操作，应用于图像分割任务。在标准的评估下，可以得到当时比较好的结果。但是，它们的输出仍旧不尽人意，如下 FCN-32S 所示，分割的结果还是不够精确。<strong>这是因为，当深入时可以获得深度特征，当深入时也会丢失空间位置信息。这意味着较浅层的输出具有更多位置信息。</strong>如果我们将两者结合起来，我们就可以提高结果。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/4.png" alt=""></p>
+<p>后面作者通过添加链接来解决这个问题，这些链接将最终预测层与较低层组合在一起。这会将线性拓扑结构变为DAG，其边缘从较低层跳到较高层，如下图所示。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/5.png" alt="">Figure 4 的图像中就显示了，FCN-16s 比 FCN-32s 要精确，FCN-8s 比 FCN-16s 要精确。作者做到 FCN-8s 就没有继续了。</p>
 
       
     </div>
@@ -467,7 +478,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生物医学/" rel="tag"># 生物医学</a>
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
           
         </div>
       
@@ -480,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/09/GitHub-Hexo-个人博客再搭建/" rel="next" title="GitHub + Hexo 个人博客再搭建">
-                <i class="fa fa-chevron-left"></i> GitHub + Hexo 个人博客再搭建
+              <a href="/2019/01/22/记最近一段时间吃过的美食/" rel="next" title="记最近一段时间吃过的美食">
+                <i class="fa fa-chevron-left"></i> 记最近一段时间吃过的美食
               </a>
             
           </div>
@@ -490,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/今天去牙科医院了/" rel="prev" title="今天去牙科医院了">
-                今天去牙科医院了 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/27/每日一问之-FCN-与语义分割/" rel="prev" title="每日一问之 FCN 与语义分割">
+                每日一问之 FCN 与语义分割 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -697,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构"><span class="nav-number">1.</span> <span class="nav-text">模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法评估"><span class="nav-number">2.</span> <span class="nav-text">算法评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全卷积网络"><span class="nav-number">1.</span> <span class="nav-text">全卷积网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何构建全卷积网络"><span class="nav-number">2.</span> <span class="nav-text">如何构建全卷积网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还原像素操作-shift-and-stitch"><span class="nav-number">3.</span> <span class="nav-text">还原像素操作 - shift-and-stitch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还原像素操作-Upsampling"><span class="nav-number">4.</span> <span class="nav-text">还原像素操作 - Upsampling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Segmentation-Architecture-“skip”"><span class="nav-number">5.</span> <span class="nav-text">Segmentation Architecture - “skip”</span></a></li></ol></div>
             
 
           </div>

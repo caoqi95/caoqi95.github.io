@@ -678,6 +678,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/" class="post-title-link" itemprop="url">论文阅读 《Fully Convolutional Networks for Semantic Segmentation》</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-26 13:26:52" itemprop="dateCreated datePublished" datetime="2019-01-26T13:26:52+09:00">2019-01-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 12:00:09" itemprop="dateModified" datetime="2019-01-28T12:00:09+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/论文阅读/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这篇是 CVPR 2015 年的一篇论文。最近在朋友的影响下，也想了解一下语义分割的相关知识。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/1.png" alt=""></p>
+<blockquote>
+<p>Our key insight is to build “fully convolutional” networks that take input of arbitrary(任意，随意的) size and produce correspondingly-sized output with efﬁcient inference and learning.</p>
+</blockquote>
+<p>论文的核心是建立 「全卷积」网络，来接受任意大小的输入，并通过有效的推理和学习产生对应大小的输出。论文中对 AlexNet，VGG net 以及 GoogLeNet 进行一些改造，改造成全卷积网络，并进行迁移学习，应用在语义分割任务上。</p>
+<h3 id="全卷积网络"><a href="#全卷积网络" class="headerlink" title="全卷积网络"></a>全卷积网络</h3><blockquote>
+<p>Each layer of data in a convnet is a three-dimensional array of size h×w×d, where h and w are spatial dimensions, and d is the feature or channel dimension. The ﬁrst layer is the image, with pixel size h×w, and d color channels. Locations in higher layers correspond to the locations in the image they are path-connected to, which are called their receptive ﬁelds.</p>
+</blockquote>
+<p>在一个卷积层中，数据都是一个三维的结构 -  <em>h x w x d</em>，其中 <em>h</em>，<em>w</em> 都是空间维度，<em>d</em> 是特征维度或者说通道（channel）维度。比如，第一层是输入的图片，像素的大小是 <em>h x w</em>，<em>d</em> 表示颜色通道。较高的网络层的位置对应于其路径连接的图像的位置，这些位置被称为 <em>receptive field</em>，即感受野。</p>
+<p>那么全卷积网络的定义是什么？顾名思义，<strong>当整个网络都是由这些非线性的卷积层组成的时候，就是全卷积网络</strong>，简称 FCN。一个 FCN 对任何大小的输入进行操作，并产生相应（可能重新采样的）空间维度的输出。</p>
+<h3 id="如何构建全卷积网络"><a href="#如何构建全卷积网络" class="headerlink" title="如何构建全卷积网络"></a>如何构建全卷积网络</h3><p>经典的识别网络，包括 LeNet，AlexNet，以及它们的继承者，都是采用固定大小的输入并产生非空间输出。这些网络的全连接层具有固定的尺寸并且<strong>丢弃了空间坐标</strong>。但是这些全连接层可以用卷积层来替代，这样就可以转换成<strong>全卷积网络</strong>，然后可以输入任何大小的图片和输出对应的分类图。 这种转变如下所示：</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/2.png" alt=""> </p>
+<p>网络被改成全卷积网络后，输入的大小可以是任意的，输出是通常通过下采样（subsampling）来减少维度的。分类网络下采样可以保持过滤器的小型化和计算要求的合理性。但是，这使得这些网络的全卷积版本的输出变得粗糙，如上图所示，最后卷积之后得到的一个粗糙的结果，也就是一个很高维的特征图，称为 heatmap，热力图（感兴趣的，具体可以查看这个练习：<a href="https://github.com/m2dsupsdlclass/lectures-labs/blob/master/labs/05_conv_nets_2/Fully_Convolutional_Neural_Networks_rendered.ipynb" target="_blank" rel="noopener">链接</a>）</p>
+<h3 id="还原像素操作-shift-and-stitch"><a href="#还原像素操作-shift-and-stitch" class="headerlink" title="还原像素操作 - shift-and-stitch"></a>还原像素操作 - <em>shift-and-stitch</em></h3><p>构建全卷积网络会使得输出变得粗糙。但是，为了像素分类，需要将这些粗糙的输出连接回像素级别。第一种方法是 <em>shift-and-stitch</em>，即移动和缝合，通过对输入的移位并将其对应的输出缝合在一起，可以从粗糙的输出中获得密集预测（Dense prediction）。<strong>具体操作</strong>是：假设一个输出是通过一个因子 <em>f</em> 进行下采样的，移动输入的 x 轴的像素向右以及 y 轴的像素向下，那么对于每个 (x,y)，都有 <em>0&lt;= x, y &lt; f</em> ，处理每一个 <em>f</em> 输入，并交错输出，使预测对应于其感受野中心的像素。但是这种方法会因为因子 <em>f</em> 而<strong>计算消耗特别大</strong>。</p>
+<p>但是还有一种特别有名的技巧，是来自 wavelet 社区的一种算法。现在思考一个带有输入步幅 <em>s</em> 的层(卷积或池化)，以及一个带有滤波器权重 <em>f<sub>ij</sub></em> 的后续卷积层(省略无关的特征维数)。将下层的输入步幅设置为 1，将其输出的上采样数增加到 <em>s</em>。然而，将原始滤波器与上采样输出进行卷积并不会产生与 <em>shift-and-stitch</em> 相同的结果，因为原始滤波器只会看到它的(目前是上采样的)输入减少了一部分。要复现这个技巧，通过放大滤波器，使其变得稀疏，如下所示：</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/3.png" alt=""></p>
+<p>要复现上面的技巧，即需要一层一层地重复这个过滤器放大的过程，直到所有的子采样都被删除。(实际上，这可以通过处理上采样输入的次采样版本来有效地完成。)</p>
+<p>减少网络中的下采样是一种权衡：过滤器可以看到更精细的信息，但感受野更小，计算时间更长。 <em>shift-and-stitch</em> 技巧是另一种折衷：在不减少过滤器感受野大小的情况下，输出密度更大，但过滤器被禁止在比原始设计更细的范围内存取信息。</p>
+<p>虽然论文作者已经用这个技巧做了初步的实验，但是没有在实验的模型中使用它。他们发现通过<strong>上采样</strong>学习，正如下一节所描述的那样，会更有效，效率更高，尤其是与后面所描述的 _skip _结构相结合时。</p>
+<h3 id="还原像素操作-Upsampling"><a href="#还原像素操作-Upsampling" class="headerlink" title="还原像素操作 - Upsampling"></a>还原像素操作 - <em>Upsampling</em></h3><p>还有一种将粗糙输出还原成像素的方法是 <em>interpolation</em>，插值法。例如，简单的双线性插值法，通过一个只依赖于输入和输出单元相对位置的线性映射，来计算最近的 4 个输入所对应的每个输出 <em>y<sub>ij</sub></em>。</p>
+<p>在某种意义上，使用因子 <em>f</em> 的上采样（upsampling）也是卷积操作，但是其输入步幅（stride）为分数  -  <em>1/f</em>。 只要 <em>1/f</em> 是积分，因此<strong>上采样的自然方式是向后卷积（有时称为反卷积</strong>），其输出步幅为 <em>f</em>。这样的操作实现起来很简单，因为它只是对卷积的前向和后向传递进行了反转。因此，通过来自逐像素损失（pixelwise loss）的反向传播，在网络中执行上采样来进行端到端学习。</p>
+<p>需要注意，这种层中的反卷积滤波器不需要固定（如双线性上采样），而是可以学习的。一堆反卷积层和激活函数扫描甚至可以学习非线性上采样。</p>
+<p>在实验中，发现对于密集学习，在网络中进行<strong>上采样是快而高效的</strong>。下面的分割结构就是使用这些层来学习上采样，进行精准预测的。</p>
+<blockquote>
+<p><strong>整个语义分割的流程就是</strong>：先是用全卷积层得到粗糙的高纬度信息，然后对最后一个卷积层的 feature map 应用反卷积层进行上采样，最后得到和输入图像一样的尺寸，从而对每个像素都产生了一个预测, 同时又保留了原始输入图像中的空间信息, 最后在上采样的特征图上进行逐像素分类。</p>
+</blockquote>
+<h3 id="Segmentation-Architecture-“skip”"><a href="#Segmentation-Architecture-“skip”" class="headerlink" title="Segmentation Architecture - “skip”"></a>Segmentation Architecture - “skip”</h3><p>将一些 AlexNet，VGG 等网络的全连接成改为卷积层，再进行微调及上采样的操作，应用于图像分割任务。在标准的评估下，可以得到当时比较好的结果。但是，它们的输出仍旧不尽人意，如下 FCN-32S 所示，分割的结果还是不够精确。<strong>这是因为，当深入时可以获得深度特征，当深入时也会丢失空间位置信息。这意味着较浅层的输出具有更多位置信息。</strong>如果我们将两者结合起来，我们就可以提高结果。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/4.png" alt=""></p>
+<p>后面作者通过添加链接来解决这个问题，这些链接将最终预测层与较低层组合在一起。这会将线性拓扑结构变为DAG，其边缘从较低层跳到较高层，如下图所示。</p>
+<p><img src="/2019/01/26/论文阅读-《Fully-Convolutional-Networks-for-Semantic-Segmentation》/5.png" alt="">Figure 4 的图像中就显示了，FCN-16s 比 FCN-32s 要精确，FCN-8s 比 FCN-16s 要精确。作者做到 FCN-8s 就没有继续了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/22/记最近一段时间吃过的美食/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2078,195 +2281,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/13/每日一问之什么是递归/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="caoqi95">
-      <meta itemprop="description" content="A boring person.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="caoqi95'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/13/每日一问之什么是递归/" class="post-title-link" itemprop="url">每日一问之什么是递归</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-13 19:36:43" itemprop="dateCreated datePublished" datetime="2019-01-13T19:36:43+09:00">2019-01-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-27 18:06:00" itemprop="dateModified" datetime="2019-01-27T18:06:00+09:00">2019-01-27</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/每日一问/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在刷 LeetCode 的时候，发现很多题用递归的方法来解会方便很多，解题过程中也加深了对递归方法的印象。今天正好可以重新整理一下关于递归的相关知识。</p>
-<ul>
-<li>什么是递归</li>
-<li>递归的条件是什么</li>
-<li>递归的使用例子</li>
-</ul>
-<h3 id="什么是递归"><a href="#什么是递归" class="headerlink" title="什么是递归"></a>什么是递归</h3><p>简单的说，递归就是函数自己调用自己。根据我自己的理解，我觉得是不同于像 <code>for</code>，<code>while</code> 这种函数内的循环，递归可以说是一种函数外的循环。如下面的方程所示，就是一种典型的递归函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">return</span> countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="递归的条件"><a href="#递归的条件" class="headerlink" title="递归的条件"></a>递归的条件</h3><p>在写递归函数的时候，需满足两个条件，一个是 <strong>基线条件</strong>，一个是 <strong>递归条件</strong>。像上面的代码就不是严格意义上的递归函数，因为其不满足基线条件和递归条件，而且该函数会陷入死循环。</p>
-<p>说白了，<strong>递归条件</strong> 就是函数调用自己；<strong>基线条件</strong> 就是函数不再调用自己。所以，递归函数会包含基线条件和递归条件这两部分。现在可以将上面的代码改成正确形式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(i)</span>:</span></span><br><span class="line">    print(i)</span><br><span class="line">    <span class="keyword">if</span> i &lt;= <span class="number">1</span>:  <span class="comment"># 基线条件 </span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">else</span>:      <span class="comment"># 递归条件</span></span><br><span class="line">        countdown(i<span class="number">-1</span>)</span><br></pre></td></tr></table></figure></p>
-<p>这时候函数就不会陷入死循环而无穷尽的执行下去了。<br><img src="https://upload-images.jianshu.io/upload_images/2759738-7ceff11fc05a9c3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="递归的使用例子"><a href="#递归的使用例子" class="headerlink" title="递归的使用例子"></a>递归的使用例子</h3><p>下面来举两个递归的使用例子，例子都来自最近刷的 LeetCode 的 Easy 级别的题目。</p>
-<h6 id="1-Same-Tree"><a href="#1-Same-Tree" class="headerlink" title="1. Same Tree"></a>1. Same Tree</h6><p>题目：给定两个二叉树，编写一个函数来检查它们是否相同。 如果两个二叉树在结构上相同并且节点具有相同的值，则认为它们是相同的，否则是不同的。例子如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Example <span class="number">1</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">3</span>     <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],   [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">Output: true</span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          /           \</span><br><span class="line">         <span class="number">2</span>             <span class="number">2</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>],     [<span class="number">1</span>,null,<span class="number">2</span>]</span><br><span class="line">Output: false</span><br><span class="line">Example <span class="number">3</span>:</span><br><span class="line">Input:     <span class="number">1</span>         <span class="number">1</span></span><br><span class="line">          / \       / \</span><br><span class="line">         <span class="number">2</span>   <span class="number">1</span>     <span class="number">1</span>   <span class="number">2</span></span><br><span class="line">        [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p>解法如下，当 p，q 两个二叉树都为空的时候，直接返回 True；当 p，q 中其中一个为 空，则直接返回 False；当 p，q 的值不相等也直接返回 False。这些都是基线条件，其余的是递归条件。判断完 p，q 的值，再继续判断 p 和 q 的子根的两个值，如果都相等，这两个二叉树就是一样的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment">#class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span><span class="params">(self, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type p: TreeNode</span></span><br><span class="line"><span class="string">        :type q: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">and</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> <span class="keyword">not</span> q:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> p.val != q.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Solution.isSameTree(self, p.left, q.left) <span class="keyword">and</span></span><br><span class="line">                   \ Solution.isSameTree(self, p.right, q.right)</span><br></pre></td></tr></table></figure></p>
-<h6 id="2-Symmetric-Tree"><a href="#2-Symmetric-Tree" class="headerlink" title="2. Symmetric Tree"></a>2. Symmetric Tree</h6><p>题目：给定二叉树，检查它是否是自身的镜像（即，围绕其中心对称）。例子如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">For example, this binary tree [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>] <span class="keyword">is</span> symmetric:</span><br><span class="line"></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> / \ / \</span><br><span class="line"><span class="number">3</span>  <span class="number">4</span> <span class="number">4</span>  <span class="number">3</span></span><br><span class="line">But the following [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,null,<span class="number">3</span>,null,<span class="number">3</span>] <span class="keyword">is</span> <span class="keyword">not</span>:</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span></span><br><span class="line">   \   \</span><br><span class="line">   <span class="number">3</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>解法如下，为了方面解题，另外写了一个递归函数 <code>fileAndCheck()</code>。该函数的递归条件是两个根均为非空，即均存在。如果两个根都存在的话，那么就返回判断两个根的值是否相等，且一个根的两个子根是否与另一个根的对应两个子根的翻转相等。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filpAndCheck(root.left, root.right)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此处使用递归</span></span><br><span class="line"><span class="comment"># 1. 先确保两个根的值是否相等</span></span><br><span class="line"><span class="comment"># 2. 再确保一个根的两个子根是否与另一根的对应的两个子根的翻转相同</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filpAndCheck</span><span class="params">(root1, root2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root1 <span class="keyword">and</span> root2:</span><br><span class="line">        <span class="keyword">return</span> root1.val == root2.val <span class="keyword">and</span> filpAndCheck(root1.left, root2.right) <span class="keyword">and</span> filpAndCheck(root1.right,</span><br><span class="line">                                                                                                 root2.left)</span><br><span class="line">    <span class="comment"># 如果其中一个为 null，则返回 False</span></span><br><span class="line">    <span class="comment"># 如果两个都为 null，则返回 True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">not</span> (root1 <span class="keyword">or</span> root2)</span><br></pre></td></tr></table></figure></p>
-<p><em>P.S：文中有错欢迎指出，互相学习。</em></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2314,7 +2328,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
