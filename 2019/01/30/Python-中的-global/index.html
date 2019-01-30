@@ -96,27 +96,25 @@
 
 
 
-  <meta name="description" content="什么是牛顿迭代法？  今天在刷 LeetCode 的 sqrt(x) 这道题的时候，看到别人的解法中有使用牛顿迭代法。之前也看到这个方法很多次，但都没有去了解。今天正好就这个问题来稍微整理一下：  什么是牛顿法？ 为什么可以用它来求解开方问题？">
-<meta name="keywords" content="算法知识">
+  <meta name="description" content="今天，没状态看论文，但又不想浪费时间，就选择了多学点 Python 进阶的内容。主要是整理关于 global 的内容，并说说它与 return 的差别。内容很简单，只需要了解概念就行。">
+<meta name="keywords" content="Python 进阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一问之初识牛顿迭代法（Newton&#39;s method）">
-<meta property="og:url" content="http://caoqi95.github.io/2019/01/02/每日一问之初识牛顿迭代法（Newton's method）/index.html">
+<meta property="og:title" content="Python 中的 global">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/30/Python-中的-global/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="什么是牛顿迭代法？  今天在刷 LeetCode 的 sqrt(x) 这道题的时候，看到别人的解法中有使用牛顿迭代法。之前也看到这个方法很多次，但都没有去了解。今天正好就这个问题来稍微整理一下：  什么是牛顿法？ 为什么可以用它来求解开方问题？">
+<meta property="og:description" content="今天，没状态看论文，但又不想浪费时间，就选择了多学点 Python 进阶的内容。主要是整理关于 global 的内容，并说说它与 return 的差别。内容很简单，只需要了解概念就行。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-b82da06d6e24a657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-01-28T04:03:46.042Z">
+<meta property="og:updated_time" content="2019-01-30T13:38:04.191Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一问之初识牛顿迭代法（Newton&#39;s method）">
-<meta name="twitter:description" content="什么是牛顿迭代法？  今天在刷 LeetCode 的 sqrt(x) 这道题的时候，看到别人的解法中有使用牛顿迭代法。之前也看到这个方法很多次，但都没有去了解。今天正好就这个问题来稍微整理一下：  什么是牛顿法？ 为什么可以用它来求解开方问题？">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2759738-b82da06d6e24a657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Python 中的 global">
+<meta name="twitter:description" content="今天，没状态看论文，但又不想浪费时间，就选择了多学点 Python 进阶的内容。主要是整理关于 global 的内容，并说说它与 return 的差别。内容很简单，只需要了解概念就行。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://caoqi95.github.io/2019/01/02/每日一问之初识牛顿迭代法（Newton's method）/">
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/30/Python-中的-global/">
 
 
 
@@ -126,7 +124,7 @@
   };
 </script>
 
-  <title>每日一问之初识牛顿迭代法（Newton's method） | caoqi95'blog</title>
+  <title>Python 中的 global | caoqi95'blog</title>
   
 
 
@@ -360,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/02/每日一问之初识牛顿迭代法（Newton's method）/">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/30/Python-中的-global/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoqi95">
@@ -377,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每日一问之初识牛顿迭代法（Newton's method）
+          <h1 class="post-title" itemprop="name headline">Python 中的 global
 
               
             
@@ -403,24 +401,12 @@
                 
               
 
-              <time title="创建时间：2019-01-02 23:35:01" itemprop="dateCreated datePublished" datetime="2019-01-02T23:35:01+09:00">2019-01-02</time>
+              <time title="创建时间：2019-01-30 21:58:01 / 修改时间：22:38:04" itemprop="dateCreated datePublished" datetime="2019-01-30T21:58:01+09:00">2019-01-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:03:46" itemprop="dateModified" datetime="2019-01-28T13:03:46+09:00">2019-01-28</time>
               
             
           </span>
@@ -437,7 +423,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/每日一问/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
                 
                 
@@ -473,7 +459,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">1.7k</span>
               
 
               
@@ -507,29 +493,23 @@
       
 
       
-        <blockquote>
-<p>什么是牛顿迭代法？</p>
-</blockquote>
-<p>今天在刷 LeetCode 的 <a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="noopener">sqrt(x)</a> 这道题的时候，看到别人的解法中有使用牛顿迭代法。之前也看到这个方法很多次，但都没有去了解。今天正好就这个问题来稍微整理一下：</p>
-<ul>
-<li>什么是牛顿法？</li>
-<li>为什么可以用它来求解开方问题？</li>
-</ul>
+        <p>今天，没状态看论文，但又不想浪费时间，就选择了多学点 Python 进阶的内容。主要是整理关于 <code>global</code> 的内容，并说说它与 <code>return</code> 的差别。内容很简单，只需要了解概念就行。</p>
 <a id="more"></a>
-<h3 id="什么是牛顿法"><a href="#什么是牛顿法" class="headerlink" title="什么是牛顿法"></a>什么是牛顿法</h3><p>在维基百科中的定义如下：</p>
-<blockquote>
-<p>In numerical analysis, Newton’s method (also known as the Newton–Raphson method), named after Isaac Newton and Joseph Raphson, is a method for finding successively better approximations to the roots (or zeroes) of a real-valued function. It is one example of a root-finding algorithm.</p>
-</blockquote>
-<p>牛顿法是一种用于找到实数函数的根的近似值的方法，是求根算法中的一个代表。</p>
-<p>一个变量中的 Newton-Raphson 方法实现如下，主要的想法来自这个<a href="https://www.youtube.com/watch?v=cOmAk82cr9M" target="_blank" rel="noopener">视频</a>，这个教授讲解的挺明白的，一共有 7 个视频。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-b82da06d6e24a657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>假设我们有一个连续的函数，其在 <em>x</em> 轴上存在很多根（零点）。现在在 <em>x</em> 轴上取一初始点 <em>x<sub>1</sub></em>，该点对应的函数值为 f(x<sub>1</sub>)。然后在该点的函数值附近画切线，切线与 <em>x</em> 轴的交点为 <em>x<sub>2</sub></em>。假设 <em>x<sub>2</sub></em> =<em>x<sub>1</sub></em>- <em>△x</em>，在该三角形中，可以求得斜率 <em>s</em> =f(x<sub>1</sub>)/<em>△x</em>，化解可得 △x = f(x<sub>1</sub>)/s。s 即为函数在 <em>x<sub>1</sub></em> 处的导数，所以有△x = f(x<sub>1</sub>)/f’(x<sub>1</sub>)，最后代入得 x<sub>2</sub>= x<sub>1</sub> - f(x<sub>1</sub>)/f’(x<sub>1</sub>)。后面在 <em>x<sub>2</sub></em> 对应的函数值处取切线，然后开始新一轮的迭代。之后再循环这个过程，直到达到足够准确的值。过程中迭代的公式可以写成：$$x_{n+1}=x_n - \frac{f(x_n)}{f’(x_n)}$$</p>
-<h3 id="为什么可以用它来求解开方问题？"><a href="#为什么可以用它来求解开方问题？" class="headerlink" title="为什么可以用它来求解开方问题？"></a>为什么可以用它来求解开方问题？</h3><p>根据上面的基本介绍，牛顿法是用于求解一个实数函数的根的近似值的方法。然而开方问题可以看成是对方程  x<sup>2</sup> - n =0 求根的问题，所以就可以用牛顿法来求解：首先可以得知 f(x) = x<sup>2</sup> - n ，f’(x) = 2x，所以迭代公式为:<br>$$x_{n+1}=x_{n} - \frac{ x_{n}^2 - n}{2x_{n}} = \frac{x_n + \frac{n}{x_n}}{2}$$</p>
-<p>依据该迭代公式，对应 LeetCode 的 <a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="noopener">sqrt(x)</a> 这道题写成 Python 代码就会很简洁，比二分法要简洁多了，且运行时间也快一些。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mySqrt(self, x):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;       </span><br><span class="line">        </span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        # 采用二分法</span><br><span class="line">        low, high = 0, x</span><br><span class="line">        while(low &lt;= high):</span><br><span class="line">            mid = int((low + high) / 2)</span><br><span class="line">            if mid*mid &gt; x :</span><br><span class="line">                high = mid - 1</span><br><span class="line">            elif mid*mid &lt; x:</span><br><span class="line">                low = mid + 1</span><br><span class="line">            else:</span><br><span class="line">                return mid</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        return low - 1</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        # 采用牛顿迭代法</span><br><span class="line">        r = x</span><br><span class="line">        while r*r &gt; x:</span><br><span class="line">            r = int((r + x/r) / 2)</span><br><span class="line">        </span><br><span class="line">        return r</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank" rel="noopener">Newton’s method - wikipedia</a></p>
-<p>[2]. <a href="https://www.youtube.com/watch?v=30q-FZpBJ_c" target="_blank" rel="noopener">Calculus: Newton’s Method (1 of 7) Basics Continued: Roots of Functions</a></p>
-<p><em>P.S：文中有错欢迎指出，互相学习。</em></p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>首先，看一个常见的例子 - <code>return</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(v1, v2)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> v1 + v2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>result = add(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>该函数实现的是，<code>return</code> 返回函数的最终结果，然后下面将值赋值给了变量 <code>result</code>。</p>
+<p>现在将其写成 <code>global</code>的形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(v1, v2)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> result</span><br><span class="line">    result = v1 + v2</span><br><span class="line">    </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>这个函数是生成了一个 <code>global</code> 变量 result，也就是说生成的变量 <code>result</code> 是<strong>全局变量</strong>。什么是全局变量呢？就是除了所在的函数，其他函数也能调用这个变量。即在函数以外的区域都能够访问这个变量。下面的例子就可以说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 没有 global 变量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(v1, v2)</span>:</span></span><br><span class="line">    result = v1 + v2</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">'result'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br></pre></td></tr></table></figure>
+<p>上面的例子是没有 <code>global</code> 变量的例子，但是后面想访问 <code>result</code> 的时候，Python 解释器会报错。这是因为，在函数之外不能够调用这个在函数之内的变量。使用下面的全局变量就不会报错了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有 global 变量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(v1, v2)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> result</span><br><span class="line">    result = v1 + v2</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>实际上，在实际的工作中，我们应该避免使用 <code>global</code> 变量，因为有时候会将多余的变量引入全局作用域。</p>
+<h3 id="返回多个结果"><a href="#返回多个结果" class="headerlink" title="返回多个结果"></a>返回多个结果</h3><p>在 Python 中，有时候你想返回多个结果，这时候该怎么做呢？方法一，可以使用前面的 <code>global</code> 来返回多个全局变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">msg</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> name</span><br><span class="line">    <span class="keyword">global</span> age</span><br><span class="line">    </span><br><span class="line">    name = <span class="string">"caoqi95"</span></span><br><span class="line">    age = <span class="number">23</span></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>msg()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'caoqi95'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>age</span><br><span class="line"><span class="number">23</span></span><br></pre></td></tr></table></figure>
+<p><strong>需要注意的是：</strong>这样的做法很不好，不建议使用这样的方法。下面提供其他两种高效的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 仅使用逗号分隔，返回多个结果</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">msg</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">"caoqi95"</span></span><br><span class="line">    age = <span class="number">23</span></span><br><span class="line">    <span class="keyword">return</span> name, age</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>msg()</span><br><span class="line">(<span class="string">'caoqi95'</span>, <span class="number">23</span>) <span class="comment"># NoneType</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用元祖的形式，返回多个结果</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">msg</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">"caoqi95"</span></span><br><span class="line">    age = <span class="number">23</span></span><br><span class="line">    <span class="keyword">return</span> (name, age)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>msg()</span><br><span class="line">(<span class="string">'caoqi95'</span>, <span class="number">23</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>msg()[<span class="number">0</span>]</span><br><span class="line"><span class="string">'caoqi95'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>msg()[<span class="number">1</span>]</span><br><span class="line"><span class="number">23</span></span><br></pre></td></tr></table></figure>
+<p>这篇文章主要介绍了 <code>global</code>的知识，仅作为一个了解。但在实际工作中，不建议使用 <code>global</code>，除非你自己很了解你使用 <code>global</code> 的目的。</p>
 
       
     </div>
@@ -553,7 +533,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法知识/" rel="tag"># 算法知识</a>
+            <a href="/tags/Python-进阶/" rel="tag"># Python 进阶</a>
           
         </div>
       
@@ -566,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/02/忘记准考证如何查询-TOPIK-成绩/" rel="next" title="忘记准考证如何查询 TOPIK 成绩">
-                <i class="fa fa-chevron-left"></i> 忘记准考证如何查询 TOPIK 成绩
+              <a href="/2019/01/29/Python-装饰器/" rel="next" title="Python 装饰器">
+                <i class="fa fa-chevron-left"></i> Python 装饰器
               </a>
             
           </div>
@@ -575,10 +555,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/05/Linux-配置-Git-过程备份/" rel="prev" title="Linux 配置 Git 过程备份">
-                Linux 配置 Git 过程备份 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -785,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是牛顿法"><span class="nav-number">1.</span> <span class="nav-text">什么是牛顿法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么可以用它来求解开方问题？"><span class="nav-number">2.</span> <span class="nav-text">为什么可以用它来求解开方问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回多个结果"><span class="nav-number">2.</span> <span class="nav-text">返回多个结果</span></a></li></ol></div>
             
 
           </div>
