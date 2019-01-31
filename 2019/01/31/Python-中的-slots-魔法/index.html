@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="最近在看申请奖学金的事情，发现可能需要语言成绩的证明。但之前在国内考的 TOPIK 都是邮寄成绩单的，因此没有特意记住准考证号，然而之前复印的成绩单都用于申请学校了，早就没有存货了。">
-<meta name="keywords" content="韩国留学的那些事儿">
+  <meta name="description" content="在 Python 中，每个类都有实例属性。在默认的情况下，会用一个字典来保存一个对象的实例属性。但是，有时候这会浪费很多内存。尤其是在创建很多对象的时候（成千上万个），会非常消耗内存。这是因为 Python 不能在对象创建的时候，直接分配一个固定的内存来保存所有的属性。">
+<meta name="keywords" content="Python 进阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="忘记准考证如何查询 TOPIK 成绩">
-<meta property="og:url" content="http://caoqi95.github.io/2019/01/02/忘记准考证如何查询-TOPIK-成绩/index.html">
+<meta property="og:title" content="Python 中的 slots 魔法">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/31/Python-中的-slots-魔法/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="最近在看申请奖学金的事情，发现可能需要语言成绩的证明。但之前在国内考的 TOPIK 都是邮寄成绩单的，因此没有特意记住准考证号，然而之前复印的成绩单都用于申请学校了，早就没有存货了。">
+<meta property="og:description" content="在 Python 中，每个类都有实例属性。在默认的情况下，会用一个字典来保存一个对象的实例属性。但是，有时候这会浪费很多内存。尤其是在创建很多对象的时候（成千上万个），会非常消耗内存。这是因为 Python 不能在对象创建的时候，直接分配一个固定的内存来保存所有的属性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-28T04:04:56.273Z">
+<meta property="og:updated_time" content="2019-01-31T05:38:36.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="忘记准考证如何查询 TOPIK 成绩">
-<meta name="twitter:description" content="最近在看申请奖学金的事情，发现可能需要语言成绩的证明。但之前在国内考的 TOPIK 都是邮寄成绩单的，因此没有特意记住准考证号，然而之前复印的成绩单都用于申请学校了，早就没有存货了。">
+<meta name="twitter:title" content="Python 中的 slots 魔法">
+<meta name="twitter:description" content="在 Python 中，每个类都有实例属性。在默认的情况下，会用一个字典来保存一个对象的实例属性。但是，有时候这会浪费很多内存。尤其是在创建很多对象的时候（成千上万个），会非常消耗内存。这是因为 Python 不能在对象创建的时候，直接分配一个固定的内存来保存所有的属性。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://caoqi95.github.io/2019/01/02/忘记准考证如何查询-TOPIK-成绩/">
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/31/Python-中的-slots-魔法/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>忘记准考证如何查询 TOPIK 成绩 | caoqi95'blog</title>
+  <title>Python 中的 slots 魔法 | caoqi95'blog</title>
   
 
 
@@ -358,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/02/忘记准考证如何查询-TOPIK-成绩/">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/31/Python-中的-slots-魔法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoqi95">
@@ -375,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">忘记准考证如何查询 TOPIK 成绩
+          <h1 class="post-title" itemprop="name headline">Python 中的 slots 魔法
 
               
             
@@ -401,24 +401,12 @@
                 
               
 
-              <time title="创建时间：2019-01-02 15:13:08" itemprop="dateCreated datePublished" datetime="2019-01-02T15:13:08+09:00">2019-01-02</time>
+              <time title="创建时间：2019-01-31 13:30:43 / 修改时间：14:38:36" itemprop="dateCreated datePublished" datetime="2019-01-31T13:30:43+09:00">2019-01-31</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-28 13:04:56" itemprop="dateModified" datetime="2019-01-28T13:04:56+09:00">2019-01-28</time>
               
             
           </span>
@@ -435,7 +423,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/留学生活/" itemprop="url" rel="index"><span itemprop="name">留学生活</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
                 
                 
@@ -471,7 +459,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">235</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -485,7 +473,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -505,11 +493,23 @@
       
 
       
-        <p>最近在看申请奖学金的事情，发现可能需要语言成绩的证明。但之前在国内考的 TOPIK 都是邮寄成绩单的，因此没有特意记住准考证号，然而之前复印的成绩单都用于申请学校了，早就没有存货了。</p>
+        <p>在 Python 中，每个类都有实例属性。在默认的情况下，会用一个字典来保存一个对象的实例属性。但是，有时候这会浪费很多内存。尤其是在创建很多对象的时候（成千上万个），会非常消耗内存。这是因为 Python 不能在对象创建的时候，直接分配一个固定的内存来保存所有的属性。</p>
 <a id="more"></a>
-<p>然后，发现国内的 TOPIK 官网还提供找回往年准考证的服务。进入 <a href="https://topik.etest.edu.cn/Index.jhtml" target="_blank" rel="noopener">这个网址</a> 就能看到 <em>历年准考证号码查询</em>  的入口。点击进入后，输入姓名和身份证号就可以查询了。</p>
-<p>查到准考证号后，就可以登陆韩国的 <a href="http://www.topik.go.kr/usr/cmm/subLocation.do?menuSeq=2110303" target="_blank" rel="noopener">TOPIK</a> 官网查询成绩和打印成绩证明了。</p>
-<p>特意做个备份，以后可能还会遇到这种情况。</p>
+<p>但是，可以使用 <code>__slots_</code> 来解决消耗内存的问题。<code>__slots__</code> 会告诉 Python 编译器不要使用字典，而且只给一个固定集合的属性分配空间。可以看看下面两个例子：</p>
+<ul>
+<li><p>不使用 <code>__slots__</code> :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, identifier)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.identifier = identifier</span><br><span class="line">        </span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>__slots__</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myclass</span><span class="params">(object)</span>:</span></span><br><span class="line">    __slots__ = [<span class="string">'name'</span>, <span class="string">'identifier'</span>]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, identifier)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.identifier = identifier</span><br><span class="line">        </span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>下面可以通过使用 <code>Ipython</code> 的扩展模块 <a href="https://github.com/ianozsvald/ipython_memory_usage" target="_blank" rel="noopener">ipython_memory_usage</a>，来查看内存的使用情况。</p>
+<p>首先，安装这个模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ipython_memory_usage</span><br></pre></td></tr></table></figure>
+<p>安装成功后，在命令行窗口输入 <code>ipython</code> （提前已安装好 <code>ipython</code> 模块），来开启  <code>IPython</code> 模式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">E:\Python&gt;IPYTHON</span><br><span class="line">Python <span class="number">3.6</span><span class="number">.5</span> |Anaconda, Inc.| (default, Mar <span class="number">29</span> <span class="number">2018</span>, <span class="number">13</span>:<span class="number">32</span>:<span class="number">41</span>) [MSC v<span class="number">.1900</span> <span class="number">64</span> bit (AMD64)]</span><br><span class="line">Type <span class="string">'copyright'</span>, <span class="string">'credits'</span> <span class="keyword">or</span> <span class="string">'license'</span> <span class="keyword">for</span> more information</span><br><span class="line">IPython <span class="number">6.4</span><span class="number">.0</span> -- An enhanced Interactive Python. Type <span class="string">'?'</span> <span class="keyword">for</span> help.</span><br><span class="line"></span><br><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> ipython_memory_usage.ipython_memory_usage <span class="keyword">as</span> imu</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: imu.start_watching_memory()</span><br><span class="line">In [<span class="number">2</span>] used <span class="number">0.3945</span> MiB RAM <span class="keyword">in</span> <span class="number">35.71</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">40.01</span> MiB</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: <span class="keyword">from</span> slots <span class="keyword">import</span> Myclass <span class="keyword">as</span> My1</span><br><span class="line">In [<span class="number">3</span>] used <span class="number">0.0469</span> MiB RAM <span class="keyword">in</span> <span class="number">0.11</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">40.05</span> MiB</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: num = <span class="number">1024</span>*<span class="number">256</span></span><br><span class="line">In [<span class="number">4</span>] used <span class="number">0.0039</span> MiB RAM <span class="keyword">in</span> <span class="number">0.10</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">40.06</span> MiB</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: x = [My1(<span class="number">1</span>,<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(num)]</span><br><span class="line">In [<span class="number">5</span>] used <span class="number">16.1797</span> MiB RAM <span class="keyword">in</span> <span class="number">0.28</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">56.24</span> MiB</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="keyword">from</span> no_slots <span class="keyword">import</span> Myclass <span class="keyword">as</span> My2</span><br><span class="line">In [<span class="number">6</span>] used <span class="number">-0.0039</span> MiB RAM <span class="keyword">in</span> <span class="number">0.11</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">56.23</span> MiB</span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: x = [My2(<span class="number">1</span>,<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(num)]</span><br><span class="line">In [<span class="number">7</span>] used <span class="number">28.6367</span> MiB RAM <span class="keyword">in</span> <span class="number">0.31</span>s, peaked <span class="number">0.00</span> MiB above current, total RAM usage <span class="number">84.87</span> MiB</span><br></pre></td></tr></table></figure>
+<p>首先在 <code>E:\Python</code> 的目录下，创建 <code>slots.py</code> 和 <code>no_slots.py</code> 这两个文件，内容上面两个代码块的内容一样。然后再开始 <code>Ipython</code> 模式，运行查看个别的占用内存情况。可以发现，<code>no_slots.py</code> 的情况，占用了 28.6 MB；而 <code>slots.py</code> 的情况，占用了 16.2 MB。相比之下，减少了不少内存。</p>
 
       
     </div>
@@ -533,7 +533,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/韩国留学的那些事儿/" rel="tag"># 韩国留学的那些事儿</a>
+            <a href="/tags/Python-进阶/" rel="tag"># Python 进阶</a>
           
         </div>
       
@@ -546,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/22/记一次算是成功的发表/" rel="next" title="记一次算是成功的发表">
-                <i class="fa fa-chevron-left"></i> 记一次算是成功的发表
+              <a href="/2019/01/30/Python-中的对象变动/" rel="next" title="Python 中的对象变动">
+                <i class="fa fa-chevron-left"></i> Python 中的对象变动
               </a>
             
           </div>
@@ -555,10 +555,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/02/每日一问之初识牛顿迭代法（Newton's method）/" rel="prev" title="每日一问之初识牛顿迭代法（Newton's method）">
-                每日一问之初识牛顿迭代法（Newton's method） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
