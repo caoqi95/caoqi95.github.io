@@ -96,13 +96,13 @@
 
 
 
-  <meta name="description" content="Python 实现 Canny 边缘检测算法Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+  <meta name="description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
 <meta name="keywords" content="边缘检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 从头实现 Canny 边缘检测算法">
 <meta property="og:url" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="Python 实现 Canny 边缘检测算法Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+<meta property="og:description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/73e8c378a67dace14f1680046ecebff0.svg#card=math&code=H%28x%2Cy%29%20%3D%20e%5E%7B-%20%5Cfrac%7Bx%5E%7B2%7D%20%2B%20y%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=37&width=126">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/742ca9d55ccea07f39ebde236315a010.svg#card=math&code=H%5Bi%2Cj%5D%20%3D%20%5Cfrac%7B1%7D%7B2%5Cpi%20%5Csigma%20%5E%7B2%7D%7D%20e%5E%7B-%20%5Cfrac%7B%28i-k-1%5E%7B2%7D%20%2B%20%28j-k-1%29%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=45&width=213">
@@ -113,10 +113,10 @@
 <meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/2.jpeg">
 <meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/3.png">
 <meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/4.png">
-<meta property="og:updated_time" content="2019-02-13T13:06:34.522Z">
+<meta property="og:updated_time" content="2019-02-13T13:08:39.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 从头实现 Canny 边缘检测算法">
-<meta name="twitter:description" content="Python 实现 Canny 边缘检测算法Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+<meta name="twitter:description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
 <meta name="twitter:image" content="https://cdn.nlark.com/yuque/__latex/73e8c378a67dace14f1680046ecebff0.svg#card=math&code=H%28x%2Cy%29%20%3D%20e%5E%7B-%20%5Cfrac%7Bx%5E%7B2%7D%20%2B%20y%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=37&width=126">
 
 
@@ -411,7 +411,7 @@
                 
               
 
-              <time title="创建时间：2019-02-13 21:57:26 / 修改时间：22:06:34" itemprop="dateCreated datePublished" datetime="2019-02-13T21:57:26+09:00">2019-02-13</time>
+              <time title="创建时间：2019-02-13 21:57:26 / 修改时间：22:08:39" itemprop="dateCreated datePublished" datetime="2019-02-13T21:57:26+09:00">2019-02-13</time>
             
 
             
@@ -469,7 +469,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">6.9k</span>
+                <span title="本文字数">6.8k</span>
               
 
               
@@ -503,7 +503,7 @@
       
 
       
-        <h1 id="Python-实现-Canny-边缘检测算法"><a href="#Python-实现-Canny-边缘检测算法" class="headerlink" title="Python 实现 Canny 边缘检测算法"></a>Python 实现 Canny 边缘检测算法</h1><p>Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：<br></p>
+        <p>Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：<br></p>
 <a id="more"></a>
 <ul>
 <li>灰度化</li>
@@ -798,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-实现-Canny-边缘检测算法"><span class="nav-number">1.</span> <span class="nav-text">Python 实现 Canny 边缘检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度化"><span class="nav-number">1.0.1.</span> <span class="nav-text">灰度化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯模糊"><span class="nav-number">1.0.2.</span> <span class="nav-text">高斯模糊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片梯度幅值"><span class="nav-number">1.0.3.</span> <span class="nav-text">图片梯度幅值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非极大值抑制"><span class="nav-number">1.0.4.</span> <span class="nav-text">非极大值抑制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双阈值选取"><span class="nav-number">1.0.5.</span> <span class="nav-text">双阈值选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边缘检测结果"><span class="nav-number">1.0.6.</span> <span class="nav-text">边缘检测结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">1.0.7.</span> <span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度化"><span class="nav-number">1.</span> <span class="nav-text">灰度化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯模糊"><span class="nav-number">2.</span> <span class="nav-text">高斯模糊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片梯度幅值"><span class="nav-number">3.</span> <span class="nav-text">图片梯度幅值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非极大值抑制"><span class="nav-number">4.</span> <span class="nav-text">非极大值抑制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双阈值选取"><span class="nav-number">5.</span> <span class="nav-text">双阈值选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边缘检测结果"><span class="nav-number">6.</span> <span class="nav-text">边缘检测结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
