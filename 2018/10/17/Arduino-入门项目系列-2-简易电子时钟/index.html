@@ -96,22 +96,22 @@
 
 
 
-  <meta name="description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。 硬件准备 Arduino UNO 一个 DS1302 时钟模块一枚 1602LCD一块(附带 PCF8574T 转接板) 面包板一块 连接线若干  软件准备 Arduino IDE  RTC Virtuabotix Library  LCD i2c Library   电路连接 DS1302">
+  <meta name="description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。">
 <meta name="keywords" content="Arduino 学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arduino 入门项目系列(2) - 简易电子时钟">
 <meta property="og:url" content="http://caoqi95.github.io/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。 硬件准备 Arduino UNO 一个 DS1302 时钟模块一枚 1602LCD一块(附带 PCF8574T 转接板) 面包板一块 连接线若干  软件准备 Arduino IDE  RTC Virtuabotix Library  LCD i2c Library   电路连接 DS1302">
+<meta property="og:description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-003a4afa76fb14d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-ce5fa1128d37d263.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2759738-794988de39caecf3.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2019-01-28T12:37:40.940Z">
+<meta property="og:image" content="http://caoqi95.github.io/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/3.gif">
+<meta property="og:updated_time" content="2019-02-16T07:50:01.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arduino 入门项目系列(2) - 简易电子时钟">
-<meta name="twitter:description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。 硬件准备 Arduino UNO 一个 DS1302 时钟模块一枚 1602LCD一块(附带 PCF8574T 转接板) 面包板一块 连接线若干  软件准备 Arduino IDE  RTC Virtuabotix Library  LCD i2c Library   电路连接 DS1302">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2759738-003a4afa76fb14d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:description" content="这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章[2]。">
+<meta name="twitter:image" content="http://caoqi95.github.io/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/1.png">
 
 
 
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-28 21:37:40" itemprop="dateModified" datetime="2019-01-28T21:37:40+09:00">2019-01-28</time>
+                <time title="修改时间：2019-02-16 16:50:01" itemprop="dateModified" datetime="2019-02-16T16:50:01+09:00">2019-02-16</time>
               
             
           </span>
@@ -510,6 +510,7 @@
 
       
         <p>这周主要学习 DS1302 时钟模块的使用，并用其搭建一个简易的电子时钟，此篇文章主要参照参考文章<sup>[2]</sup>。</p>
+<a id="more"></a>
 <h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
 <li>Arduino UNO 一个</li>
 <li>DS1302 时钟模块一枚</li>
@@ -518,25 +519,23 @@
 <li>连接线若干</li>
 </ul>
 <h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li><p>Arduino IDE</p>
-</li>
-<li><p><a href="https://drive.google.com/file/d/1GDuLWUANun5toL-XsEaFfaw2tv0mvhjB/view" target="_blank" rel="noopener">RTC Virtuabotix Library</a></p>
-</li>
-<li><p><a href="https://drive.google.com/file/d/1Oc56q2GPs5SOA-PdbVHHSxKCnI9KY5xd/view" target="_blank" rel="noopener">LCD i2c Library</a></p>
-</li>
+<li>Arduino IDE</li>
+<li><a href="https://drive.google.com/file/d/1GDuLWUANun5toL-XsEaFfaw2tv0mvhjB/view" target="_blank" rel="noopener">RTC Virtuabotix Library</a></li>
+<li><a href="https://drive.google.com/file/d/1Oc56q2GPs5SOA-PdbVHHSxKCnI9KY5xd/view" target="_blank" rel="noopener">LCD i2c Library</a></li>
 </ul>
 <h2 id="电路连接"><a href="#电路连接" class="headerlink" title="电路连接"></a>电路连接</h2><ul>
 <li>DS1302 的连线：VCC ——&gt; 5V，GND ——&gt; GND，CLK ——&gt; 4，DAT ——&gt; 3，RST ——&gt; 2</li>
 <li>LCD 的连线：VCC ——&gt; 5V，GND ——&gt; GND，SDA ——&gt; A4，SCL ——&gt; A5</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-003a4afa76fb14d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p><a href="https://github.com/caoqi95/Arduino_Learning/blob/master/Projects/SimpleClock/SimpleClock.ino" target="_blank" rel="noopener">Arduino_Learning/SimpleClock</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 搭建简易的电子时钟</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;virtuabotixRTC.h&gt; // 驱动 RTC 模块需要的库</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x27</span>,<span class="number">16</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引脚连线： CLK -&gt; 4 , DAT -&gt; 3, Reset -&gt; 2</span></span><br><span class="line"><span class="function">virtuabotixRTC <span class="title">RTC</span><span class="params">(<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> Serial.begin(<span class="number">9600</span>);</span><br><span class="line"> lcd.init(); <span class="comment">// 初始化 LCD</span></span><br><span class="line"> lcd.backlight(); <span class="comment">// 打开背光</span></span><br><span class="line"> lcd.home ();</span><br><span class="line"> <span class="comment">// 设定时间，分别：秒，分，时，星期，日，月，年</span></span><br><span class="line"> RTC.setDS1302Time(<span class="number">30</span>, <span class="number">28</span>, <span class="number">17</span>, <span class="number">3</span>, <span class="number">17</span>, <span class="number">10</span>, <span class="number">2018</span>); </span><br><span class="line"> <span class="comment">//初次烧录时，需执行这行代码，之后需要注释掉 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> lcd.clear(); <span class="comment">// 清除屏幕后，从 RTC 模块中获取时间，然后打印到 LCD 上</span></span><br><span class="line"> RTC.updateTime();</span><br><span class="line"> lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"> lcd.print(RTC.dayofmonth);</span><br><span class="line"> lcd.print(<span class="string">"/"</span>);</span><br><span class="line"> lcd.print(RTC.month);</span><br><span class="line"> lcd.print(<span class="string">"/"</span>);</span><br><span class="line"> lcd.print(RTC.year);</span><br><span class="line"> lcd.setCursor(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"> lcd.print(RTC.hours);</span><br><span class="line"> lcd.print(<span class="string">":"</span>);</span><br><span class="line"> lcd.print(RTC.minutes);</span><br><span class="line"> lcd.print(<span class="string">":"</span>);</span><br><span class="line"> lcd.print(RTC.seconds);</span><br><span class="line"> delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/1.png" alt=""></p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><p><a href="https://github.com/caoqi95/Arduino_Learning/blob/master/Projects/SimpleClock/SimpleClock.ino" target="_blank" rel="noopener">Arduino_Learning/SimpleClock</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 搭建简易的电子时钟</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;virtuabotixRTC.h&gt; // 驱动 RTC 模块需要的库</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;LiquidCrystal_I2C.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">LiquidCrystal_I2C <span class="title">lcd</span><span class="params">(<span class="number">0x27</span>,<span class="number">16</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引脚连线： CLK -&gt; 4 , DAT -&gt; 3, Reset -&gt; 2</span></span><br><span class="line"><span class="function">virtuabotixRTC <span class="title">RTC</span><span class="params">(<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> Serial.begin(<span class="number">9600</span>);</span><br><span class="line"> lcd.init(); <span class="comment">// 初始化 LCD</span></span><br><span class="line"> lcd.backlight(); <span class="comment">// 打开背光</span></span><br><span class="line"> lcd.home ();</span><br><span class="line"> <span class="comment">// 设定时间，分别：秒，分，时，星期，日，月，年</span></span><br><span class="line"> RTC.setDS1302Time(<span class="number">30</span>, <span class="number">28</span>, <span class="number">17</span>, <span class="number">3</span>, <span class="number">17</span>, <span class="number">10</span>, <span class="number">2018</span>); </span><br><span class="line"> <span class="comment">//初次烧录时，需执行这行代码，之后需要注释掉 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> lcd.clear(); <span class="comment">// 清除屏幕后，从 RTC 模块中获取时间，然后打印到 LCD 上</span></span><br><span class="line"> RTC.updateTime();</span><br><span class="line"> lcd.setCursor(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"> lcd.print(RTC.dayofmonth);</span><br><span class="line"> lcd.print(<span class="string">"/"</span>);</span><br><span class="line"> lcd.print(RTC.month);</span><br><span class="line"> lcd.print(<span class="string">"/"</span>);</span><br><span class="line"> lcd.print(RTC.year);</span><br><span class="line"> lcd.setCursor(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"> lcd.print(RTC.hours);</span><br><span class="line"> lcd.print(<span class="string">":"</span>);</span><br><span class="line"> lcd.print(RTC.minutes);</span><br><span class="line"> lcd.print(<span class="string">":"</span>);</span><br><span class="line"> lcd.print(RTC.seconds);</span><br><span class="line"> delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="烧录代码"><a href="#烧录代码" class="headerlink" title="烧录代码"></a>烧录代码</h2><p>代码编译完没问题后，点击图中所选按钮将其上传至 Arduino UNO 板上。烧录没问题后，就可以在 LCD 上观察到结果了。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-ce5fa1128d37d263.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="实际结果"><a href="#实际结果" class="headerlink" title="实际结果"></a>实际结果</h2><p><img src="https://upload-images.jianshu.io/upload_images/2759738-794988de39caecf3.gif?imageMogr2/auto-orient/strip" alt=""></p>
+<p><img src="/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/2.png" alt=""></p>
+<h2 id="实际结果"><a href="#实际结果" class="headerlink" title="实际结果"></a>实际结果</h2><p><img src="/2018/10/17/Arduino-入门项目系列-2-简易电子时钟/3.gif" alt=""></p>
 <h2 id="心得总结"><a href="#心得总结" class="headerlink" title="心得总结"></a>心得总结</h2><p>对于驱动 DS1302 时钟模块的库有好多种，但大多数方法是差不多的。这个简易的时钟虽然可以根据设定的时间来显示实时的时间，但是需要注意：初次运行的时候需要设置好时间，之后需要把设定时间的那行代码注释掉。因为时钟模块自带电池，在 Arduino 板子掉电后，还是能继续计时的，所以插上电后还是实时的时间。如果在校准时间之后，还是不能正确的显示时间的话，可以在 DS1302 时钟模块的引脚增加一个电阻。下次按照参考文章<sup>[1]</sup>的方法试试外部中断的方法来校准时间。</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>[1]. <a href="http://ardui.co/archives/583" target="_blank" rel="noopener">第20课 DS1302时钟模块与外部定时器</a></p>
-<p>[2]. <a href="https://surtrtech.com/2018/01/27/how-to-simply-use-ds1302-rtc-module-with-arduino-board-and-lcd-screen/" target="_blank" rel="noopener">How to simply use DS1302 RTC module with Arduino board and LCD screen</a></p>
+<p>[2]. <a href="https://surtrtech.com/2018/01/27/how-to-simply-use-ds1302-rtc-module-with-arduino-board-and-lcd-screen/" target="_blank" rel="noopener">How to simply use DS1302 RTC module with Arduino board and LCD screen</a>)</p>
 
       
     </div>
