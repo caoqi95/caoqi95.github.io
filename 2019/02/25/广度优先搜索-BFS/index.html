@@ -96,32 +96,28 @@
 
 
 
-  <meta name="description" content="最近给朋友安利了 Telegram，得以突破好友为 0 的记录。慢慢喜欢上了这款即时通讯软件，当把其和微信连接起来的时候，别提有多爽了。">
-<meta name="keywords" content="工具使用">
+  <meta name="description" content="「总结自《Grokking Algotithms》这本书第六章内容」">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Telegram 连接微信搭建记录">
-<meta property="og:url" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/index.html">
+<meta property="og:title" content="广度优先搜索 BFS">
+<meta property="og:url" content="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="最近给朋友安利了 Telegram，得以突破好友为 0 的记录。慢慢喜欢上了这款即时通讯软件，当把其和微信连接起来的时候，别提有多爽了。">
+<meta property="og:description" content="「总结自《Grokking Algotithms》这本书第六章内容」">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/1.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/2.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/3.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/4.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/5.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/6.png">
-<meta property="og:updated_time" content="2019-03-02T02:29:16.709Z">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/3.png">
+<meta property="og:updated_time" content="2019-03-16T10:23:25.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Telegram 连接微信搭建记录">
-<meta name="twitter:description" content="最近给朋友安利了 Telegram，得以突破好友为 0 的记录。慢慢喜欢上了这款即时通讯软件，当把其和微信连接起来的时候，别提有多爽了。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/1.png">
+<meta name="twitter:title" content="广度优先搜索 BFS">
+<meta name="twitter:description" content="「总结自《Grokking Algotithms》这本书第六章内容」">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/">
+  <link rel="canonical" href="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/">
 
 
 
@@ -131,7 +127,7 @@
   };
 </script>
 
-  <title>Telegram 连接微信搭建记录 | caoqi95'blog</title>
+  <title>广度优先搜索 BFS | caoqi95'blog</title>
   
 
 
@@ -365,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/02/24/Telegram-连接微信搭建记录/">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/02/25/广度优先搜索-BFS/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="caoqi95">
@@ -382,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Telegram 连接微信搭建记录
+          <h1 class="post-title" itemprop="name headline">广度优先搜索 BFS
 
               
             
@@ -408,7 +404,7 @@
                 
               
 
-              <time title="创建时间：2019-02-24 17:14:40" itemprop="dateCreated datePublished" datetime="2019-02-24T17:14:40+09:00">2019-02-24</time>
+              <time title="创建时间：2019-02-25 15:34:06" itemprop="dateCreated datePublished" datetime="2019-02-25T15:34:06+09:00">2019-02-25</time>
             
 
             
@@ -425,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-02 11:29:16" itemprop="dateModified" datetime="2019-03-02T11:29:16+09:00">2019-03-02</time>
+                <time title="修改时间：2019-03-16 19:23:25" itemprop="dateModified" datetime="2019-03-16T19:23:25+09:00">2019-03-16</time>
               
             
           </span>
@@ -442,7 +438,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
                 
                 
@@ -478,7 +474,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2k</span>
+                <span title="本文字数">3.1k</span>
               
 
               
@@ -492,7 +488,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -512,79 +508,46 @@
       
 
       
-        <p>最近给朋友安利了 Telegram，得以突破好友为 0 的记录。慢慢喜欢上了这款即时通讯软件，当把其和微信连接起来的时候，别提有多爽了。</p>
+        <p>「总结自《Grokking Algotithms》这本书第六章内容」</p>
 <a id="more"></a>
-<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ul>
-<li>一台 VPS（Ubuntu 18.04）</li>
-<li>一个 Telegram 账号</li>
-<li>一个微信账号</li>
-<li><code>*</code>如果在国内的话，请咳血上网</li>
-</ul>
-<h3 id="获取-Token-和-Chat-ID"><a href="#获取-Token-和-Chat-ID" class="headerlink" title="获取 Token 和 Chat_ID"></a>获取 Token 和 Chat_ID</h3><p><strong>1. 申请 bot 并获取 Token</strong></p>
+<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>在 BFS（Breadth-First Search） 算法中，图是什么？</p>
+<p>图用来模拟不同东西是如何连接的。比如，在一个游戏中，模拟谁欠谁钱。如 Alex 欠 Rama 钱，将会如下所示：</p>
+<p><img src="/2019/02/25/广度优先搜索-BFS/1.png" alt=""></p>
+<p>下面是多个人欠钱的情况：</p>
+<p><img src="/2019/02/25/广度优先搜索-BFS/2.png" alt=""></p>
+<p>可以看出<strong>图是由一系列节点（node）和边（edge）组成的</strong>。一个节点可能与多个节点直接相连接，这时候这些节点称为<strong>邻居</strong>。</p>
+<h3 id="广度优先算法"><a href="#广度优先算法" class="headerlink" title="广度优先算法"></a>广度优先算法</h3><p>广度优先搜索是一种用于图的查找算法。可以帮助回答两类问题：</p>
 <ul>
-<li><p>首先，需要关注 BotFather 这个账号，请认准头像。</p>
-<p><img src="/2019/02/24/Telegram-连接微信搭建记录/1.png" alt=""></p>
-<ul>
-<li><p>实际操作如下图所示，按照提示操作即可。</p>
-<p><img src="/2019/02/24/Telegram-连接微信搭建记录/2.png" alt=""></p>
-</li>
+<li>第一类问题：从节点 A 出发，有前往节点 B 的路径吗？</li>
+<li>第二类问题：从节点 A 出发，前往节点 B 的哪条路径最短？</li>
+</ul>
+<p>首先讲第一类问题。假设你经营着一个芒果农场，需要寻找芒果销售商，以便将芒果卖给他。首先，你需要在你的通讯录中查找，一个个查看过去，看其是否为芒果销售商。如果你的朋友中没有一个是芒果销售商，那么就从朋友的朋友中查找。</p>
+<p>这时，检查名单中的每个人时，都将其朋友加入名单。这样一来，不仅需要在朋友中查找，还需要在朋友中的朋友中查找。使用这种算法将搜遍你的整个人际关系网，直到找到芒果销售商。这就是第一类问题的广度优先搜索。</p>
+<p>第二类问题，就是在有路径的前提下，寻找最短距离。现在我们在刚才第一类问题的基础上，解决第二类问题 - 谁是关系最近的芒果销售商？</p>
+<p>现在假设朋友是一度关系，朋友的朋友是二度关系，朋友的朋友的朋友是三度关系，以此类推。首次在一度关系中寻找；没有的话，再在二度关系中寻找。按照这个顺序检查名单中的每一个人，看其是否为芒果销售商。</p>
+<p>因为，广度优先查找是从一度关系中开始查找的，整个遵从的是从最近的关系查找到最远的关系查找。所以，广度优先搜索找到的是最短的距离。</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>因为 BFS 从最近的关系开始查找，所以对查找的名单也需要进行一定的排列。比方说，Alex 是一度关系，Rama 是二度关系。在添加列表的时候，Alex 是先加入列表的，Rama 是后就加入列表的。需要先检查 Alex，后检查 Rama，而不能先检查 Alex，后检查 Rama。有一个数据结构可以解决这个问题，就是队列（queue）。</p>
+<p>队列的原理和排队等车的原理类似。先（早）排队的人先上车，队列也一样，是一种先进先出（First In First Out，简称 FIFO）的数据结构。</p>
+<p>队列只支持两种操作：<strong>入队</strong>和<strong>出队</strong>。这样先加入的元素会在后加入的元素之前出队。因此队列适合 BFS 算法。</p>
+<h3 id="实现图"><a href="#实现图" class="headerlink" title="实现图"></a>实现图</h3><p>我们可以使用散列表（Hash Table）来实现图。代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实现图</span></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>]</span><br><span class="line">graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>]</span><br><span class="line">graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>]</span><br><span class="line">graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>]</span><br><span class="line">graph[<span class="string">"anuj"</span>] = []</span><br><span class="line">graph[<span class="string">"peggy"</span>] = []</span><br><span class="line">graph[<span class="string">"thom"</span>] = []</span><br><span class="line">graph[<span class="string">"jonny"</span>] = []</span><br></pre></td></tr></table></figure>
+<p>关系如下：</p>
+<p><img src="/2019/02/25/广度优先搜索-BFS/3.png" alt=""></p>
+<h3 id="实现-BFS-算法"><a href="#实现-BFS-算法" class="headerlink" title="实现 BFS 算法"></a>实现 BFS 算法</h3><p>首先概述一下整个算法的过程：</p>
+<ol>
+<li>创建一个队列，用于存储要检查的人</li>
+<li>从队列中弹出一个人</li>
+<li>检查这个人是否是芒果销售商</li>
+<li>判断：<ul>
+<li>是芒果销售商 → 大功告成</li>
+<li>不是 → 将这个人的所有朋友加入队列</li>
 </ul>
 </li>
-</ul>
-<p><strong>2.  获取 Chat_ID</strong></p>
-<ul>
-<li><p>关注 get id 这个账号，请认准头像。</p>
-<p>  <img src="/2019/02/24/Telegram-连接微信搭建记录/3.png" alt=""></p>
-</li>
-<li><p>只需要点击 <code>start</code>，即可获取 Chat_ID<br><img src="/2019/02/24/Telegram-连接微信搭建记录/4.png" alt=""></p>
-</li>
-</ul>
-<p>获取到的 Token 和 Chat ID 在后面的步骤会用到。</p>
-<h3 id="安装-EFB-2-0"><a href="#安装-EFB-2-0" class="headerlink" title="安装 EFB 2.0"></a>安装 EFB 2.0</h3><p><strong>1. 更新软件源</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></p>
-<p><strong>2. 安装依赖</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y python3 python3-pip python3-pil python3-setuptools </span><br><span class="line">sudo apt install python3-numpy python3-yaml python3-requests </span><br><span class="line">sudo apt install ffmpeg libmagic-dev libwebp-dev nano screen</span><br></pre></td></tr></table></figure>
-<p><strong>3. 安装 EFB 2.0 主体和模块</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 install ehforwarderbot</span><br><span class="line">sudo pip3 install efb-telegram-master </span><br><span class="line">sudo pip3 install efb-wechat-slave</span><br></pre></td></tr></table></figure>
-<p><strong>4. 创建并编辑配置文件 <code>config.yaml</code></strong></p>
-<p>  创建：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ehforwarderbot/profiles/default/</span><br></pre></td></tr></table></figure></p>
-<p>  编辑：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.ehforwarderbot/profiles/default/config.yaml</span><br></pre></td></tr></table></figure></p>
-<p> 将下面内容复制进去：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">master_channel: blueset.telegram</span><br><span class="line">slave_channels:</span><br><span class="line">- blueset.wechat</span><br></pre></td></tr></table></figure></p>
-<p>  写入完毕后，按 <code>CTRL + x</code> 退出，然后按 <code>Y</code> 表示保存，最后按    回车回到命令行。</p>
-<p><strong>5.  创建并编辑 <code>telegram</code> 模块文件</strong></p>
-<p>创建：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ehforwarderbot/profiles/default/blueset.telegram</span><br></pre></td></tr></table></figure></p>
-<p>编辑：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.ehforwarderbot/profiles/default/blueset.telegram/config.yaml</span><br></pre></td></tr></table></figure></p>
-<p>将下面内容复制进去：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">token: <span class="string">"12345678:1a2b3c4d5e6g7h8i9j"</span></span><br><span class="line"><span class="comment"># " "内替换为你在 @BotFather 处获得的 token</span></span><br><span class="line">admins:</span><br><span class="line">- 123456789</span><br><span class="line"><span class="comment"># - 后面的数字替换为你在 @get_id_bot 处获得的 id</span></span><br></pre></td></tr></table></figure>
-<p>写入完毕后，按 <code>CTRL + x</code> 退出，然后按 <code>Y</code> 表示保存，最后按    回车回到命令行。</p>
-<h3 id="登录-EFB"><a href="#登录-EFB" class="headerlink" title="登录 EFB"></a>登录 EFB</h3><ol>
-<li><p>首先执行下面命令，并不断调整窗口大小直至能完整显示二维码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ehforwarderbot</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行下面命令，然后扫码登录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen ehforwarderbot</span><br></pre></td></tr></table></figure>
-</li>
+<li>回到第 2 步</li>
+<li>如果队列为空，则说明你的关系网中没有芒果销售商。</li>
 </ol>
-<h3 id="使用微信"><a href="#使用微信" class="headerlink" title="使用微信"></a>使用微信</h3><p>找到之前自己创建的 bot，输入 <code>/link</code> 即可看到自己微信的好友信息。想要实现在 Telegram 上与微信好友聊天的功能，遵循以下步骤：</p>
-<ul>
-<li>loop：<ul>
-<li>创建一个群，建群的时候必须要拉一个人进群，可以进群后把其删除（亲测，不能加自己的机器人入群）。</li>
-<li>在机器人聊天窗口，输入 <code>/link (好友微信昵称)</code>，点击出现的好友名字，然后选择 <code>link</code>，再选择连接到刚新建的群。</li>
-</ul>
-</li>
-</ul>
-<p>对于公众号的处理，可以将它们都拉入一个群里。</p>
-<p>下图是对文件传输助手单独拉了个群：</p>
-<p><img src="/2019/02/24/Telegram-连接微信搭建记录/5.png" alt=""></p>
-<p>微信接受到的消息对应为：</p>
-<p><img src="/2019/02/24/Telegram-连接微信搭建记录/6.png" alt=""></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li>因为调用的是网页版的微信消息，所以，红包，转账等消息可能会收不到。</li>
-<li>网页版微信可能会有被封的危险，但不影响其他客户端的登录。</li>
-</ul>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>每次在电脑上登录微信都需要手机或者扫码确认，有点麻烦，而且微信不支持多端登录。但使用 EFB 将 Telegram 与微信连接后，方便了许多，支持多端登录，不仅可以查看 Telegram 上的消息，还能查看微信的消息。</p>
-<p>感谢 <a href="https://github.com/blueset/ehforwarderbot" target="_blank" rel="noopener">EFB 作者</a> 开发贡献这么好用的工具。</p>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>  [1]. <a href="https://blog.colyn.im/a-byte-of-ehb2/" target="_blank" rel="noopener">EH Forwarder Bot 2 简明安装指北</a><br>  [2]. <a href="https://niconiconi.fun/2018/03/17/install-efb-v2/" target="_blank" rel="noopener">EH Forwarder Bot 2 安装</a><br>  [3]. <a href="https://sspai.com/post/37489" target="_blank" rel="noopener">我的 Telegram 小工具集：「统一聊天平台，各种工具，和监控提醒」</a></p>
-
+<p>代码实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实现 BFS</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(name)</span>:</span></span><br><span class="line">    search_queue = deque() <span class="comment"># 创建队列</span></span><br><span class="line">    search_queue += graph[name]</span><br><span class="line">    searched = [] <span class="comment"># 用于存检查过的人</span></span><br><span class="line">    <span class="keyword">while</span> search_queue:</span><br><span class="line">        person = search_queue.popleft()</span><br><span class="line">        <span class="keyword">if</span> person <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">            <span class="keyword">if</span> person_is_seller(person):</span><br><span class="line">                print(person + <span class="string">" is a mango seller"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                search_queue += graph[person]</span><br><span class="line">                searched.append(person)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">广度优先算法</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实现 BFS</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(name)</span>:</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    search_queue += graph[name]</span><br><span class="line">    searched = [] <span class="comment"># 用于存检查过的人</span></span><br><span class="line">    <span class="keyword">while</span> search_queue:</span><br><span class="line">        person = search_queue.popleft()</span><br><span class="line">        <span class="keyword">if</span> person <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">            <span class="keyword">if</span> person_is_seller(person):</span><br><span class="line">                print(person + <span class="string">" is a mango seller"</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                search_queue += graph[person]</span><br><span class="line">                searched.append(person)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 实现图</span></span><br><span class="line">    graph = &#123;&#125;</span><br><span class="line">    graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>]</span><br><span class="line">    graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>]</span><br><span class="line">    graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>]</span><br><span class="line">    graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>]</span><br><span class="line">    graph[<span class="string">"anuj"</span>] = []</span><br><span class="line">    graph[<span class="string">"peggy"</span>] = []</span><br><span class="line">    graph[<span class="string">"thom"</span>] = []</span><br><span class="line">    graph[<span class="string">"jonny"</span>] = []</span><br><span class="line"></span><br><span class="line">    print(json.dumps(graph, indent=<span class="number">4</span>, separators=(<span class="string">','</span> , <span class="string">':'</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 搜索</span></span><br><span class="line">    search(<span class="string">"you"</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -605,12 +568,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/工具使用/" rel="tag"># 工具使用</a>
-          
-        </div>
-      
 
       
       
@@ -620,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/22/Python-进行人脸校正/" rel="next" title="Python 进行人脸校正">
-                <i class="fa fa-chevron-left"></i> Python 进行人脸校正
+              <a href="/2019/02/24/Telegram-连接微信搭建记录/" rel="next" title="Telegram 连接微信搭建记录">
+                <i class="fa fa-chevron-left"></i> Telegram 连接微信搭建记录
               </a>
             
           </div>
@@ -629,10 +586,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/25/广度优先搜索-BFS/" rel="prev" title="广度优先搜索 BFS">
-                广度优先搜索 BFS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -845,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-Token-和-Chat-ID"><span class="nav-number">2.</span> <span class="nav-text">获取 Token 和 Chat_ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-EFB-2-0"><span class="nav-number">3.</span> <span class="nav-text">安装 EFB 2.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录-EFB"><span class="nav-number">4.</span> <span class="nav-text">登录 EFB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用微信"><span class="nav-number">5.</span> <span class="nav-text">使用微信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">7.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">8.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#图"><span class="nav-number">1.</span> <span class="nav-text">图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广度优先算法"><span class="nav-number">2.</span> <span class="nav-text">广度优先算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现图"><span class="nav-number">4.</span> <span class="nav-text">实现图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-BFS-算法"><span class="nav-number">5.</span> <span class="nav-text">实现 BFS 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">6.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
 
           </div>
