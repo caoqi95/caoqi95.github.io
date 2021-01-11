@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近在学习 Python 进阶的内容。整理一下关于装饰器（decorator）的一些知识。在解释装饰器前，先总结一些关于函数的知识点。 一切皆对象在 Python 中，所有的函数都是对象。如下面的例子中，函数可以直接赋值给变量。即使删除了原来的函数，但是变量还是保持了原函数的性质。">
+<meta name="keywords" content="Python 进阶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 装饰器">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/29/Python-装饰器/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="最近在学习 Python 进阶的内容。整理一下关于装饰器（decorator）的一些知识。在解释装饰器前，先总结一些关于函数的知识点。 一切皆对象在 Python 中，所有的函数都是对象。如下面的例子中，函数可以直接赋值给变量。即使删除了原来的函数，但是变量还是保持了原函数的性质。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-30T12:58:46.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 装饰器">
+<meta name="twitter:description" content="最近在学习 Python 进阶的内容。整理一下关于装饰器（decorator）的一些知识。在解释装饰器前，先总结一些关于函数的知识点。 一切皆对象在 Python 中，所有的函数都是对象。如下面的例子中，函数可以直接赋值给变量。即使删除了原来的函数，但是变量还是保持了原函数的性质。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/29/Python-装饰器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python 装饰器 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/29/Python-装饰器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 装饰器
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-29 20:40:57" itemprop="dateCreated datePublished" datetime="2019-01-29T20:40:57+08:00">2019-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-30 20:58:46" itemprop="dateModified" datetime="2019-01-30T20:58:46+08:00">2019-01-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在学习 Python 进阶的内容。整理一下关于装饰器（decorator）的一些知识。在解释装饰器前，先总结一些关于函数的知识点。</p>
+<h3 id="一切皆对象"><a href="#一切皆对象" class="headerlink" title="一切皆对象"></a>一切皆对象</h3><p>在 Python 中，所有的函数都是对象。如下面的例子中，函数可以直接赋值给变量。即使删除了原来的函数，但是变量还是保持了原函数的性质。</p>
+<a id="more"></a>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hi,"</span> + name</span><br><span class="line"></span><br><span class="line">greet = hi</span><br><span class="line">print(greet(<span class="string">"caoqi95"</span>))</span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs:</span><br><span class="line">    </span><br><span class="line">hi, caoqi95</span><br><span class="line">--------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> hi</span><br><span class="line">print(hi(<span class="string">"caoqi95"</span>))</span><br><span class="line">--------------------------------------</span><br><span class="line">NameError: name <span class="string">'hi'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line">--------------------------------------</span><br><span class="line"></span><br><span class="line">print(greet(<span class="string">"caoqi95"</span>))</span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs:</span><br><span class="line">    </span><br><span class="line">hi, caoqi95</span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure>
+<h3 id="函数嵌套"><a href="#函数嵌套" class="headerlink" title="函数嵌套"></a>函数嵌套</h3><p>在一个函数中，再内嵌一个函数，就能完成函数嵌套。如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'caoqi95'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"now you are inside the hi() function"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"now you are in the greet() function"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">welcome</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"noe you are in the welcome() function"</span></span><br><span class="line"></span><br><span class="line">    print(greet())</span><br><span class="line">    print(welcome())</span><br><span class="line">    print(<span class="string">"now you are back in the hi() function"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hi()</span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs：</span><br><span class="line"></span><br><span class="line">now you are inside the hi() function</span><br><span class="line">now you are <span class="keyword">in</span> the greet() function</span><br><span class="line">noe you are <span class="keyword">in</span> the welcome() function</span><br><span class="line">now you are back <span class="keyword">in</span> the hi() function</span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数返回函数"><a href="#函数返回函数" class="headerlink" title="函数返回函数"></a>函数返回函数</h3><p>有些时候，不需要在一个函数里嵌套一个函数，我们也可以将其作为输出返回出来。如下面的代码所示，<code>greet()</code> 函数和 <code>welcome()</code> 函数都可以在一定条件下，被 hi() 函数返回。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">(name=<span class="string">'caoqi95'</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"now you are in the greet() function"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">welcome</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"now you are in the welcome() function"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">'caoqi95'</span>:</span><br><span class="line">        <span class="keyword">return</span> greet</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> welcome</span><br><span class="line">    </span><br><span class="line">a = hi()</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs: </span><br><span class="line">    </span><br><span class="line">&lt;function hi.&lt;locals&gt;.greet at <span class="number">0x00000284FD782598</span>&gt;</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure></p>
+<p>上面展示了 a 指向 hi() 函数中的 greet() 函数，现在看看下面的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(a())</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs: </span><br><span class="line">    </span><br><span class="line">now you are <span class="keyword">in</span> the greet() function</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure>
+<p>为什么会出现不一样的结果呢？因为当函数名后面存在一对小括号的时候，函数才会被执行；而如果没有这对小括号，那该函数就可以被到处传递，并且还可以赋值给别的变量而不去执行它。使用 <code>hi()()</code> 也会与上面一样的结果。</p>
+<h3 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h3><p>函数还能作为参数，传给另一个函数使用。如下代码所示，<code>hi()</code> 函数被传递给 <code>doSomeThingBeforeHi(func)</code> 函数使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hi, caoqi95"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">doSomeThingBeforeHi</span><span class="params">(func)</span>:</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"I am doing some boring work before executing hi()"</span>)</span><br><span class="line"></span><br><span class="line">    print(func())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> doSomeThingBeforeHi(hi)</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs:</span><br><span class="line"> </span><br><span class="line"><span class="string">"I am doing some boring work before executing hi()"</span></span><br><span class="line"><span class="string">"hi, caoqi95"</span></span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure>
+<h3 id="搭建第一个装饰器"><a href="#搭建第一个装饰器" class="headerlink" title="搭建第一个装饰器"></a>搭建第一个装饰器</h3><p>前面回顾了函数的一些基本知识，现在开始学习装饰器的内容。在上一个例子中，其实我们已经创建了一个装饰器。现在稍微修改一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span><span class="params">(a_func)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"I am doing some boring work before executing a_func()"</span>)</span><br><span class="line"></span><br><span class="line">        a_func()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"I am doing some boring work after acecuting a_func()"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I am the funciton which needs some decoration to remove my foul smell"</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment"># outputs: "I am the function which needs some decoration to remove my foul smell"</span></span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span><br><span class="line"><span class="comment"># now a_function_requiring_decoration is wrapped by wrapTheFunction()</span></span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br><span class="line">Outputs:</span><br><span class="line">    </span><br><span class="line"><span class="string">"I am doing some boring work before executing a_func()"</span>  </span><br><span class="line"><span class="string">"I am the funciton which needs some decoration to remove my foul smell"</span></span><br><span class="line"><span class="string">"I am doing some boring work before executing a_func()"</span>  </span><br><span class="line"></span><br><span class="line">--------------------------------------</span><br></pre></td></tr></table></figure>
+<p>在第二步的时候，把 <code>a_function_requiring_decoration</code> 函数当作一个参数赋值给了 <code>a_new_decorator()</code> 函数。然后第三步的时候再添加上一对小括号来执行。</p>
+<p>下面用 @ 形式，写成更专业一点的装饰器函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span><span class="params">(a_func)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"I am doing some boring work before executing a_func()"</span>)</span><br><span class="line"></span><br><span class="line">        a_func()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"I am doing some boring work after acecuting a_func()"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"></span><br><span class="line"><span class="meta">@a_new_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># Hey you ! Decorate me !</span></span><br><span class="line">    print(<span class="string">"I am the funciton which needs some decoration to remove my foul smell"</span>)</span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"></span><br><span class="line"><span class="comment">#  @a_new_decorator 就是下面方法的简便形式</span></span><br><span class="line"><span class="comment"># a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span></span><br></pre></td></tr></table></figure>
+<p>看上去很完美，第一个装饰器完成了。但是，上面的装饰器仍然存在一个问题。下面打印函数的名字就能够知道问题出在哪儿了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a_function_requiring_decoration.__name__)</span><br></pre></td></tr></table></figure>
+<p>查看执行的结果，就会发现打印出的名字并不是原来的名字，而是被 <code>warpTheFunction</code> 给取代了。不用怕，Python 这么万能，肯定会有解决方案的。方案如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span><span class="params">(a_func)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(a_func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"I am doing some boring work before executing a_func()"</span>)</span><br><span class="line"></span><br><span class="line">        a_func()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"I am doing some boring work after acecuting a_func()"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"></span><br><span class="line"><span class="meta">@a_new_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Hey you ! Decorate me !"""</span></span><br><span class="line">    print(<span class="string">"I am the funciton which needs some decoration to remove my foul smell"</span>)</span><br><span class="line"></span><br><span class="line">print(a_function_requiring_decoration.__name__)</span><br></pre></td></tr></table></figure>
+<p>现在问题解决了，总结一下一个装饰器的模板：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator_name</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(f) # 用于解决原函数名字被抹去的情况</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorated</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> can_run:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Function will not run"</span></span><br><span class="line">        <span class="keyword">return</span> f(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> decorated</span><br><span class="line"></span><br><span class="line"><span class="meta">@decorator_name</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span>(<span class="string">"Function is running"</span>)</span><br><span class="line"></span><br><span class="line">can_run = <span class="keyword">True</span></span><br><span class="line">print(func())</span><br><span class="line"><span class="comment"># Output: Function is running</span></span><br><span class="line"></span><br><span class="line">can_run = <span class="keyword">False</span></span><br><span class="line">print(func())</span><br><span class="line"><span class="comment"># Output: Function will not run</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：@wraps接受一个函数来进行装饰，并加入了复制函数名称、注释文档、参数列表等等的功能。</span></span><br><span class="line"><span class="comment"># 这可以让我们在装饰器里面访问在装饰之前的函数的属性。</span></span><br></pre></td></tr></table></figure>
+<p>最后，再总结一下关于装饰器的内容。其实装饰器实现的就是将函数作为参数提供给其他的函数调用，但是使用装饰器的话，会让代码看上去整洁简短，使代码符合 Python 的核心价值观。装饰器还可以带有参数，还可以作为一个类使用，非常的方便。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-进阶/" rel="tag"># Python 进阶</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/28/散列表-Hash-Table/" rel="next" title="散列表 - Hash Table">
+                <i class="fa fa-chevron-left"></i> 散列表 - Hash Table
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/30/Python-中的-global/" rel="prev" title="Python 中的 global">
+                Python 中的 global <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切皆对象"><span class="nav-number">1.</span> <span class="nav-text">一切皆对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数嵌套"><span class="nav-number">2.</span> <span class="nav-text">函数嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数返回函数"><span class="nav-number">3.</span> <span class="nav-text">函数返回函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为参数"><span class="nav-number">4.</span> <span class="nav-text">函数作为参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建第一个装饰器"><span class="nav-number">5.</span> <span class="nav-text">搭建第一个装饰器</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">125k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:54</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

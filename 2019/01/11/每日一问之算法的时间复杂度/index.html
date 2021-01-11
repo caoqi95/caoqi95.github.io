@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="写在前面这周调整了下计划，鉴于很多不懂的知识需要大量的时间去消化及整理输出，因此，改为每逢节假日更新每日一问。 今天来整理算法复杂度的相关知识。在算法中包含两种复杂度，一种是时间复杂度，另一种是空间复杂度。这篇文章主要总结 时间复杂度 相关的知识点。  时间复杂度 大 O 表示法 计算时间复杂度">
+<meta name="keywords" content="算法知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一问之算法的时间复杂度">
+<meta property="og:url" content="http://caoqi95.github.io/2019/01/11/每日一问之算法的时间复杂度/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="写在前面这周调整了下计划，鉴于很多不懂的知识需要大量的时间去消化及整理输出，因此，改为每逢节假日更新每日一问。 今天来整理算法复杂度的相关知识。在算法中包含两种复杂度，一种是时间复杂度，另一种是空间复杂度。这篇文章主要总结 时间复杂度 相关的知识点。  时间复杂度 大 O 表示法 计算时间复杂度">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T04:03:27.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一问之算法的时间复杂度">
+<meta name="twitter:description" content="写在前面这周调整了下计划，鉴于很多不懂的知识需要大量的时间去消化及整理输出，因此，改为每逢节假日更新每日一问。 今天来整理算法复杂度的相关知识。在算法中包含两种复杂度，一种是时间复杂度，另一种是空间复杂度。这篇文章主要总结 时间复杂度 相关的知识点。  时间复杂度 大 O 表示法 计算时间复杂度">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/01/11/每日一问之算法的时间复杂度/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>每日一问之算法的时间复杂度 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/01/11/每日一问之算法的时间复杂度/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每日一问之算法的时间复杂度
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-11 21:15:49" itemprop="dateCreated datePublished" datetime="2019-01-11T21:15:49+08:00">2019-01-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 12:03:27" itemprop="dateModified" datetime="2019-01-28T12:03:27+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/每日一问/" itemprop="url" rel="index"><span itemprop="name">每日一问</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这周调整了下计划，鉴于很多不懂的知识需要大量的时间去消化及整理输出，因此，改为每逢节假日更新每日一问。</p>
+<p>今天来整理算法复杂度的相关知识。在算法中包含两种复杂度，一种是时间复杂度，另一种是空间复杂度。这篇文章主要总结 <strong>时间复杂度</strong> 相关的知识点。</p>
+<ul>
+<li>时间复杂度</li>
+<li>大 O 表示法</li>
+<li>计算时间复杂度</li>
+</ul>
+<a id="more"></a>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li><p><strong>时间频度</strong><br>在计算机中，不可能真正的去计算算法的每条语句的执行时间，只有真正上机测试才能知道大概时间。但是实际工作中，不可能把所有的算法都运行测试一遍，这不现实也浪费时间。我们只需要知道算法中主要部分的运行时间就可以了。我们都知道一个算法的运行时间与算法中语句的执行次数成正比，所以<strong>将一个算法中的语句的执行次数称为语句频度或时间频度，记为 T(n)</strong>。n 为问题的规模，时间频度会随着 n 的变化而变化。</p>
+</li>
+<li><p><strong>时间复杂度</strong><br>在计算机科学中，<strong>时间复杂度（Time Complexity）</strong>是一个定性描述运行算法所花费的时间的度量。<strong>常用大 O 表示法来度量时间复杂度，记为 T(n) = O(f(n))</strong>。</p>
+<blockquote>
+<p>在时间频度 T(n) 中，n 又代表着问题的规模，当 n 不断变化时，T(n) 也会不断地随之变化。为了了解这个变化的规律，时间复杂度这一概念就被引入了。一般情况下算法基础操作的重复执行次数为问题规模 n 的某个函数，也就是时间频度 T(n)。如果有某个辅助函数 f(n)，当趋于无穷大的时候，T(n)/f(n) 的极限值是不为零的某个常数，那么 f(n) 是 T(n) 的同数量级函数，记作 T(n)=O(f(n))，被称为算法的渐进时间复杂度，又简称为时间复杂度。- 算法（一）时间复杂度<sup>[1]</sup></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="大-O-表示法"><a href="#大-O-表示法" class="headerlink" title="大 O 表示法"></a>大 O 表示法</h3><p>在计算机科学领域，会用大 O 符号或者说大 O 表示法来度量一个算法的时间复杂度。那什么是大 O 表示法呢？</p>
+<blockquote>
+<p>Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann, Edmund Landau, and others collectively called Bachmann–Landau notation or asymptotic notation.<br>大 O 表示法是一种数学符号，用于描述当参数趋向于特定值或无穷大时函数的限制行为。它是 Paul Bachmann，Edmund Landau 等人发明的一系列符号的之一，统称为巴赫曼 - 兰道符号或渐近符号。- 维基百科<sup>[4]</sup></p>
+</blockquote>
+<p>因为时间复杂度为 T(n)=O(f(n))，有个趋近函数 O()，所以被称为大 O 表示法。现在假设一个列表包含 n 个元素。我们用简单查找的话，需要遍历检查每一个元素，因此需要执行 n 次操作。使用大 O 表示法，其运行时间为 O(n)，f(n) = n 为操作数。这里需要注意的是，大 O 表示法是没有单位的，它指的并不是以秒为单位的运行时间。大 O 表示法能够用来比较操作数，通常它指的是算法运行时间的增速。比如，为检查长度为 8 的列表，用简单查找法的时间复杂度是 O(f(n))，f(n) = 8；如果用二分查找的话，时间复杂度是 O(f(n))，f(n) = log<sub>2</sub> 8 = 3。从计算结果上看来，几乎快了 3 倍。</p>
+<p>还有一点需要注意的是，<strong>大 O 表示法描述的始终是最坏的情况</strong>。</p>
+<p>常见的一些大 O 运行时间有以下几种：</p>
+<ul>
+<li>O(1)：常数时间，如哈希表</li>
+<li>O(n)：线性时间，如简单查找</li>
+<li>O(log<sub>2</sub>n)：对数时间，如二分查找</li>
+<li>O(nlog<sub>2</sub>n)：如快速排序</li>
+<li>O(n<sup>2</sup>)：如选择排序</li>
+<li>O(n!)：阶乘时间，这是一种非常慢的算法</li>
+</ul>
+<h3 id="计算时间复杂度"><a href="#计算时间复杂度" class="headerlink" title="计算时间复杂度"></a>计算时间复杂度</h3><p>知道了大 O 表示法，那么实际的时间复杂度要怎么计算呢？下面举几个例子来说明。</p>
+<p><strong>O(1)</strong>：描述了一个算法不管输入的大小是多少，其时间复杂度永远为常数（不变）。比如，下方的例子，判断一个字符串 list 的首个元素是否为空。因为无论输入的 list 有多长，都只判断首字符是否为空，执行次数为 1，所以时间复杂度为 O(1)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isFirstElementNull</span><span class="params">(str_list)</span>:</span></span><br><span class="line">        rerurn str_list[<span class="number">0</span>] == <span class="string">''</span></span><br></pre></td></tr></table></figure>
+<p><strong>O(n)</strong>：描述了一个算法的时间复杂度将随着算法输入的增加而线性增加。比如，下面的算法，判断一个字符串 list 是否包含某些子字符串值。虽然算法可能会很早的就停止循环，并不完全执行所有的迭代，但需记得大 O 表示法描述的是最坏的情况。如果一个算法最大迭代 n 次，那么其时间复杂度就是 O(n)。所以，下面函数的时间复杂度为 O(n)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainValue</span><span class="params">(str_list, value)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> str_list:</span><br><span class="line">        <span class="keyword">if</span> i == value:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>O(n<sup>2</sup>)</strong>：描述了一种算法，其时间复杂度与输入数据集的大小的平方成正比。这在涉及数据集的嵌套迭代的算法中很常见。更深的嵌套迭代将会有 O(n<sup>3</sup>)，O(n<sup>4</sup>) 等。比如，下面的代码是两层迭代，按照最坏的打算，迭代总次数为 ixj，是两个数的相乘，可以直接表示为 nxn，即 n 的平方。所以，时间复杂度可以表示为 O(n<sup>2</sup>)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainDuplicates</span><span class="params">(str_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str_list)): <span class="comment"># 最多迭代 i 次</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str_list): <span class="comment"># 最多迭代 j 次</span></span><br><span class="line">            <span class="keyword">if</span> i != j <span class="keyword">and</span> str_list[i] = str_list[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>O(log<sub>2</sub>n)</strong>：描述的是一种二分查找的时间复杂度。二分查找是一种算法，其输入是一个有序的元素列表。如果要查找的元素包含在列表中，二分查找返回其位置；否则返回 null 。比如，要猜测 1-100 中的一个数字。二分查找将每次迭代的数据集减半，直到找到该值，或者直到它不再分割数据集为止。 迭代中的数据集大小依次有 n，n/2，n/4，….，n/2<sup>k</sup>（k 为循环的次数）。因为最后结果 n/2<sup>k</sup> &gt;= 1。如果令 n/2<sup>k</sup> = 1，将得到 k = log<sub>2</sub>n。所以，二分查找的时间复杂度为 O(log<sub>2</sub>n)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(list, item)</span>:</span></span><br><span class="line">    </span><br><span class="line">    low = <span class="number">0</span> </span><br><span class="line">    high = len(list) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high :</span><br><span class="line">        mid = (low + high) % <span class="number">2</span> </span><br><span class="line">        guess = list[mid]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> guess == item:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">if</span> guess &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            low = mid + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://juejin.im/post/58d15f1044d90400691834d4" target="_blank" rel="noopener">算法（一）时间复杂度</a></p>
+<p>[2]. 算法图解 - Aditya Bhargava</p>
+<p>[3]. <a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" target="_blank" rel="noopener">A beginner’s guide to Big O notation</a></p>
+<p>[4]. <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank" rel="noopener">Big O notation - wikipedia</a></p>
+<p>[5]. <a href="https://www.jianshu.com/p/3a534cb85795" target="_blank" rel="noopener">Binary Search - 二分查找</a></p>
+<p><em>P.S：文中有错欢迎指出，互相学习。</em></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法知识/" rel="tag"># 算法知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/今天去牙科医院了/" rel="next" title="今天去牙科医院了">
+                <i class="fa fa-chevron-left"></i> 今天去牙科医院了
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/13/每日一问之什么是递归/" rel="prev" title="每日一问之什么是递归">
+                每日一问之什么是递归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大-O-表示法"><span class="nav-number">3.</span> <span class="nav-text">大 O 表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算时间复杂度"><span class="nav-number">4.</span> <span class="nav-text">计算时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">125k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:54</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

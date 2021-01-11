@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'WI5E51XWY7',
+      apiKey: '7fe2f65ef4bda2c7983abde8526be9f4',
+      indexName: 'dev_caoqi95',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+<meta name="keywords" content="边缘检测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 从头实现 Canny 边缘检测算法">
+<meta property="og:url" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/index.html">
+<meta property="og:site_name" content="caoqi95&#39;blog">
+<meta property="og:description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/73e8c378a67dace14f1680046ecebff0.svg#card=math&code=H%28x%2Cy%29%20%3D%20e%5E%7B-%20%5Cfrac%7Bx%5E%7B2%7D%20%2B%20y%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=37&width=126">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/742ca9d55ccea07f39ebde236315a010.svg#card=math&code=H%5Bi%2Cj%5D%20%3D%20%5Cfrac%7B1%7D%7B2%5Cpi%20%5Csigma%20%5E%7B2%7D%7D%20e%5E%7B-%20%5Cfrac%7B%28i-k-1%5E%7B2%7D%20%2B%20%28j-k-1%29%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=45&width=213">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/a50cb6077295deef3813a0b4ade6ee60.svg#card=math&code=%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%20%3D%20%5Cfrac%7Bf%28x_%7Bn%2B1%7D%2Cy%29%20-%20f%28x_%7Bn%7D%2Cy%29%20%20%7D%7B%5CDelta%20x%7D&height=41&width=196">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/a8f07e1e35a52f22f62af36a8f282d7d.svg#card=math&code=M%20%3D%20%5Csqrt%7B%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%5E%7B2%7D%2B%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y%7D%5E%7B2%7D%7D&height=54&width=138">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/b481dd7b12fd183575c264ceac8d8ebe.svg#card=math&code=%5Ctheta%20%3D%20artan%5E%7B-1%7D%28%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y%7D%20%2F%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%29&height=43&width=155">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/5.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/6.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/7.jpeg">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/8.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/9.png">
+<meta property="og:updated_time" content="2019-02-15T03:50:25.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 从头实现 Canny 边缘检测算法">
+<meta name="twitter:description" content="Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/__latex/73e8c378a67dace14f1680046ecebff0.svg#card=math&code=H%28x%2Cy%29%20%3D%20e%5E%7B-%20%5Cfrac%7Bx%5E%7B2%7D%20%2B%20y%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&height=37&width=126">
+
+
+
+
+
+
+  <link rel="canonical" href="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python 从头实现 Canny 边缘检测算法 | caoqi95'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">caoqi95'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://caoqi95.github.io/2019/02/13/Python-从头实现-Canny-边缘检测算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="caoqi95">
+      <meta itemprop="description" content="A boring person.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="caoqi95'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 从头实现 Canny 边缘检测算法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-13 21:57:26" itemprop="dateCreated datePublished" datetime="2019-02-13T21:57:26+08:00">2019-02-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-15 11:50:25" itemprop="dateModified" datetime="2019-02-15T11:50:25+08:00">2019-02-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/计算机视觉/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Canny 边缘检测算法由计算机科学家 John F. Canny 于 1986 年提出的。其不仅提供了算法，还带来了一套边缘检测的理论，分阶段的解释如何实现边缘检测。Canny 检测算法包含下面几个阶段：</p>
+<a id="more"></a>
+<ul>
+<li>灰度化</li>
+<li>高斯模糊</li>
+<li>计算图片梯度幅值</li>
+<li>非极大值抑制</li>
+<li>双阈值选取</li>
+</ul>
+<h3 id="灰度化"><a href="#灰度化" class="headerlink" title="灰度化"></a>灰度化</h3><p>灰度化实际上是一种降维的操作，可以减少计算。如果算法不进行色彩相关的识别的话，不灰度化，也可以直接进行后面的阶段。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 灰度化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gray</span><span class="params">(self, img_path)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算公式：</span></span><br><span class="line"><span class="string">    Gray(i,j) = [R(i,j) + G(i,j) + B(i,j)] / 3</span></span><br><span class="line"><span class="string">    or :</span></span><br><span class="line"><span class="string">    Gray(i,j) = 0.299 * R(i,j) + 0.587 * G(i,j) + 0.114 * B(i,j)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 读取图片</span></span><br><span class="line">    img = plt.imread(img_path)</span><br><span class="line">    <span class="comment"># BGR 转换成 RGB 格式</span></span><br><span class="line">    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">    <span class="comment"># 灰度化</span></span><br><span class="line">    img_gray = np.dot(img_rgb[...,:<span class="number">3</span>], [<span class="number">0.299</span>, <span class="number">0.587</span>, <span class="number">0.114</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> img_gray</span><br></pre></td></tr></table></figure>
+<h3 id="高斯模糊"><a href="#高斯模糊" class="headerlink" title="高斯模糊"></a>高斯模糊</h3><p>在实际的图片中，都会包含噪声。但有时候，图片中的噪声会导致图片中边缘信息的消失。对此的解决方案就是使用高斯平滑来减少噪声，即进行高斯模糊操作。该操作是一种滤波操作，与高斯分布有关，下面是一个二维的高斯函数，其中 (x, y) 为坐标，σ 为标准差：</p>
+<p><img src="https://cdn.nlark.com/yuque/__latex/73e8c378a67dace14f1680046ecebff0.svg#card=math&amp;code=H%28x%2Cy%29%20%3D%20e%5E%7B-%20%5Cfrac%7Bx%5E%7B2%7D%20%2B%20y%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&amp;height=37&amp;width=126" alt=""></p>
+<p>进行高斯滤波之前，需要先得到一个高斯滤波器（kernel）。如何得到一个高斯滤波器？其实就是将高斯函数离散化，将滤波器中对应的横纵坐标索引代入高斯函数，即可得到对应的值。不同尺寸的滤波器，得到的值也不同，下面是 (2k+1)x(2k+1) 滤波器的计算公式 :</p>
+<p><img src="https://cdn.nlark.com/yuque/__latex/742ca9d55ccea07f39ebde236315a010.svg#card=math&amp;code=H%5Bi%2Cj%5D%20%3D%20%5Cfrac%7B1%7D%7B2%5Cpi%20%5Csigma%20%5E%7B2%7D%7D%20e%5E%7B-%20%5Cfrac%7B%28i-k-1%5E%7B2%7D%20%2B%20%28j-k-1%29%5E%7B2%7D%7D%7B2%5Csigma%5E%7B2%7D%7D%7D&amp;height=45&amp;width=213" alt=""></p>
+<p>常用尺寸为 5x5，σ=1.4 的高斯滤波器。下面是 5x5 高斯滤波器的实现代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 去除噪音 - 使用 5x5 的高斯滤波器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smooth</span><span class="params">(self, img_gray)</span>:</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 生成高斯滤波器</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    要生成一个 (2k+1)x(2k+1) 的高斯滤波器，滤波器的各个元素计算公式如下：</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    H[i, j] = (1/(2*pi*sigma**2))*exp(-1/2*sigma**2((i-k-1)**2 + (j-k-1)**2))</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    sigma1 = sigma2 = <span class="number">1.4</span></span><br><span class="line">    gau_sum = <span class="number">0</span></span><br><span class="line">    gaussian = np.zeros([<span class="number">5</span>, <span class="number">5</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">            gaussian[i, j] = math.exp((<span class="number">-1</span>/(<span class="number">2</span>*sigma1*sigma2))*(np.square(i<span class="number">-3</span>) </span><br><span class="line">                                + np.square(j<span class="number">-3</span>)))/(<span class="number">2</span>*math.pi*sigma1*sigma2)</span><br><span class="line">            gau_sum =  gau_sum + gaussian[i, j]</span><br><span class="line">                </span><br><span class="line">    <span class="comment"># 归一化处理</span></span><br><span class="line">    gaussian = gaussian / gau_sum</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 高斯滤波</span></span><br><span class="line">    W, H = img_gray.shape</span><br><span class="line">    new_gray = np.zeros([W<span class="number">-5</span>, H<span class="number">-5</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(W<span class="number">-5</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(H<span class="number">-5</span>):</span><br><span class="line">            new_gray[i, j] = np.sum(img_gray[i:i+<span class="number">5</span>, j:j+<span class="number">5</span>] * gaussian)</span><br><span class="line">                </span><br><span class="line">    <span class="keyword">return</span> new_gray</span><br></pre></td></tr></table></figure>
+<h3 id="图片梯度幅值"><a href="#图片梯度幅值" class="headerlink" title="图片梯度幅值"></a>图片梯度幅值</h3><p>边缘是图像强度快速变化的地方，可以通过图像梯度幅值，即计算图像强度的一阶导数来识别这些地方。由于图片是离散的，可以用有限导数来近似图片的梯度：</p>
+<p><img src="https://cdn.nlark.com/yuque/__latex/a50cb6077295deef3813a0b4ade6ee60.svg#card=math&amp;code=%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%20%3D%20%5Cfrac%7Bf%28x_%7Bn%2B1%7D%2Cy%29%20-%20f%28x_%7Bn%7D%2Cy%29%20%20%7D%7B%5CDelta%20x%7D&amp;height=41&amp;width=196" alt=""></p>
+<p>图片梯度幅值为：</p>
+<p><img src="https://cdn.nlark.com/yuque/__latex/a8f07e1e35a52f22f62af36a8f282d7d.svg#card=math&amp;code=M%20%3D%20%5Csqrt%7B%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%5E%7B2%7D%2B%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y%7D%5E%7B2%7D%7D&amp;height=54&amp;width=138" alt=""></p>
+<p>梯度方向为：</p>
+<p><img src="https://cdn.nlark.com/yuque/__latex/b481dd7b12fd183575c264ceac8d8ebe.svg#card=math&amp;code=%5Ctheta%20%3D%20artan%5E%7B-1%7D%28%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y%7D%20%2F%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20x%7D%29&amp;height=43&amp;width=155" alt=""></p>
+<p>实现代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算梯度幅值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradients</span><span class="params">(self, new_gray)</span>:</span></span><br><span class="line">  	<span class="string">"""</span></span><br><span class="line"><span class="string">    :type: image which after smooth</span></span><br><span class="line"><span class="string">    :rtype: </span></span><br><span class="line"><span class="string">    		dx: gradient in the x direction</span></span><br><span class="line"><span class="string">        dy: gradient in the y direction</span></span><br><span class="line"><span class="string">        M: gradient magnitude</span></span><br><span class="line"><span class="string">        theta: gradient direction</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">        </span><br><span class="line">    W, H = new_gray.shape</span><br><span class="line">    dx = np.zeros([W<span class="number">-1</span>, H<span class="number">-1</span>])</span><br><span class="line">    dy = np.zeros([W<span class="number">-1</span>, H<span class="number">-1</span>])</span><br><span class="line">    M = np.zeros([W<span class="number">-1</span>, H<span class="number">-1</span>])</span><br><span class="line">    theta = np.zeros([W<span class="number">-1</span>, H<span class="number">-1</span>])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(W<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(H<span class="number">-1</span>):</span><br><span class="line">            dx[i, j] = new_gray[i+<span class="number">1</span>, j] - new_gray[i, j]</span><br><span class="line">            dy[i, j] = new_gray[i, j+<span class="number">1</span>] - new_gray[i, j]</span><br><span class="line">             <span class="comment"># 图像梯度幅值作为图像强度值</span></span><br><span class="line">            M[i, j] = np.sqrt(np.square(dx[i, j]) + np.square(dy[i, j]))</span><br><span class="line">            <span class="comment"># 计算  θ - artan(dx/dy)</span></span><br><span class="line">            theta[i, j] = math.atan(dx[i, j] / (dy[i, j] + <span class="number">0.000000001</span>)) </span><br><span class="line">                </span><br><span class="line">     <span class="keyword">return</span> dx, dy, M, theta</span><br></pre></td></tr></table></figure>
+<h3 id="非极大值抑制（NMS）"><a href="#非极大值抑制（NMS）" class="headerlink" title="非极大值抑制（NMS）"></a>非极大值抑制（NMS）</h3><p>理想情况下，最终得到的边缘应该是很细的。因此，需要执行非极大值抑制以使边缘变细。原理很简单：遍历梯度矩阵上的所有点，并保留边缘方向上具有极大值的像素。</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/1.png" alt="梯度方向与边缘方向相互垂直"></p>
+<p>下面说说 NMS 的细节内容。NMS 在 4 个方向上进行，分别是 0，90，45，135，没有角度包含两个领域，因此，一共用八个领域：上，下，左，右，左上，左下，右上，右下，如下图所示，C 周围的 8 个点就是其附近的八个领域。</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/2.png" alt=""></p>
+<blockquote>
+<p>这样做的好处是简单， 但是这种简化的方法无法达到最好的效果， 因为，自然图像中的边缘梯度方向不一定是沿着这四个方向的。因此，就有很大的必要进行插值，找出在一个像素点上最能吻合其所在梯度方向的两侧的像素值。</p>
+</blockquote>
+<p>NMS 是要找出局部最大值，因此，需要将当前的像素的梯度，与其他方向进行比较。如下图所示，g1，g2，g3，g4 分别是 C 八个领域中的 4 个点，蓝线是 C 的梯度方向。如果 C 是局部最大值的话，C 点的梯度幅值就要大于梯度方向直线与 g1g2，g4g3 两个交点的梯度幅值，即大于点 dTemp1 和 dTemp2 的梯度幅值。上面提到这种方法无法达到最好的效果，因为 dTemp1 和 dTemp2 不是整像素，而是亚像素。亚像素的意思就是在两个物理像素之间还有像素。</p>
+<p>那么，亚像素的梯度幅值怎么求？可以使用线性插值的方法，计算 dTemp1 在 g1，g2 之间的权重，就可以得到其梯度幅值。计算公式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">weight = |gx| / |gy| <span class="keyword">or</span> |gy| / |gx|</span><br><span class="line">dTemp1 = weight*g1 + (<span class="number">1</span>-weight)*g2</span><br><span class="line">dTemp2 = weight*g3 + (<span class="number">1</span>-weight)*g4</span><br></pre></td></tr></table></figure>
+<p>下面两幅图是 y 方向梯度值比较大的情况，即梯度方向靠近 y 轴。所以，g2 和 g4 在 C 的上下位置，此时 weight =  |gy| / |gx| 。左边的图是 x，y 方向梯度符号相同的情况，右边是 x，y 方向梯度符号相反的情况。</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/3.png" alt=""></p>
+<p>对于左边的图来说，以 C 点为当前位置 - d[i, j] ，那么 g2 在 C 的前一行，g4 在 C 的后一行，所以位置坐标是：<br>g2 = d[i-1, j]；g4 = d[i+1, j]。根据左图的位置关系可以得到：g1 = d[i-1, j-1]；g3 = d[i+1, j+1]。</p>
+<p>同理，根据右图的位置关系可以得到：g1 = d[i-1, j+1]；g3 = d[i+1, j-1]。</p>
+<p>下面两幅图是 x 方向梯度值比较大的情况，即梯度方向靠近 x 轴。所以，g2 和 g4 在 C 的左右位置，此时 weight =  |gy| / |gx| 。左边的图是 x，y 方向梯度符号相同的情况，右边是 x，y 方向梯度符号相反的情况。</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/4.png" alt=""></p>
+<p>由上面可知，可以得到如下信息：g2 = d[i, j-1]；g4 = d[i, j+1]；</p>
+<p>左图：g1 = d[i+1, j-1]；g3 = d[i-1, j+1]；</p>
+<p>右图：g1 = d[i-1, j-1]；g3 = d[i+1, j+1]。</p>
+<p>下面的这两幅图，可能会带来理解帮助：</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/5.png" alt=""></p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/6.png" alt=""></p>
+<p>然后，根据以上信息，代码实现如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NMS</span><span class="params">(self, M, dx, dy)</span>:</span></span><br><span class="line">        </span><br><span class="line">    d = np.copy(M)</span><br><span class="line">    W, H = M.shape</span><br><span class="line">    NMS = np.copy(d)</span><br><span class="line">    NMS[<span class="number">0</span>, :] = NMS[W<span class="number">-1</span>, :] = NMS[:, <span class="number">0</span>] = NMS[:, H<span class="number">-1</span>] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, W<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, H<span class="number">-1</span>):</span><br><span class="line">                </span><br><span class="line">            <span class="comment"># 如果当前梯度为0，该点就不是边缘点</span></span><br><span class="line">            <span class="keyword">if</span> M[i, j] == <span class="number">0</span>:</span><br><span class="line">                NMS[i, j] = <span class="number">0</span></span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                gradX = dx[i, j] <span class="comment"># 当前点 x 方向导数</span></span><br><span class="line">                gradY = dy[i, j] <span class="comment"># 当前点 y 方向导数</span></span><br><span class="line">                gradTemp = d[i, j] <span class="comment"># 当前梯度点</span></span><br><span class="line">                    </span><br><span class="line">                <span class="comment"># 如果 y 方向梯度值比较大，说明导数方向趋向于 y 分量</span></span><br><span class="line">                <span class="keyword">if</span> np.abs(gradY) &gt; np.abs(gradX):</span><br><span class="line">                    weight = np.abs(gradX) / np.abs(gradY) <span class="comment"># 权重</span></span><br><span class="line">                    grad2 = d[i<span class="number">-1</span>, j]</span><br><span class="line">                    grad4 = d[i+<span class="number">1</span>, j]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># 如果 x, y 方向导数符号一致</span></span><br><span class="line">                    <span class="comment"># 像素点位置关系</span></span><br><span class="line">                    <span class="comment"># g1 g2</span></span><br><span class="line">                    <span class="comment">#    c</span></span><br><span class="line">                    <span class="comment">#    g4 g3</span></span><br><span class="line">                    <span class="keyword">if</span> gradX * gradY &gt; <span class="number">0</span>:</span><br><span class="line">                        grad1 = d[i<span class="number">-1</span>, j<span class="number">-1</span>]</span><br><span class="line">                        grad3 = d[i+<span class="number">1</span>, j+<span class="number">1</span>]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># 如果 x，y 方向导数符号相反</span></span><br><span class="line">                    <span class="comment"># 像素点位置关系</span></span><br><span class="line">                    <span class="comment">#    g2 g1</span></span><br><span class="line">                    <span class="comment">#    c</span></span><br><span class="line">                    <span class="comment"># g3 g4</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        grad1 = d[i<span class="number">-1</span>, j+<span class="number">1</span>]</span><br><span class="line">                        grad3 = d[i+<span class="number">1</span>, j<span class="number">-1</span>]</span><br><span class="line">                    </span><br><span class="line">                <span class="comment"># 如果 x 方向梯度值比较大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    weight = np.abs(gradY) / np.abs(gradX)</span><br><span class="line">                    grad2 = d[i, j<span class="number">-1</span>]</span><br><span class="line">                    grad4 = d[i, j+<span class="number">1</span>]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># 如果 x, y 方向导数符号一致</span></span><br><span class="line">                    <span class="comment"># 像素点位置关系</span></span><br><span class="line">                    <span class="comment">#      g3</span></span><br><span class="line">                    <span class="comment"># g2 c g4</span></span><br><span class="line">                    <span class="comment"># g1</span></span><br><span class="line">                    <span class="keyword">if</span> gradX * gradY &gt; <span class="number">0</span>:</span><br><span class="line">                        grad1 = d[i+<span class="number">1</span>, j<span class="number">-1</span>]</span><br><span class="line">                        grad3 = d[i<span class="number">-1</span>, j+<span class="number">1</span>]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># 如果 x，y 方向导数符号相反</span></span><br><span class="line">                    <span class="comment"># 像素点位置关系</span></span><br><span class="line">                    <span class="comment"># g1</span></span><br><span class="line">                    <span class="comment"># g2 c g4</span></span><br><span class="line">                    <span class="comment">#      g3</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        grad1 = d[i<span class="number">-1</span>, j<span class="number">-1</span>]</span><br><span class="line">                        grad3 = d[i+<span class="number">1</span>, j+<span class="number">1</span>]</span><br><span class="line">                        </span><br><span class="line">                <span class="comment"># 利用 grad1-grad4 对梯度进行插值</span></span><br><span class="line">                gradTemp1 = weight * grad1 + (<span class="number">1</span> - weight) * grad2</span><br><span class="line">                gradTemp2 = weight * grad3 + (<span class="number">1</span> - weight) * grad4</span><br><span class="line">                    </span><br><span class="line">                <span class="comment"># 当前像素的梯度是局部的最大值，可能是边缘点</span></span><br><span class="line">                <span class="keyword">if</span> gradTemp &gt;= gradTemp1 <span class="keyword">and</span> gradTemp &gt;= gradTemp2:</span><br><span class="line">                    NMS[i, j] = gradTemp</span><br><span class="line">                        </span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 不可能是边缘点</span></span><br><span class="line">                    NMS[i, j] = <span class="number">0</span></span><br><span class="line">                        </span><br><span class="line">    <span class="keyword">return</span> NMS</span><br></pre></td></tr></table></figure></p>
+<h3 id="双阈值选取"><a href="#双阈值选取" class="headerlink" title="双阈值选取"></a>双阈值选取</h3><p>这个阶段决定哪些边缘是真正的边缘，哪些边缘不是真正的边缘。为此，需要设置两个阈值，minVal 和 maxVal。梯度大于 maxVal 的任何边缘肯定是真边缘，而 minVal 以下的边缘肯定是非边缘，因此被丢弃。位于这两个阈值之间的边缘会基于其连通性而分类为边缘或非边缘，如果它们连接到“可靠边缘”像素，则它们被视为边缘的一部分。否则，也会被丢弃。</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/7.jpeg" alt=""></p>
+<p>代码如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">double_threshold</span><span class="params">(self, NMS)</span>:</span></span><br><span class="line">        </span><br><span class="line">    W, H = NMS.shape</span><br><span class="line">    DT = np.zeros([W, H])</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># 定义高低阈值</span></span><br><span class="line">    TL = <span class="number">0.1</span> * np.max(NMS)</span><br><span class="line">    TH = <span class="number">0.3</span> * np.max(NMS)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, W<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, H<span class="number">-1</span>):</span><br><span class="line">           <span class="comment"># 双阈值选取</span></span><br><span class="line">            <span class="keyword">if</span> (NMS[i, j] &lt; TL):</span><br><span class="line">                DT[i, j] = <span class="number">0</span></span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">elif</span> (NMS[i, j] &gt; TH):</span><br><span class="line">                DT[i, j] = <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">           <span class="comment"># 连接</span></span><br><span class="line">            <span class="keyword">elif</span> (NMS[i<span class="number">-1</span>, j<span class="number">-1</span>:j+<span class="number">1</span>] &lt; TH).any() <span class="keyword">or</span> (NMS[i+<span class="number">1</span>, j<span class="number">-1</span>:j+<span class="number">1</span>].any()</span><br><span class="line">                    <span class="keyword">or</span> (NMS[i, [j<span class="number">-1</span>, j+<span class="number">1</span>]] &lt; TH).any()):</span><br><span class="line">                DT[i, j] = <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> DT</span><br></pre></td></tr></table></figure></p>
+<h3 id="边缘检测结果"><a href="#边缘检测结果" class="headerlink" title="边缘检测结果"></a>边缘检测结果</h3><p>经过以上 5 个过程，可以得到如下结果：</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/8.png" alt=""></p>
+<p>将其与 OpenCV，skimage 算法进行对比：</p>
+<p><img src="/2019/02/13/Python-从头实现-Canny-边缘检测算法/9.png" alt=""></p>
+<p>我个人感觉 OpenCV 的结果是最好的，其次是 Skimage 的结果。自己的算法结果有些地方还是蛮粗糙的。</p>
+<p>完整的代码可以参见：<a href="https://github.com/caoqi95/CV_Learning/tree/master/edge-detection" target="_blank" rel="noopener">caoqi95/CV_Learning/edge-detection</a></p>
+<p><em>P.S: 代码主要参考了文章 [3]，修改了一些错误并写成了类的形式。</em></p>
+<p><em>PP.S: 文章有错误欢迎指出，互相学习 :）</em></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1]. <a href="https://www.cnblogs.com/wangguchangqing/p/6407717.html" target="_blank" rel="noopener">图像处理基础(4)：高斯滤波器详解</a><br>[2]. <a href="https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123" target="_blank" rel="noopener">Canny Edge Detection Step by Step in Python — Computer Vision</a><br>[3]. <a href="https://www.cnblogs.com/king-lps/p/8007134.html" target="_blank" rel="noopener">canny 算子python实现</a><br>[4]. <a href="https://docs.opencv.org/3.1.0/da/d22/tutorial_py_canny.html" target="_blank" rel="noopener">OpenCV-Canny Edge Detection</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/边缘检测/" rel="tag"># 边缘检测</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/08/论文阅读《Fast-R-CNN》/" rel="next" title="论文阅读 《Fast R-CNN》">
+                <i class="fa fa-chevron-left"></i> 论文阅读 《Fast R-CNN》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/15/室友回来了，假期余额不足了/" rel="prev" title="室友回来了，假期余额不足了">
+                室友回来了，假期余额不足了 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">caoqi95</p>
+              <p class="site-description motion-element" itemprop="description">A boring person.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/caoqi95" title="GitHub &rarr; https://github.com/caoqi95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:caoqi95@gmail.com" title="E-Mail &rarr; mailto:caoqi95@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/stayherewait" title="Twitter &rarr; https://twitter.com/stayherewait" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度化"><span class="nav-number">1.</span> <span class="nav-text">灰度化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯模糊"><span class="nav-number">2.</span> <span class="nav-text">高斯模糊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片梯度幅值"><span class="nav-number">3.</span> <span class="nav-text">图片梯度幅值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非极大值抑制（NMS）"><span class="nav-number">4.</span> <span class="nav-text">非极大值抑制（NMS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双阈值选取"><span class="nav-number">5.</span> <span class="nav-text">双阈值选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边缘检测结果"><span class="nav-number">6.</span> <span class="nav-text">边缘检测结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">caoqi95</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">125k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:54</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
