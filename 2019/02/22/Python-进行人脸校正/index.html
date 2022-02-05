@@ -104,14 +104,14 @@
 <meta property="og:site_name" content="caoqi95&#39;blog">
 <meta property="og:description" content="问题描述在做人脸识别的时候，前期的数据处理过程中可能会遇到一个问题，即将人脸从不同尺寸的图像中截取出来，再进行“对齐”操作。这样可以使每一个截取的人脸中的眼睛等位置处于同一位置，会对后面的识别算法起到一定的优化作用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/1.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/2.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/3.png">
 <meta property="og:updated_time" content="2019-02-22T03:23:00.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 进行人脸校正">
 <meta name="twitter:description" content="问题描述在做人脸识别的时候，前期的数据处理过程中可能会遇到一个问题，即将人脸从不同尺寸的图像中截取出来，再进行“对齐”操作。这样可以使每一个截取的人脸中的眼睛等位置处于同一位置，会对后面的识别算法起到一定的优化作用。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/1.png">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/1.png">
 
 
 
@@ -499,9 +499,10 @@
       
         <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在做人脸识别的时候，前期的数据处理过程中可能会遇到一个问题，即将人脸从不同尺寸的图像中截取出来，再进行“对齐”操作。这样可以使每一个截取的人脸中的眼睛等位置处于同一位置，会对后面的识别算法起到一定的优化作用。</p>
 <a id="more"></a>
+
 <p>比如，下面 3 张图片所示，人脸的位置，图像的大小各不一样。我们所需要做的就是，将人脸从各个图片中截取出来，再旋转进行校正，使得眼睛在同一位置上，最后将图片的大小也统一调整为 224 x 224。</p>
-<p><img src="/2019/02/22/Python-进行人脸校正/1.png" alt="">校正的效果如下图所示：</p>
-<p><img src="/2019/02/22/Python-进行人脸校正/2.png" alt=""></p>
+<p><img src="/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/1.png">校正的效果如下图所示：</p>
+<p><img src="/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/2.png"></p>
 <h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>整个过程遵循以下几个步骤：</p>
 <ul>
 <li>找两眼间的直线距离并计算该直线与水平线之间的夹角，即倾斜角度</li>
@@ -511,17 +512,23 @@
 <li>调整图片的尺寸</li>
 </ul>
 <h4 id="1-计算直线距离及倾斜角度"><a href="#1-计算直线距离及倾斜角度" class="headerlink" title="1. 计算直线距离及倾斜角度"></a>1. 计算直线距离及倾斜角度</h4><p>计算两眼之间的距离很简单，只要找出两个向量的坐标就可以计算出来。计算两眼之间的距离直线的倾斜角度，就是将两个向量相减，得到一组横纵坐标，然后利用 arctan 的公式求解角度，公式如下所示：</p>
-<p>$$<br>\theta = arctan(vertor_y / vector_x)<br>$$<br>大多数 sin / cos 等函数要求角度为弧度，可以使用这个转换公式：angle = angle * 180 / π。</p>
+<p>$$<br>\theta &#x3D; arctan(vertor_y &#x2F; vector_x)<br>$$<br>大多数 sin &#x2F; cos 等函数要求角度为弧度，可以使用这个转换公式：angle &#x3D; angle * 180 &#x2F; π。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1.找到眼睛倾斜的角度和两眼距离</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">p1 = np.array(eye[<span class="number">0</span>])[::<span class="number">-1</span>] <span class="comment"># 左眼坐标</span></span><br><span class="line">p2 = np.array(eye[<span class="number">1</span>])[::<span class="number">-1</span>] <span class="comment"># 右眼坐标</span></span><br><span class="line">dist = np.sqrt(np.sum(p1-p2)**<span class="number">2</span>) <span class="comment"># 两只眼睛之间的距离</span></span><br><span class="line"></span><br><span class="line">dp = p1 - p2</span><br><span class="line">angle = np.arctan(dp[<span class="number">0</span>] / dp[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-<h4 id="2-根据找到的角度旋转图片"><a href="#2-根据找到的角度旋转图片" class="headerlink" title="2. 根据找到的角度旋转图片"></a>2. 根据找到的角度旋转图片</h4><p>上一步骤中，求出了眼睛的倾斜角度，这一步就可以使用该角度来旋转图片了。这里方便地调用 <code>scipy.ndimage.rotate</code> 来旋转图片。之后再计算出旋转后图片的中点。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">2. 旋转图片</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"></span><br><span class="line"><span class="comment"># 旋转图片</span></span><br><span class="line">rot_img = ndimage.rotate(face, angle=+angle*<span class="number">180</span>/np.pi)</span><br><span class="line"><span class="comment"># 旋转后图像的中点</span></span><br><span class="line">rot_image_center = np.array((np.array(rot_img.shape[:<span class="number">2</span>]) - <span class="number">1</span>) / <span class="number">2</span>, dtype=np.int)</span><br></pre></td></tr></table></figure></p>
+
+<h4 id="2-根据找到的角度旋转图片"><a href="#2-根据找到的角度旋转图片" class="headerlink" title="2. 根据找到的角度旋转图片"></a>2. 根据找到的角度旋转图片</h4><p>上一步骤中，求出了眼睛的倾斜角度，这一步就可以使用该角度来旋转图片了。这里方便地调用 <code>scipy.ndimage.rotate</code> 来旋转图片。之后再计算出旋转后图片的中点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">2. 旋转图片</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"></span><br><span class="line"><span class="comment"># 旋转图片</span></span><br><span class="line">rot_img = ndimage.rotate(face, angle=+angle*<span class="number">180</span>/np.pi)</span><br><span class="line"><span class="comment"># 旋转后图像的中点</span></span><br><span class="line">rot_image_center = np.array((np.array(rot_img.shape[:<span class="number">2</span>]) - <span class="number">1</span>) / <span class="number">2</span>, dtype=np.int)</span><br></pre></td></tr></table></figure>
+
 <h4 id="3-寻找旋转后眼睛的位置"><a href="#3-寻找旋转后眼睛的位置" class="headerlink" title="3. 寻找旋转后眼睛的位置"></a>3. 寻找旋转后眼睛的位置</h4><p>寻找旋转后眼睛的位置，就是寻找旋转后两个点的坐标。旋转的时候，我们是以图片中点为原点来旋转的，因而需要先求解出原图片的原点，也就是图片的中心点。下面是以原点 (x0, y0) 为中心旋转后，求坐标的公式：</p>
-<p><img src="/2019/02/22/Python-进行人脸校正/3.png" alt=""></p>
+<p><img src="/2019/02/22/Python-进行人脸校正/Python-%E8%BF%9B%E8%A1%8C%E4%BA%BA%E8%84%B8%E6%A0%A1%E6%AD%A3/3.png"></p>
 <p>图片旋转的具体内容可以参考这个链接：<a href="https://blog.csdn.net/qianqing13579/article/details/52504089" target="_blank" rel="noopener">https://blog.csdn.net/qianqing13579/article/details/52504089</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">3. 在旋转后的图片中找到眼睛的坐标</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 原两眼距离的中点</span></span><br><span class="line">org_eye_center = np.array((p1 + p2) / <span class="number">2</span>, dtype=np.int)</span><br><span class="line"><span class="comment"># 原图像的中点</span></span><br><span class="line">org_image_center = np.array((np.array(face.shape[:<span class="number">2</span>]) - <span class="number">1</span>) / <span class="number">2</span>, dtype=np.int)</span><br><span class="line"><span class="comment"># 以图片中心进行旋转，在旋转后的图片中找到眼睛的中点</span></span><br><span class="line">R = np.array([[np.cos(angle), np.sin(angle)], [-np.sin(angle), np.cos(angle)]])</span><br><span class="line">rot_eye_center = np.dot(R, org_eye_center[::<span class="number">-1</span>]</span><br><span class="line">                        -org_image_center[::<span class="number">-1</span>])[::<span class="number">-1</span>] + rot_image_center</span><br><span class="line">rot_eye_center = np.array(rot_eye_center, dtype=int)</span><br></pre></td></tr></table></figure>
+
 <h4 id="4-根据眼睛坐标找到包含面部的框的宽度和高度"><a href="#4-根据眼睛坐标找到包含面部的框的宽度和高度" class="headerlink" title="4. 根据眼睛坐标找到包含面部的框的宽度和高度"></a>4. 根据眼睛坐标找到包含面部的框的宽度和高度</h4><p>找到旋转后眼睛的坐标，可以利用眼睛的坐标来框出人脸的大致范围。这里就直接看代码，从代码中比较好理解。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">4. 根据眼睛坐标找到包含面部的框的宽度和高度</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">mid_y, mid_x = rot_eye_center</span><br><span class="line">    </span><br><span class="line">MUL = <span class="number">2</span></span><br><span class="line">y_top = int(max(mid_y - MUL * dist, <span class="number">0</span>))</span><br><span class="line">y_bot = int(min(mid_y + MUL * dist, rot_img.shape[<span class="number">0</span>]))</span><br><span class="line">x_left = int(max(mid_x - MUL * dist, <span class="number">0</span>))</span><br><span class="line">x_right = int(min(mid_x + MUL * dist, rot_img.shape[<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">cropped_img = rot_img[y_top:y_bot+<span class="number">1</span>, x_left:x_right+<span class="number">1</span>, :]</span><br></pre></td></tr></table></figure>
+
 <h4 id="5-裁剪图片"><a href="#5-裁剪图片" class="headerlink" title="5. 裁剪图片"></a>5. 裁剪图片</h4><p>将旋转并框出的人脸进行裁剪，将其设定为统一的尺寸。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">5. 裁剪图像的尺寸为 224x224</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> skimage.transform <span class="keyword">as</span> transform</span><br><span class="line"></span><br><span class="line">scaled_img = transform.resize(cropped_img, [<span class="number">224</span>, <span class="number">224</span>], mode=<span class="string">'constant'</span>)</span><br><span class="line">plt.imshow(scaled_img)</span><br></pre></td></tr></table></figure>
+
 <p>完整的代码链接：<a href="https://github.com/caoqi95/CV_Learning/tree/master/face-alignment" target="_blank" rel="noopener">face-alignment</a></p>
 <h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1]. <a href="https://www.coursera.org/learn/deep-learning-in-computer-vision/home/welcome" target="_blank" rel="noopener">Coursera - Deep Learning in Computer Vision Week 1 assigment</a></p>
 <p>[2]. <a href="https://blog.csdn.net/qianqing13579/article/details/52504089" target="_blank" rel="noopener">图像旋转的原理，实现与优化</a></p>
@@ -831,7 +838,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -840,7 +847,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

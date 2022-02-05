@@ -509,6 +509,7 @@
       
         <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>去年年中的时候，用 GitHub Page 和 Hexo 搭建过个人的博客，后来因为麻烦就搁置了。今天重新搭建配置了一下，记录下过程。</p>
 <a id="more"></a>
+
 <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
 <li>安装 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node.js</a></li>
 <li>安装 <a href="https://git-lfs.github.com./" target="_blank" rel="noopener">Git</a></li>
@@ -521,34 +522,33 @@
 </ul>
 <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><ul>
 <li>在 Github Page 的页面，创建 name.github.io 页面</li>
-<li>然后在本地博客根目录下的   <code>_config.yml</code> 文件中，进行如下配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, </span><br><span class="line">## set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://caoqi95.github.io/</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure>
-</li>
+<li>然后在本地博客根目录下的   <code>_config.yml</code> 文件中，进行如下配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, </span><br><span class="line">## set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: http://caoqi95.github.io/</span><br><span class="line">root: /</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:caoqi95/caoqi95.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
 <p><em>P.S: 这里需要注意，冒号后面要空一格，最好用编辑器打开</em></p>
 <ul>
-<li>执行以下命令，复制给出的链接在浏览器中打开，即可预览博客<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate # or hexo g</span><br><span class="line">hexo server # or hexo s</span><br></pre></td></tr></table></figure>
-</li>
+<li>执行以下命令，复制给出的链接在浏览器中打开，即可预览博客<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate # or hexo g</span><br><span class="line">hexo server # or hexo s</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h2><ul>
 <li><p>先执行以下命令，安装一些依赖的工具</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在执行以下命令，进行部署</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate # or hexo g</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate # or hexo g</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>等待几分钟，就可以进入个人的 github.io 的页面了。</p>
 <h2 id="优化博客"><a href="#优化博客" class="headerlink" title="优化博客"></a>优化博客</h2><p>默认的主题比较中规中矩，不合口味的话，可以进入 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes | Hexo</a> 页面，然后根据自己的喜好更换主题。我选择了 <a href="https://github.com/HeskeyBaozi/hexo-theme-lite" target="_blank" rel="noopener">lite</a> 这个主题，效果如下所示。具体的配置过程，各个主题都会有教程的，一步步按照着来即可。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-9c0562b1c9ec0652.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我的博客链接：<a href="https://caoqi95.github.io">https://caoqi95.github.io</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2759738-9c0562b1c9ec0652.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>我的博客链接：<a href="https://caoqi95.github.io/">https://caoqi95.github.io</a></p>
 <h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><ul>
 <li><p>在终端中，进入博客的根目录，然后执行以下命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章题目&quot;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>然后在 <code>myBlog\source\_posts</code> 目录下，会出现新建的 .md 文件</p>
 </li>
-<li>写完再进行部署即可。</li>
+<li><p>写完再进行部署即可。</p>
+</li>
 </ul>
 
       
@@ -855,7 +855,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -864,7 +864,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

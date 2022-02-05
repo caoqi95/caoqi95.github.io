@@ -473,7 +473,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -516,17 +516,19 @@
 <li>为什么可以用它来求解开方问题？</li>
 </ul>
 <a id="more"></a>
+
 <h3 id="什么是牛顿法"><a href="#什么是牛顿法" class="headerlink" title="什么是牛顿法"></a>什么是牛顿法</h3><p>在维基百科中的定义如下：</p>
 <blockquote>
 <p>In numerical analysis, Newton’s method (also known as the Newton–Raphson method), named after Isaac Newton and Joseph Raphson, is a method for finding successively better approximations to the roots (or zeroes) of a real-valued function. It is one example of a root-finding algorithm.</p>
 </blockquote>
 <p>牛顿法是一种用于找到实数函数的根的近似值的方法，是求根算法中的一个代表。</p>
 <p>一个变量中的 Newton-Raphson 方法实现如下，主要的想法来自这个<a href="https://www.youtube.com/watch?v=cOmAk82cr9M" target="_blank" rel="noopener">视频</a>，这个教授讲解的挺明白的，一共有 7 个视频。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2759738-b82da06d6e24a657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>假设我们有一个连续的函数，其在 <em>x</em> 轴上存在很多根（零点）。现在在 <em>x</em> 轴上取一初始点 <em>x<sub>1</sub></em>，该点对应的函数值为 f(x<sub>1</sub>)。然后在该点的函数值附近画切线，切线与 <em>x</em> 轴的交点为 <em>x<sub>2</sub></em>。假设 <em>x<sub>2</sub></em> =<em>x<sub>1</sub></em>- <em>△x</em>，在该三角形中，可以求得斜率 <em>s</em> =f(x<sub>1</sub>)/<em>△x</em>，化解可得 △x = f(x<sub>1</sub>)/s。s 即为函数在 <em>x<sub>1</sub></em> 处的导数，所以有△x = f(x<sub>1</sub>)/f’(x<sub>1</sub>)，最后代入得 x<sub>2</sub>= x<sub>1</sub> - f(x<sub>1</sub>)/f’(x<sub>1</sub>)。后面在 <em>x<sub>2</sub></em> 对应的函数值处取切线，然后开始新一轮的迭代。之后再循环这个过程，直到达到足够准确的值。过程中迭代的公式可以写成：$$x_{n+1}=x_n - \frac{f(x_n)}{f’(x_n)}$$</p>
-<h3 id="为什么可以用它来求解开方问题？"><a href="#为什么可以用它来求解开方问题？" class="headerlink" title="为什么可以用它来求解开方问题？"></a>为什么可以用它来求解开方问题？</h3><p>根据上面的基本介绍，牛顿法是用于求解一个实数函数的根的近似值的方法。然而开方问题可以看成是对方程  x<sup>2</sup> - n =0 求根的问题，所以就可以用牛顿法来求解：首先可以得知 f(x) = x<sup>2</sup> - n ，f’(x) = 2x，所以迭代公式为:<br>$$x_{n+1}=x_{n} - \frac{ x_{n}^2 - n}{2x_{n}} = \frac{x_n + \frac{n}{x_n}}{2}$$</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2759738-b82da06d6e24a657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>假设我们有一个连续的函数，其在 <em>x</em> 轴上存在很多根（零点）。现在在 <em>x</em> 轴上取一初始点 *x<sub>1</sub>*，该点对应的函数值为 f(x<sub>1</sub>)。然后在该点的函数值附近画切线，切线与 <em>x</em> 轴的交点为 *x<sub>2</sub>*。假设 <em>x<sub>2</sub></em> &#x3D;<em>x<sub>1</sub></em>- <em>△x</em>，在该三角形中，可以求得斜率 <em>s</em> &#x3D;f(x<sub>1</sub>)&#x2F;<em>△x</em>，化解可得 △x &#x3D; f(x<sub>1</sub>)&#x2F;s。s 即为函数在 <em>x<sub>1</sub></em> 处的导数，所以有△x &#x3D; f(x<sub>1</sub>)&#x2F;f’(x<sub>1</sub>)，最后代入得 x<sub>2</sub>&#x3D; x<sub>1</sub> - f(x<sub>1</sub>)&#x2F;f’(x<sub>1</sub>)。后面在 <em>x<sub>2</sub></em> 对应的函数值处取切线，然后开始新一轮的迭代。之后再循环这个过程，直到达到足够准确的值。过程中迭代的公式可以写成：$$x_{n+1}&#x3D;x_n - \frac{f(x_n)}{f’(x_n)}$$</p>
+<h3 id="为什么可以用它来求解开方问题？"><a href="#为什么可以用它来求解开方问题？" class="headerlink" title="为什么可以用它来求解开方问题？"></a>为什么可以用它来求解开方问题？</h3><p>根据上面的基本介绍，牛顿法是用于求解一个实数函数的根的近似值的方法。然而开方问题可以看成是对方程  x<sup>2</sup> - n &#x3D;0 求根的问题，所以就可以用牛顿法来求解：首先可以得知 f(x) &#x3D; x<sup>2</sup> - n ，f’(x) &#x3D; 2x，所以迭代公式为:<br>$$x_{n+1}&#x3D;x_{n} - \frac{ x_{n}^2 - n}{2x_{n}} &#x3D; \frac{x_n + \frac{n}{x_n}}{2}$$</p>
 <p>依据该迭代公式，对应 LeetCode 的 <a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="noopener">sqrt(x)</a> 这道题写成 Python 代码就会很简洁，比二分法要简洁多了，且运行时间也快一些。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mySqrt(self, x):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        &quot;&quot;&quot;       </span><br><span class="line">        </span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        # 采用二分法</span><br><span class="line">        low, high = 0, x</span><br><span class="line">        while(low &lt;= high):</span><br><span class="line">            mid = int((low + high) / 2)</span><br><span class="line">            if mid*mid &gt; x :</span><br><span class="line">                high = mid - 1</span><br><span class="line">            elif mid*mid &lt; x:</span><br><span class="line">                low = mid + 1</span><br><span class="line">            else:</span><br><span class="line">                return mid</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        return low - 1</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        # 采用牛顿迭代法</span><br><span class="line">        r = x</span><br><span class="line">        while r*r &gt; x:</span><br><span class="line">            r = int((r + x/r) / 2)</span><br><span class="line">        </span><br><span class="line">        return r</span><br></pre></td></tr></table></figure>
+
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank" rel="noopener">Newton’s method - wikipedia</a></p>
 <p>[2]. <a href="https://www.youtube.com/watch?v=30q-FZpBJ_c" target="_blank" rel="noopener">Calculus: Newton’s Method (1 of 7) Basics Continued: Roots of Functions</a></p>
 <p><em>P.S：文中有错欢迎指出，互相学习。</em></p>
@@ -835,7 +837,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -844,7 +846,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

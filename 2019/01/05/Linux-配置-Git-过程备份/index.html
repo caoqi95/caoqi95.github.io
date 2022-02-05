@@ -473,7 +473,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">468</span>
+                <span title="本文字数">475</span>
               
 
               
@@ -508,14 +508,21 @@
 
       
         <h3 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
+
 <h3 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;xxxxx&quot;</span><br><span class="line">git config --global user.email &quot;xxx@xxxxx&quot;</span><br></pre></td></tr></table></figure>
+
 <h3 id="生成-SSH-秘钥"><a href="#生成-SSH-秘钥" class="headerlink" title="生成 SSH 秘钥"></a>生成 SSH 秘钥</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
 <p>然后，回车 3  次。</p>
-<p>Windows 下使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;your email&quot; -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>Windows 下使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;your email&quot; -t rsa</span><br></pre></td></tr></table></figure>
+
 <h3 id="查看公钥并复制"><a href="#查看公钥并复制" class="headerlink" title="查看公钥并复制"></a>查看公钥并复制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 进入 .ssh</span><br><span class="line">cd ~/.ssh</span><br><span class="line">// 打开公钥文件</span><br><span class="line">gedit id_rsa.pub</span><br></pre></td></tr></table></figure>
+
 <p>然后，复制打开的文件中的内容。</p>
-<h3 id="在-GitHub-上完成添加"><a href="#在-GitHub-上完成添加" class="headerlink" title="在 GitHub 上完成添加"></a>在 GitHub 上完成添加</h3><p>进入 GitHub 的 <code>Settings</code>，点击选择 <code>SSH and GPG keys</code>，再点击 <code>New SSH key</code>。然后，自己命名标题，同时将所复制的公钥复制到 <code>Key</code> 的内容中。最后，点击 <code>Add SSH key</code>，即添加完成。<br><img src="https://upload-images.jianshu.io/upload_images/2759738-db0eba977f4bd187.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="在-GitHub-上完成添加"><a href="#在-GitHub-上完成添加" class="headerlink" title="在 GitHub 上完成添加"></a>在 GitHub 上完成添加</h3><p>进入 GitHub 的 <code>Settings</code>，点击选择 <code>SSH and GPG keys</code>，再点击 <code>New SSH key</code>。然后，自己命名标题，同时将所复制的公钥复制到 <code>Key</code> 的内容中。最后，点击 <code>Add SSH key</code>，即添加完成。<br><img src="https://upload-images.jianshu.io/upload_images/2759738-db0eba977f4bd187.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
 <h3 id="测试使用"><a href="#测试使用" class="headerlink" title="测试使用"></a>测试使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -821,7 +828,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -830,7 +837,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

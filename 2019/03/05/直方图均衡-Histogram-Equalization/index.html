@@ -104,18 +104,18 @@
 <meta property="og:site_name" content="caoqi95&#39;blog">
 <meta property="og:description" content="亮度直方图在说明直方图均衡之前，先说说亮度直方图的概念。为了评估一个图像的色调转换，首先需要建立亮度直方图。亮度直方图就是图像中亮度分布的图表。在横轴上表示亮度值从黑色到白色；在竖轴上表示某一亮度所累积的像素数量。这里的亮度值指的是灰度等级，范围一般从 0 到 255，0 表示黑色，255 表示白色。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/01.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/02.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/03.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/04.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/05.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/06.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/07.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/01.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/02.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/03.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/04.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/05.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/06.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/07.png">
 <meta property="og:updated_time" content="2019-05-16T06:27:30.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="直方图均衡 Histogram Equalization">
 <meta name="twitter:description" content="亮度直方图在说明直方图均衡之前，先说说亮度直方图的概念。为了评估一个图像的色调转换，首先需要建立亮度直方图。亮度直方图就是图像中亮度分布的图表。在横轴上表示亮度值从黑色到白色；在竖轴上表示某一亮度所累积的像素数量。这里的亮度值指的是灰度等级，范围一般从 0 到 255，0 表示黑色，255 表示白色。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/01.png">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/01.png">
 
 
 
@@ -479,7 +479,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.5k</span>
+                <span title="本文字数">3.6k</span>
               
 
               
@@ -515,28 +515,29 @@
       
         <h3 id="亮度直方图"><a href="#亮度直方图" class="headerlink" title="亮度直方图"></a>亮度直方图</h3><p>在说明直方图均衡之前，先说说亮度直方图的概念。为了评估一个图像的色调转换，首先需要建立亮度直方图。亮度直方图就是图像中亮度分布的图表。在横轴上表示亮度值从黑色到白色；在竖轴上表示某一亮度所累积的像素数量。这里的亮度值指的是灰度等级，范围一般从 0 到 255，0 表示黑色，255 表示白色。</p>
 <a id="more"></a>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/01.png" alt=""></p>
+
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/01.png"></p>
 <p>上面图片显示的是对比度差的两个例子。第一个图片，其亮度范围没有全部使用。在图表中可以看出，0 和 255 的位置上没有对应的亮度值，说明在图片中没有白色和黑色。第二个图片，亮度范围被全部使用，但是亮度聚集在某些峰值附近。所以，该图片大多数像素具有相同的亮度。</p>
-<h3 id="直方图均衡"><a href="#直方图均衡" class="headerlink" title="直方图均衡"></a>直方图均衡</h3><p>有时候，因为摄像头传感器或者外界光线等原因，我们会得到像素值限定在某一范围内的图片，如上面的例子所示。但是，这样的图片并不是好的图片。好的图片应该是包含所有范围的亮度值。这时候就需要用到<strong>直方图均衡(Histogram Equlization)</strong>来处理这种情况，简单过程如下图所示：</p>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/02.png" alt="来自维基百科"></p>
+<h3 id="直方图均衡"><a href="#直方图均衡" class="headerlink" title="直方图均衡"></a>直方图均衡</h3><p>有时候，因为摄像头传感器或者外界光线等原因，我们会得到像素值限定在某一范围内的图片，如上面的例子所示。但是，这样的图片并不是好的图片。好的图片应该是包含所有范围的亮度值。这时候就需要用到**直方图均衡(Histogram Equlization)**来处理这种情况，简单过程如下图所示：</p>
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/02.png" alt="来自维基百科"></p>
 <p>简单来说，<strong>直方图均衡化是使用图像直方图对对比度进行调整的图像处理方法</strong>。目的在于提高图像的全局对比度，使亮的地方更亮，暗的地方更暗。常被用于背景和前景都太亮或者太暗的图像，尤其是 X 光中骨骼的显示以及曝光过度或者曝光不足的图片的调整。</p>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/03.png" alt="X 光中骨骼的显示，右边是均衡后的结果"></p>
-<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>对于一个灰度图像 {x}，<em>n<sub>i</sub></em> 表示为灰度级别为 <em>i</em> 的出现的次数。在图像中出现级别 <em>i</em> 的像素的概率为：<br>$$p_{x}(i) = p(x=i) = \frac{n_{i}}{n}, 0\leq i &lt;L$$<br><em>L</em> 是图像中灰度级别的总数（通常为256），<em>n</em> 是图像中的像素总数，<em>p<sub>x</sub></em>(i) 实际上是像素值 <em>i</em> 的图像直方图，归一化为 [0,1]。</p>
-<p>直方图均衡化的处理依赖于累积概率函数（cdf）的使用。 cdf 是位于其域中的所有概率的累积和，数字图像的 cdf 定义如下：<br>$$cdf_{x}(i)=\sum_{j=0}^{i}p_{x}(j)$$</p>
-<p>模拟图像的 cdf 定义如下：<br>$$cdf_{r}(r) = \int_{0}^{r}p_{r}(w)dw$$<br>该处理方法的思想是使用原图像的累积分布函数来转换像素值。下面使用模拟图像的 cdf 来证明为什么可以使用 cdf 来当转换函数。</p>
-<p>首先，记住我们的目标是希望像素值的分布从左图变为右图的均匀分布。这样才能使得像素值在所有亮度范围中均匀分布，而不是集中在某一部分。<br><img src="/2019/03/05/直方图均衡-Histogram-Equalization/04.png" alt=""></p>
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/03.png" alt="X 光中骨骼的显示，右边是均衡后的结果"></p>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>对于一个灰度图像 {x}，<em>n<sub>i</sub></em> 表示为灰度级别为 <em>i</em> 的出现的次数。在图像中出现级别 <em>i</em> 的像素的概率为：<br>$$p_{x}(i) &#x3D; p(x&#x3D;i) &#x3D; \frac{n_{i}}{n}, 0\leq i &lt;L$$<br><em>L* 是图像中灰度级别的总数（通常为256），<em>n</em> 是图像中的像素总数，*p<sub>x</sub></em>(i) 实际上是像素值 <em>i</em> 的图像直方图，归一化为 [0,1]。</p>
+<p>直方图均衡化的处理依赖于累积概率函数（cdf）的使用。 cdf 是位于其域中的所有概率的累积和，数字图像的 cdf 定义如下：<br>$$cdf_{x}(i)&#x3D;\sum_{j&#x3D;0}^{i}p_{x}(j)$$</p>
+<p>模拟图像的 cdf 定义如下：<br>$$cdf_{r}(r) &#x3D; \int_{0}^{r}p_{r}(w)dw$$<br>该处理方法的思想是使用原图像的累积分布函数来转换像素值。下面使用模拟图像的 cdf 来证明为什么可以使用 cdf 来当转换函数。</p>
+<p>首先，记住我们的目标是希望像素值的分布从左图变为右图的均匀分布。这样才能使得像素值在所有亮度范围中均匀分布，而不是集中在某一部分。<br><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/04.png"></p>
 <p>假设我们的转换函数为 cdf：</p>
-<p>$$s = T(r) = cdf_{r}(r) = \int_{0}^{r}p_{r}(w)dw​$$</p>
+<p>$$s &#x3D; T(r) &#x3D; cdf_{r}(r) &#x3D; \int_{0}^{r}p_{r}(w)dw​$$</p>
 <p>通常，在概率统计中可以得到这样的定律：</p>
-<p>$$P_{s}(s) = P_{r}(r)| \frac{dr}{ds}|​$$</p>
-<p>其中 <em>Ps(s)</em> 假设为新的概率分布，<em>Pr(r)</em> 为原来的概率分布。<em>dr/ds</em> 的关系可以从下面推导式中得出：</p>
-<p>$$\frac{ds}{dr} = \frac{dT(r)}{dr}=(L-1)\frac{\int_{0}^{r}p_{r}(w)dw}{dr} = (L-1)·P_{r}(r)$$</p>
-<p>将 <em>dr/ds</em> 的关系代入到下面式子中，可以发现 <em>Ps(s)</em> 的分布为均匀分布，符合我们的目标：</p>
-<p>$$P_{s}(s) = P_{r}(r)| \frac{dr}{ds}| = \frac{1}{L-1}$$</p>
+<p>$$P_{s}(s) &#x3D; P_{r}(r)| \frac{dr}{ds}|​$$</p>
+<p>其中 <em>Ps(s)</em> 假设为新的概率分布，<em>Pr(r)</em> 为原来的概率分布。<em>dr&#x2F;ds</em> 的关系可以从下面推导式中得出：</p>
+<p>$$\frac{ds}{dr} &#x3D; \frac{dT(r)}{dr}&#x3D;(L-1)\frac{\int_{0}^{r}p_{r}(w)dw}{dr} &#x3D; (L-1)·P_{r}(r)$$</p>
+<p>将 <em>dr&#x2F;ds</em> 的关系代入到下面式子中，可以发现 <em>Ps(s)</em> 的分布为均匀分布，符合我们的目标：</p>
+<p>$$P_{s}(s) &#x3D; P_{r}(r)| \frac{dr}{ds}| &#x3D; \frac{1}{L-1}$$</p>
 <p>因此，我们可以用下面的转换公式也就是 cdf，来得到新的像素值：</p>
-<p>$$T(r) = (L-1) · cdf$$</p>
+<p>$$T(r) &#x3D; (L-1) · cdf$$</p>
 <p>通常，还可以使用下面这个转换函数：</p>
-<p>$$T(r)= round(\frac{(cdf(r) - cdf_{min} )· (L-1) }{cdf_{max} - cdf_{min}})$$</p>
+<p>$$T(r)&#x3D; round(\frac{(cdf(r) - cdf_{min} )· (L-1) }{cdf_{max} - cdf_{min}})$$</p>
 <p>上面就是灰度图片的直方图均衡实现过程。简单概括就是对像素进行点操作（point operator），将原始像素值映射为另一个范围。</p>
 <p>分别将上面过程应用于 RGB 图像的红，绿，蓝通道，就可以对彩色图片进行直方图均衡处理。</p>
 <blockquote>
@@ -544,17 +545,23 @@
 </blockquote>
 <h3 id="应用-NumPy-实现"><a href="#应用-NumPy-实现" class="headerlink" title="应用 NumPy 实现"></a>应用 NumPy 实现</h3><p>下面对一张整体较暗的图片进行处理。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">'bay.jpg'</span>, <span class="number">0</span>)</span><br><span class="line">hist, bins = np.histogram(img.flatten(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line">cdf = hist.cumsum()</span><br><span class="line">cdf_normalized = cdf * hist.max() / cdf.max()</span><br><span class="line"></span><br><span class="line">plt.plot(cdf_normalized, color=<span class="string">'b'</span>)</span><br><span class="line">plt.hist(img.flatten(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>], color = <span class="string">'r'</span>)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.legend((<span class="string">'cdf'</span>, <span class="string">'histogram'</span>), loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>原图片的直方图和 CDF 如下所示：</p>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/05.png" alt=""></p>
-<p>下面进行直方图均衡：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># calculate cdf</span></span><br><span class="line">cdf_m = np.ma.masked_equal(cdf, <span class="number">0</span>)</span><br><span class="line">cdf_m = (cdf_m - cdf_m.min())*<span class="number">255</span> / (cdf_m.max() - cdf_m.min())</span><br><span class="line">cdf = np.ma.filled(cdf_m, <span class="number">0</span>).astype(<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mapping</span></span><br><span class="line">img2 = cdf[img]</span><br><span class="line">res = np.hstack((img, img2))</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.imshow(res, cmap=<span class="string">"gray"</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/05.png"></p>
+<p>下面进行直方图均衡：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># calculate cdf</span></span><br><span class="line">cdf_m = np.ma.masked_equal(cdf, <span class="number">0</span>)</span><br><span class="line">cdf_m = (cdf_m - cdf_m.min())*<span class="number">255</span> / (cdf_m.max() - cdf_m.min())</span><br><span class="line">cdf = np.ma.filled(cdf_m, <span class="number">0</span>).astype(<span class="string">'uint8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mapping</span></span><br><span class="line">img2 = cdf[img]</span><br><span class="line">res = np.hstack((img, img2))</span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.imshow(res, cmap=<span class="string">"gray"</span>)</span><br></pre></td></tr></table></figure>
+
 <p>结果如下所示，右边的是均衡后的结果：</p>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/06.png" alt=""><br>下面计算均衡后的 CDF:</p>
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/06.png"><br>下面计算均衡后的 CDF:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hist, bins = np.histogram(img2.flatten(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line">cdf = hist.cumsum()</span><br><span class="line">cdf_normalized = cdf * hist.max() / cdf.max()</span><br><span class="line"></span><br><span class="line">plt.plot(cdf_normalized, color=<span class="string">'b'</span>)</span><br><span class="line">plt.hist(img2.flatten(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>], color = <span class="string">'r'</span>)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.ylim([<span class="number">0</span>, <span class="number">30000</span>])</span><br><span class="line">plt.legend((<span class="string">'cdf'</span>, <span class="string">'histogram'</span>), loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>均衡后的直方图和 CDF 为：</p>
-<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/07.png" alt=""></p>
+<p><img src="/2019/03/05/直方图均衡-Histogram-Equalization/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1-Histogram-Equalization/07.png"></p>
 <p>可以看出均衡后的直方图比原先的亮度范围要宽，覆盖了整个亮度范围。</p>
 <h3 id="OpenCV-的实现过程"><a href="#OpenCV-的实现过程" class="headerlink" title="OpenCV 的实现过程"></a>OpenCV 的实现过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'bay.jpg'</span>, <span class="number">0</span>)</span><br><span class="line">equ = cv2.equalizeHist(img)</span><br><span class="line">res = np.hstack((img,equ)) </span><br><span class="line">cv2.imwrite(<span class="string">'res.png'</span>, res)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.imshow(res, cmap=<span class="string">"gray"</span>)</span><br></pre></td></tr></table></figure>
+
 <h3 id="Skimage-的实现过程"><a href="#Skimage-的实现过程" class="headerlink" title="Skimage 的实现过程"></a>Skimage 的实现过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> data, img_as_float</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> exposure</span><br><span class="line"></span><br><span class="line">img = plt.imread(<span class="string">'bay.jpg'</span>)</span><br><span class="line">img = img_as_float(img)</span><br><span class="line">img_eq = exposure.equalize_hist(img)</span><br><span class="line">res = np.hstack((img, img_eq))</span><br><span class="line">cv2.imwrite(<span class="string">'res.png'</span>, res)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">plt.imshow(res, cmap=<span class="string">"gray"</span>)</span><br></pre></td></tr></table></figure>
+
 <p>全部代码地址：<a href="https://github.com/caoqi95/CV_Learning/tree/master/histogram-equalization" target="_blank" rel="noopener">histogram-equalization</a></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_histograms/py_histogram_equalization/py_histogram_equalization.html" target="_blank" rel="noopener">OpenCV - Histogram Equalization</a><br>[2]. <a href="https://en.wikipedia.org/wiki/Histogram_equalization" target="_blank" rel="noopener">wiki - Histogram equalization</a><br>[3]. <a href="https://www.coursera.org/learn/image-processing/home/welcome" target="_blank" rel="noopener">Coursera - Image and Video Processing</a></p>
 
@@ -862,7 +869,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -871,7 +878,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

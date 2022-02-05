@@ -104,18 +104,18 @@
 <meta property="og:site_name" content="caoqi95&#39;blog">
 <meta property="og:description" content="这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：https://arxiv.org/pdf/1805.00794.pdf 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/5.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/6.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/7.png">
 <meta property="og:updated_time" content="2019-01-28T03:58:29.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 《ECG Heartbeat Classiﬁcation: A Deep Transferable Representation》">
 <meta name="twitter:description" content="这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：https://arxiv.org/pdf/1805.00794.pdf 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/1.png">
 
 
 
@@ -515,6 +515,7 @@
       
         <p>这篇论文发自 2018 年，出自洛杉矶大学的一个团队，主要对 5 种不同心率进行预测分类及预测 MI（心肌梗死）。论文地址：<a href="https://arxiv.org/pdf/1805.00794.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1805.00794.pdf</a> 。最近正好在学习 ECG 方面的知识，在 kaggle 找数据集的时候，正好看到有人用了这篇论文的结构，复现了论文的第一个实验。所以，就阅读下论文，并看看实现的结果。</p>
 <a id="more"></a>
+
 <h3 id="实验的数据集"><a href="#实验的数据集" class="headerlink" title="实验的数据集"></a>实验的数据集</h3><ul>
 <li><p><a href="https://www.physionet.org/physiobank/database/mitdb/" target="_blank" rel="noopener">MIT-BIH 心律失常数据集</a>：</p>
 <ul>
@@ -525,7 +526,7 @@
 <p>论文中将专家的标记按照 AAMI 的标准分成下面 5 中不同的类别：</p>
 </li>
 </ul>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/1.png" alt=""></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/1.png"></p>
 <ul>
 <li><a href="https://physionet.org/physiobank/database/ptbdb/" target="_blank" rel="noopener">PTB 诊断心电图数据库</a>：<ul>
 <li>290 个不同的对象：<ul>
@@ -543,12 +544,11 @@
 <p>kaggle 上的<a href="https://www.kaggle.com/shayanfazeli/heartbeat/home" target="_blank" rel="noopener"> 数据集 </a>已经把上面两个数据集合在一起了，后面复现就是使用这两个数据集。</p>
 <h3 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h3><ul>
 <li><p><strong>预处理</strong></p>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/2.png" alt=""><br>值得一提的是，论文中建议的节拍数据提取方法，可以简单有效地从具有不同形态的信号中提取 R-R 间隔。例如，没有使用任何形式的滤波，或任何对信号形态或频谱做出任何假设的处理。另外，所有提取的节拍数据具有相同的长度，这对于用作后续处理的输入是必不可少的。<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/3.png" alt=""></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/2.png"><br>值得一提的是，论文中建议的节拍数据提取方法，可以简单有效地从具有不同形态的信号中提取 R-R 间隔。例如，没有使用任何形式的滤波，或任何对信号形态或频谱做出任何假设的处理。另外，所有提取的节拍数据具有相同的长度，这对于用作后续处理的输入是必不可少的。<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/3.png"></p>
 <p>kaggle 上的数据集是处理过后的。</p>
 </li>
-</ul>
-<ul>
-<li><strong>训练心律跳动分类器</strong><br>在 MIT-BIH 的数据集上，采用卷积神经网络，来训练一个分类器。经过训练的网络不仅可以用于心脏跳动分类，而且在下一节的实验中，还可以看到它可以用作心跳的信息表示。模型的结构如下所示：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/4.png" alt=""></li>
+<li><p><strong>训练心律跳动分类器</strong><br>在 MIT-BIH 的数据集上，采用卷积神经网络，来训练一个分类器。经过训练的网络不仅可以用于心脏跳动分类，而且在下一节的实验中，还可以看到它可以用作心跳的信息表示。模型的结构如下所示：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/4.png"></p>
+</li>
 </ul>
 <blockquote>
 <p>Here, all convolution layers are applying 1-D convolution through time and each have 32 kernels of size 5. We also use max pooling of size 5 and stride 2 in all pooling layers. The predictor network consists of ﬁve residual blocks followed by two fully-connected layers with 32 neurons each and a softmax layer to predict output class probabilities. Each residual block contains two convolutional layers, two ReLU nonlinearities [19], a residual skip connection [20], and a pooling layer. In total, the resulting network is a deep network consisting of 13 weight layers.</p>
@@ -564,13 +564,13 @@
 <p>Cross entropy loss on the softmax outputs is used as the loss function. For training the networks, we used Adam optimization method [22] with the learning rate, beta-1, and beta-2 of 0.001, 0.9, and 0.999, respectively. Learning rate is decayed exponentially with the decay factor of 0.75 every 10000 iterations. Training all the networks took less than two hours on a GeForce GTX 1080Ti processor.</p>
 </blockquote>
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><ul>
-<li><strong>心律跳动分类器的结果</strong>：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/5.png" alt=""></li>
+<li><strong>心律跳动分类器的结果</strong>：<br><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/5.png"></li>
 </ul>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/6.png" alt=""></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/6.png"></p>
 <p>表 II 列出了所提方法的平均准确度，并将其与文献中的其他相关方法进行了比较。该论文建议 MIT-BIH 的预测器并不是研究的唯一目的，但根据结果，该论文所取得的准确性与最先进的方法相比具有竞争力。这背后的主要原因可能是在网络架构中使用了 <strong>残差连接</strong> 这一事实，与使用传统的卷积架构相比，可以训练更深的网络。</p>
 <ul>
 <li><p><strong>MI 预测器的结果</strong></p>
-<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/7.png" alt=""></p>
+<p><img src="/2019/01/15/论文阅读-《ECG-Heartbeat-Classiﬁcation-A-Deep-Transferable-Representation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8AECG-Heartbeat-Classi%EF%AC%81cation-A-Deep-Transferable-Representation%E3%80%8B/7.png"></p>
 <p>表 III 给出了所提出的 MI 分类方法和文献中其他工作的平均准确度，精确度和召回率之间的比较。除 Sharma 等人提出的方法外，该论文所提方法的性能优于其他所有工作。 实验结果显示了更高的准确度和精确度值。但是， Sharma 等人，使用 12 导联心电图而不是只使用导联 II。</p>
 </li>
 </ul>
@@ -891,7 +891,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -900,7 +900,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

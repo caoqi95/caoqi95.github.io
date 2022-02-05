@@ -104,13 +104,13 @@
 <meta property="og:site_name" content="caoqi95&#39;blog">
 <meta property="og:description" content="R-CNN 这篇论文是 CVPR’14 的一篇论文。相对来说比较久远，它算是神经网络用于目标检测领域的始祖吧。这周看看这篇论文，了解一下 R-CNN 的主要思想。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/1.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8ARich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation%E3%80%8B/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8ARich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation%E3%80%8B/2.png">
 <meta property="og:updated_time" content="2019-02-08T13:40:35.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 《Rich feature hierarchies for accurate object detection and semantic segmentation》">
 <meta name="twitter:description" content="R-CNN 这篇论文是 CVPR’14 的一篇论文。相对来说比较久远，它算是神经网络用于目标检测领域的始祖吧。这周看看这篇论文，了解一下 R-CNN 的主要思想。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/1.png">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8ARich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation%E3%80%8B/1.png">
 
 
 
@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">846</span>
+                <span title="本文字数">851</span>
               
 
               
@@ -510,14 +510,15 @@
       
         <p>R-CNN 这篇论文是 CVPR’14 的一篇论文。相对来说比较久远，它算是神经网络用于目标检测领域的始祖吧。这周看看这篇论文，了解一下 R-CNN 的主要思想。</p>
 <a id="more"></a>
-<h3 id="Object-detection-with-R-CNN"><a href="#Object-detection-with-R-CNN" class="headerlink" title="Object detection with R-CNN"></a>Object detection with R-CNN</h3><p>首先是将 <em>R-CNN</em> 用于目标检测。下面是目标检测的系统概览：<br><img src="/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/1.png" alt=""></p>
+
+<h3 id="Object-detection-with-R-CNN"><a href="#Object-detection-with-R-CNN" class="headerlink" title="Object detection with R-CNN"></a>Object detection with R-CNN</h3><p>首先是将 <em>R-CNN</em> 用于目标检测。下面是目标检测的系统概览：<br><img src="/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8ARich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation%E3%80%8B/1.png"></p>
 <p>首先是图片输入，然后采用 <em>Region proposals</em> 的方法提取约 2000 多个区域；然后利用 CNN 计算特征；最后，用线性的 SVM 进行特征分类。</p>
 <blockquote>
 <p>Region Proposal 是一类传统的区域提取方法，可以看作不同宽高的滑动窗口，通过窗口滑动获得潜在的目标图像，关于 Proposal 大家可以看下 SelectiveSearch，一般 Candidate 选项为 2k 个即可 - 《RCNN介绍》</p>
 </blockquote>
-<p>因为做的是目标检测，所以，还需要得到分类的精确区域，即论文中提到的边界框回归（<em>Bounding-box regression</em>）。论文中在给定 pool5 特征的选择性搜索的区域特征上，用线性回归模型来预测一个目标窗口。</p>
-<h3 id="Semantic-Segmentation"><a href="#Semantic-Segmentation" class="headerlink" title="Semantic Segmentation"></a>Semantic Segmentation</h3><p>区域分类是语义分割的标准技术，所以，可以轻松地将 <em>R-CNN</em> 应用于 PASCAL VOC 分割挑战。语义分割也是在 <em>region proposals</em>（CPMC 提取的区域，质量比较好）的基础上，再利用 CNN 提取特征。</p>
-<p>利用 CNN 提取特征的时候，采用了 3 种策略。第一种策略是，完全（full）忽略 region 的形状，直接用 CNN 在扭曲的窗口上提取特征，就像做检测一样。但是，这些特征会忽略该区域的非矩形形状。 两个区域可能具有非常相似的边界框，同时具有非常小的重叠。 因此，第二终策略（fg）仅在区域的前景掩码上计算 CNN 特征。 同时，用平均输入替换背景，以便在平均减法后背景区域为零。第三种策略（full + fg）简单地连接 full 和 fg 的特征; 实验验证了它们的互补性，如下图所示。<br><img src="/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/2.png" alt=""></p>
+<p>因为做的是目标检测，所以，还需要得到分类的精确区域，即论文中提到的边界框回归（_Bounding-box regression_）。论文中在给定 pool5 特征的选择性搜索的区域特征上，用线性回归模型来预测一个目标窗口。</p>
+<h3 id="Semantic-Segmentation"><a href="#Semantic-Segmentation" class="headerlink" title="Semantic Segmentation"></a>Semantic Segmentation</h3><p>区域分类是语义分割的标准技术，所以，可以轻松地将 <em>R-CNN</em> 应用于 PASCAL VOC 分割挑战。语义分割也是在 _region proposals_（CPMC 提取的区域，质量比较好）的基础上，再利用 CNN 提取特征。</p>
+<p>利用 CNN 提取特征的时候，采用了 3 种策略。第一种策略是，完全（full）忽略 region 的形状，直接用 CNN 在扭曲的窗口上提取特征，就像做检测一样。但是，这些特征会忽略该区域的非矩形形状。 两个区域可能具有非常相似的边界框，同时具有非常小的重叠。 因此，第二终策略（fg）仅在区域的前景掩码上计算 CNN 特征。 同时，用平均输入替换背景，以便在平均减法后背景区域为零。第三种策略（full + fg）简单地连接 full 和 fg 的特征; 实验验证了它们的互补性，如下图所示。<br><img src="/2019/01/31/论文阅读-《Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E3%80%8ARich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation%E3%80%8B/2.png"></p>
 
       
     </div>
@@ -823,7 +824,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -832,7 +833,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

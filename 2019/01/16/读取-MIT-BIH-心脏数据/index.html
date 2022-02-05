@@ -96,23 +96,23 @@
 
 
 
-  <meta name="description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
+  <meta name="description" content="安装 wfdb1pip install wfdb  这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
 <meta name="keywords" content="生物医学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读取 MIT-BIH 心脏数据">
 <meta property="og:url" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/index.html">
 <meta property="og:site_name" content="caoqi95&#39;blog">
-<meta property="og:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
+<meta property="og:description" content="安装 wfdb1pip install wfdb  这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/1.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/2.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/3.png">
-<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/4.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/2.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/3.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/4.png">
 <meta property="og:updated_time" content="2019-01-28T03:57:10.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读取 MIT-BIH 心脏数据">
-<meta name="twitter:description" content="安装 wfdb1pip install wfdb 这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/1.png">
+<meta name="twitter:description" content="安装 wfdb1pip install wfdb  这个包是专门用来读取 PhysioNet 这个网站的数据集的内容的。具体内容可以参考文档。">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/1.png">
 
 
 
@@ -511,26 +511,35 @@
 
       
         <h3 id="安装-wfdb"><a href="#安装-wfdb" class="headerlink" title="安装 wfdb"></a>安装 wfdb</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install wfdb</span><br></pre></td></tr></table></figure>
+
 <p>这个包是专门用来读取 <a href="https://www.physionet.org/" target="_blank" rel="noopener">PhysioNet</a> 这个网站的数据集的内容的。具体内容可以参考<a href="https://wfdb.readthedocs.io/en/latest/" target="_blank" rel="noopener">文档</a>。</p>
 <a id="more"></a>
+
 <h3 id="下载数据集"><a href="#下载数据集" class="headerlink" title="下载数据集"></a>下载数据集</h3><p>在自己的项目目录下克隆：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Nospoko/qrs-tutorial.git</span><br><span class="line">cd qrs-tutorial</span><br></pre></td></tr></table></figure>
-<p>这个包是用于下载数据集的，但是这个包目前只基于 <code>Python2.7</code> ，不嫌麻烦的话，可以自己进行简单的修改。<code>mitdb.py</code> 和 <code>download.py</code> 两个文件是我进行修改过的，可以在<a href="[caoqi95](https://github.com/caoqi95">这个链接</a>/<a href="https://github.com/caoqi95/ECG-Read-Examples" target="_blank" rel="noopener">ECG-Read-Examples</a><br>)上查看。修改完后，可以成功下载 MIT-BIH 的心律数据集，其他数据集没有尝试。修改完成后，编写下面的代码下载数据集：</p>
+
+<p>这个包是用于下载数据集的，但是这个包目前只基于 <code>Python2.7</code> ，不嫌麻烦的话，可以自己进行简单的修改。<code>mitdb.py</code> 和 <code>download.py</code> 两个文件是我进行修改过的，可以在<a href="%5Bcaoqi95%5D(https://github.com/caoqi95)/%5BECG-Read-Examples%5D(https://github.com/caoqi95/ECG-Read-Examples)">这个链接</a>上查看。修改完后，可以成功下载 MIT-BIH 的心律数据集，其他数据集没有尝试。修改完成后，编写下面的代码下载数据集：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wfdb <span class="keyword">as</span> wf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> mitdb <span class="keyword">as</span> dm</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load paths of avaliable data files</span></span><br><span class="line">records = dm.get_records()</span><br><span class="line">print(<span class="string">'There are &#123;&#125; record files'</span>.format(len(records)))</span><br></pre></td></tr></table></figure>
+
 <h3 id="读取心律数据"><a href="#读取心律数据" class="headerlink" title="读取心律数据"></a>读取心律数据</h3><p>这部分参考 <a href="https://github.com/MIT-LCP/wfdb-python/blob/master/demo.ipynb" target="_blank" rel="noopener">demo.ipynb</a></p>
 <h5 id="使用-rdrecord-函数读取数据记录"><a href="#使用-rdrecord-函数读取数据记录" class="headerlink" title="使用 rdrecord 函数读取数据记录"></a>使用 <code>rdrecord</code> 函数读取数据记录</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select one of them</span></span><br><span class="line">path = records[<span class="number">0</span>]</span><br><span class="line">print(<span class="string">'Loading file:'</span>, path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read the record and plot the data by using 'rdrecord' function</span></span><br><span class="line">record = wf.rdrecord(path)</span><br><span class="line">wf.plot_wfdb(record=record, </span><br><span class="line">              title=<span class="string">'Record 100 from MIT-BIH Arrhythmia Database'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/1.png" alt=""></p>
+
+<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/1.png"></p>
 <h5 id="使用简化的-rdsamp-函数读取某些通道和截取部分"><a href="#使用简化的-rdsamp-函数读取某些通道和截取部分" class="headerlink" title="使用简化的 rdsamp 函数读取某些通道和截取部分"></a>使用简化的 <code>rdsamp</code> 函数读取某些通道和截取部分</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">signals, fields = wf.rdsamp(path)</span><br><span class="line">print(fields)</span><br><span class="line">=============</span><br><span class="line">&#123;<span class="string">'fs'</span>: <span class="number">360</span>,</span><br><span class="line"> <span class="string">'sig_len'</span>: <span class="number">650000</span>,</span><br><span class="line"> <span class="string">'n_sig'</span>: <span class="number">2</span>,</span><br><span class="line"> <span class="string">'base_date'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'base_time'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'units'</span>: [<span class="string">'mV'</span>, <span class="string">'mV'</span>],</span><br><span class="line"> <span class="string">'sig_name'</span>: [<span class="string">'MLII'</span>, <span class="string">'V5'</span>],</span><br><span class="line"> <span class="string">'comments'</span>: [<span class="string">'69 M 1085 1629 x1'</span>, <span class="string">'Aldomet, Inderal'</span>]&#125;</span><br></pre></td></tr></table></figure>
+
 <h5 id="使用-rdann-读取注释"><a href="#使用-rdann-读取注释" class="headerlink" title="使用 rdann 读取注释"></a>使用 <code>rdann</code> 读取注释</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">annotation = wf.rdann(path, <span class="string">'atr'</span>)</span><br><span class="line">annotation.fs <span class="comment">### 获取采样频率</span></span><br><span class="line">===============</span><br><span class="line"><span class="number">360</span></span><br></pre></td></tr></table></figure>
+
 <h5 id="读取记录和注释"><a href="#读取记录和注释" class="headerlink" title="读取记录和注释"></a>读取记录和注释</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># read a wfdb record and annotation. </span></span><br><span class="line"><span class="comment"># Plot all channels, and the annotation on top of channel 0</span></span><br><span class="line"></span><br><span class="line">record = wf.rdrecord(path, sampto=<span class="number">15000</span>)</span><br><span class="line">annotation = wf.rdann(path, <span class="string">'atr'</span>, sampto=<span class="number">15000</span>)</span><br><span class="line"></span><br><span class="line">wf.plot_wfdb(record=record, annotation=annotation,</span><br><span class="line">               title=<span class="string">'Record 100 from MIT-BIH Arrhythmia Database'</span>,</span><br><span class="line">               time_units=<span class="string">'seconds'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/2.png" alt=""></p>
+
+<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/2.png"></p>
 <h5 id="读取一小片段-ECG-数据"><a href="#读取一小片段-ECG-数据" class="headerlink" title="读取一小片段 ECG 数据"></a>读取一小片段 ECG 数据</h5><p>ECG 信号的实际数值存储在属性 <code>p_signal</code> 数组中，我们可以从其中一个通道绘制一个小片段：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select one of the channels (there are two)</span></span><br><span class="line">chid = <span class="number">0</span></span><br><span class="line">data = record.p_signal</span><br><span class="line">channel = data[:, chid]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">'ECG channel type:'</span>, record.sig_name[chid])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot only the first 2000 samples</span></span><br><span class="line">howmany = <span class="number">2000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate time values in seconds</span></span><br><span class="line">times = np.arange(howmany, dtype = <span class="string">'float'</span>) / record.fs</span><br><span class="line">plt.plot(times, channel[ : howmany])</span><br><span class="line">plt.xlabel(<span class="string">'Time [s]'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/3.png" alt=""></p>
+
+<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/3.png"></p>
 <p>想获取更多的信息可以使用 <code>help()</code>，比如想获得更多的 <code>record</code> 信息：</p>
-<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/4.png" alt=""></p>
+<p><img src="/2019/01/16/读取-MIT-BIH-心脏数据/%E8%AF%BB%E5%8F%96-MIT-BIH-%E5%BF%83%E8%84%8F%E6%95%B0%E6%8D%AE/4.png"></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://github.com/MIT-LCP/wfdb-python" target="_blank" rel="noopener">wfdb-python</a></p>
-<p>[2]. <a href="https://github.com/Nospoko" target="_blank" rel="noopener">Nospoko</a>/<a href="https://github.com/Nospoko/qrs-tutorial" target="_blank" rel="noopener">qrs-tutorial</a></p>
+<p>[2]. <a href="https://github.com/Nospoko" target="_blank" rel="noopener">Nospoko</a>&#x2F;<a href="https://github.com/Nospoko/qrs-tutorial" target="_blank" rel="noopener">qrs-tutorial</a></p>
 <p>[3]. <a href="https://medium.com/@roszcz/machine-learning-for-medicine-qrs-detection-in-a-single-channel-ecg-signal-part-1-data-set-be36f70bbd38" target="_blank" rel="noopener">Machine Learning for medicine: QRS detection in a single channel ECG signal (Part 1: data-set creation)</a></p>
 
       
@@ -837,7 +846,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -846,7 +855,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

@@ -104,12 +104,12 @@
 <meta property="og:site_name" content="caoqi95&#39;blog">
 <meta property="og:description" content="Fast R-CNN 是 2015 年提出来的用于目标检测的一种方法。名字中带有 Fast 就可以看出，这篇论文改进了 R-CNN 的缺点，并加快了训练和测试过程的速度，同时 Fast R-CNN 还提高了目标检测的准确率。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://caoqi95.github.io/2019/02/08/论文阅读《Fast-R-CNN》/1.png">
+<meta property="og:image" content="http://caoqi95.github.io/2019/02/08/论文阅读《Fast-R-CNN》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8AFast-R-CNN%E3%80%8B/1.png">
 <meta property="og:updated_time" content="2019-02-08T13:42:49.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 《Fast R-CNN》">
 <meta name="twitter:description" content="Fast R-CNN 是 2015 年提出来的用于目标检测的一种方法。名字中带有 Fast 就可以看出，这篇论文改进了 R-CNN 的缺点，并加快了训练和测试过程的速度，同时 Fast R-CNN 还提高了目标检测的准确率。">
-<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/08/论文阅读《Fast-R-CNN》/1.png">
+<meta name="twitter:image" content="http://caoqi95.github.io/2019/02/08/论文阅读《Fast-R-CNN》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8AFast-R-CNN%E3%80%8B/1.png">
 
 
 
@@ -461,7 +461,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">536</span>
+                <span title="本文字数">543</span>
               
 
               
@@ -497,14 +497,15 @@
       
         <p><em>Fast R-CNN</em> 是 2015 年提出来的用于目标检测的一种方法。名字中带有 <em>Fast</em> 就可以看出，这篇论文改进了 <em>R-CNN</em> 的缺点，并加快了训练和测试过程的速度，同时 <em>Fast R-CNN</em> 还提高了目标检测的准确率。</p>
 <a id="more"></a>
+
 <p><em>Fast R-CNN</em> 有以下几个优点：</p>
 <ul>
-<li>比 _R-CNN_SPPnet_ 更高的检测质量（mAP）</li>
+<li>比 <em>R-CNN_SPPnet</em> 更高的检测质量（mAP）</li>
 <li>训练是单阶段的，且使用了多任务损失</li>
 <li>训练可以更新所有的网络层</li>
 <li>特征缓存不需要磁盘存储</li>
 </ul>
-<p><em>Fast R-CNN</em> 的架构如下图所示，输入的是整个图片以及一系列的 <em>object proposals</em>。首先，用卷积层和最大池化层作用于整个图像得到一个特征图。然后，对于每个 <em>object proposal</em>，<em>region of interest</em>（<em>ROI</em>）池化层从特征图中提取固定长度的特征向量。每个特征向量被送入多层全连接网络中。最后，全连接网络后面有两个输出分支，如图所示，一个分支是 <em>softmax</em> 层输出每个类别的概率评估，另一个分支是每个类别的边框回归。该网络架构是端到端训练的，并且使用了多任务损失。<br><img src="/2019/02/08/论文阅读《Fast-R-CNN》/1.png" alt=""></p>
+<p><em>Fast R-CNN</em> 的架构如下图所示，输入的是整个图片以及一系列的 _object proposals_。首先，用卷积层和最大池化层作用于整个图像得到一个特征图。然后，对于每个 _object proposal_，_region of interest_（_ROI_）池化层从特征图中提取固定长度的特征向量。每个特征向量被送入多层全连接网络中。最后，全连接网络后面有两个输出分支，如图所示，一个分支是 <em>softmax</em> 层输出每个类别的概率评估，另一个分支是每个类别的边框回归。该网络架构是端到端训练的，并且使用了多任务损失。<br><img src="/2019/02/08/论文阅读《Fast-R-CNN》/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8AFast-R-CNN%E3%80%8B/1.png"></p>
 <p>详细解说可以查看：<a href="https://blog.csdn.net/shenxiaolu1984/article/details/51036677" target="_blank" rel="noopener">https://blog.csdn.net/shenxiaolu1984/article/details/51036677</a></p>
 
       
@@ -785,7 +786,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -794,7 +795,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 

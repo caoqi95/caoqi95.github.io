@@ -471,7 +471,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.4k</span>
+                <span title="本文字数">3.5k</span>
               
 
               
@@ -513,12 +513,13 @@
 <li>计算时间复杂度</li>
 </ul>
 <a id="more"></a>
+
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
-<li><p><strong>时间频度</strong><br>在计算机中，不可能真正的去计算算法的每条语句的执行时间，只有真正上机测试才能知道大概时间。但是实际工作中，不可能把所有的算法都运行测试一遍，这不现实也浪费时间。我们只需要知道算法中主要部分的运行时间就可以了。我们都知道一个算法的运行时间与算法中语句的执行次数成正比，所以<strong>将一个算法中的语句的执行次数称为语句频度或时间频度，记为 T(n)</strong>。n 为问题的规模，时间频度会随着 n 的变化而变化。</p>
+<li><p><strong>时间频度</strong><br>在计算机中，不可能真正的去计算算法的每条语句的执行时间，只有真正上机测试才能知道大概时间。但是实际工作中，不可能把所有的算法都运行测试一遍，这不现实也浪费时间。我们只需要知道算法中主要部分的运行时间就可以了。我们都知道一个算法的运行时间与算法中语句的执行次数成正比，所以**将一个算法中的语句的执行次数称为语句频度或时间频度，记为 T(n)**。n 为问题的规模，时间频度会随着 n 的变化而变化。</p>
 </li>
-<li><p><strong>时间复杂度</strong><br>在计算机科学中，<strong>时间复杂度（Time Complexity）</strong>是一个定性描述运行算法所花费的时间的度量。<strong>常用大 O 表示法来度量时间复杂度，记为 T(n) = O(f(n))</strong>。</p>
+<li><p><strong>时间复杂度</strong><br>在计算机科学中，<strong>时间复杂度（Time Complexity）</strong>是一个定性描述运行算法所花费的时间的度量。**常用大 O 表示法来度量时间复杂度，记为 T(n) &#x3D; O(f(n))**。</p>
 <blockquote>
-<p>在时间频度 T(n) 中，n 又代表着问题的规模，当 n 不断变化时，T(n) 也会不断地随之变化。为了了解这个变化的规律，时间复杂度这一概念就被引入了。一般情况下算法基础操作的重复执行次数为问题规模 n 的某个函数，也就是时间频度 T(n)。如果有某个辅助函数 f(n)，当趋于无穷大的时候，T(n)/f(n) 的极限值是不为零的某个常数，那么 f(n) 是 T(n) 的同数量级函数，记作 T(n)=O(f(n))，被称为算法的渐进时间复杂度，又简称为时间复杂度。- 算法（一）时间复杂度<sup>[1]</sup></p>
+<p>在时间频度 T(n) 中，n 又代表着问题的规模，当 n 不断变化时，T(n) 也会不断地随之变化。为了了解这个变化的规律，时间复杂度这一概念就被引入了。一般情况下算法基础操作的重复执行次数为问题规模 n 的某个函数，也就是时间频度 T(n)。如果有某个辅助函数 f(n)，当趋于无穷大的时候，T(n)&#x2F;f(n) 的极限值是不为零的某个常数，那么 f(n) 是 T(n) 的同数量级函数，记作 T(n)&#x3D;O(f(n))，被称为算法的渐进时间复杂度，又简称为时间复杂度。- 算法（一）时间复杂度<sup>[1]</sup></p>
 </blockquote>
 </li>
 </ul>
@@ -526,7 +527,7 @@
 <blockquote>
 <p>Big O notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann, Edmund Landau, and others collectively called Bachmann–Landau notation or asymptotic notation.<br>大 O 表示法是一种数学符号，用于描述当参数趋向于特定值或无穷大时函数的限制行为。它是 Paul Bachmann，Edmund Landau 等人发明的一系列符号的之一，统称为巴赫曼 - 兰道符号或渐近符号。- 维基百科<sup>[4]</sup></p>
 </blockquote>
-<p>因为时间复杂度为 T(n)=O(f(n))，有个趋近函数 O()，所以被称为大 O 表示法。现在假设一个列表包含 n 个元素。我们用简单查找的话，需要遍历检查每一个元素，因此需要执行 n 次操作。使用大 O 表示法，其运行时间为 O(n)，f(n) = n 为操作数。这里需要注意的是，大 O 表示法是没有单位的，它指的并不是以秒为单位的运行时间。大 O 表示法能够用来比较操作数，通常它指的是算法运行时间的增速。比如，为检查长度为 8 的列表，用简单查找法的时间复杂度是 O(f(n))，f(n) = 8；如果用二分查找的话，时间复杂度是 O(f(n))，f(n) = log<sub>2</sub> 8 = 3。从计算结果上看来，几乎快了 3 倍。</p>
+<p>因为时间复杂度为 T(n)&#x3D;O(f(n))，有个趋近函数 O()，所以被称为大 O 表示法。现在假设一个列表包含 n 个元素。我们用简单查找的话，需要遍历检查每一个元素，因此需要执行 n 次操作。使用大 O 表示法，其运行时间为 O(n)，f(n) &#x3D; n 为操作数。这里需要注意的是，大 O 表示法是没有单位的，它指的并不是以秒为单位的运行时间。大 O 表示法能够用来比较操作数，通常它指的是算法运行时间的增速。比如，为检查长度为 8 的列表，用简单查找法的时间复杂度是 O(f(n))，f(n) &#x3D; 8；如果用二分查找的话，时间复杂度是 O(f(n))，f(n) &#x3D; log<sub>2</sub> 8 &#x3D; 3。从计算结果上看来，几乎快了 3 倍。</p>
 <p>还有一点需要注意的是，<strong>大 O 表示法描述的始终是最坏的情况</strong>。</p>
 <p>常见的一些大 O 运行时间有以下几种：</p>
 <ul>
@@ -538,12 +539,18 @@
 <li>O(n!)：阶乘时间，这是一种非常慢的算法</li>
 </ul>
 <h3 id="计算时间复杂度"><a href="#计算时间复杂度" class="headerlink" title="计算时间复杂度"></a>计算时间复杂度</h3><p>知道了大 O 表示法，那么实际的时间复杂度要怎么计算呢？下面举几个例子来说明。</p>
-<p><strong>O(1)</strong>：描述了一个算法不管输入的大小是多少，其时间复杂度永远为常数（不变）。比如，下方的例子，判断一个字符串 list 的首个元素是否为空。因为无论输入的 list 有多长，都只判断首字符是否为空，执行次数为 1，所以时间复杂度为 O(1)。</p>
+<p>**O(1)**：描述了一个算法不管输入的大小是多少，其时间复杂度永远为常数（不变）。比如，下方的例子，判断一个字符串 list 的首个元素是否为空。因为无论输入的 list 有多长，都只判断首字符是否为空，执行次数为 1，所以时间复杂度为 O(1)。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isFirstElementNull</span><span class="params">(str_list)</span>:</span></span><br><span class="line">        rerurn str_list[<span class="number">0</span>] == <span class="string">''</span></span><br></pre></td></tr></table></figure>
-<p><strong>O(n)</strong>：描述了一个算法的时间复杂度将随着算法输入的增加而线性增加。比如，下面的算法，判断一个字符串 list 是否包含某些子字符串值。虽然算法可能会很早的就停止循环，并不完全执行所有的迭代，但需记得大 O 表示法描述的是最坏的情况。如果一个算法最大迭代 n 次，那么其时间复杂度就是 O(n)。所以，下面函数的时间复杂度为 O(n)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainValue</span><span class="params">(str_list, value)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> str_list:</span><br><span class="line">        <span class="keyword">if</span> i == value:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>O(n<sup>2</sup>)</strong>：描述了一种算法，其时间复杂度与输入数据集的大小的平方成正比。这在涉及数据集的嵌套迭代的算法中很常见。更深的嵌套迭代将会有 O(n<sup>3</sup>)，O(n<sup>4</sup>) 等。比如，下面的代码是两层迭代，按照最坏的打算，迭代总次数为 ixj，是两个数的相乘，可以直接表示为 nxn，即 n 的平方。所以，时间复杂度可以表示为 O(n<sup>2</sup>)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainDuplicates</span><span class="params">(str_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str_list)): <span class="comment"># 最多迭代 i 次</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str_list): <span class="comment"># 最多迭代 j 次</span></span><br><span class="line">            <span class="keyword">if</span> i != j <span class="keyword">and</span> str_list[i] = str_list[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>O(log<sub>2</sub>n)</strong>：描述的是一种二分查找的时间复杂度。二分查找是一种算法，其输入是一个有序的元素列表。如果要查找的元素包含在列表中，二分查找返回其位置；否则返回 null 。比如，要猜测 1-100 中的一个数字。二分查找将每次迭代的数据集减半，直到找到该值，或者直到它不再分割数据集为止。 迭代中的数据集大小依次有 n，n/2，n/4，….，n/2<sup>k</sup>（k 为循环的次数）。因为最后结果 n/2<sup>k</sup> &gt;= 1。如果令 n/2<sup>k</sup> = 1，将得到 k = log<sub>2</sub>n。所以，二分查找的时间复杂度为 O(log<sub>2</sub>n)。</p>
+
+<p>**O(n)**：描述了一个算法的时间复杂度将随着算法输入的增加而线性增加。比如，下面的算法，判断一个字符串 list 是否包含某些子字符串值。虽然算法可能会很早的就停止循环，并不完全执行所有的迭代，但需记得大 O 表示法描述的是最坏的情况。如果一个算法最大迭代 n 次，那么其时间复杂度就是 O(n)。所以，下面函数的时间复杂度为 O(n)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainValue</span><span class="params">(str_list, value)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> str_list:</span><br><span class="line">        <span class="keyword">if</span> i == value:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+
+<p>**O(n<sup>2</sup>)**：描述了一种算法，其时间复杂度与输入数据集的大小的平方成正比。这在涉及数据集的嵌套迭代的算法中很常见。更深的嵌套迭代将会有 O(n<sup>3</sup>)，O(n<sup>4</sup>) 等。比如，下面的代码是两层迭代，按照最坏的打算，迭代总次数为 ixj，是两个数的相乘，可以直接表示为 nxn，即 n 的平方。所以，时间复杂度可以表示为 O(n<sup>2</sup>)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isContainDuplicates</span><span class="params">(str_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str_list)): <span class="comment"># 最多迭代 i 次</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(str_list): <span class="comment"># 最多迭代 j 次</span></span><br><span class="line">            <span class="keyword">if</span> i != j <span class="keyword">and</span> str_list[i] = str_list[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+
+<p>**O(log<sub>2</sub>n)**：描述的是一种二分查找的时间复杂度。二分查找是一种算法，其输入是一个有序的元素列表。如果要查找的元素包含在列表中，二分查找返回其位置；否则返回 null 。比如，要猜测 1-100 中的一个数字。二分查找将每次迭代的数据集减半，直到找到该值，或者直到它不再分割数据集为止。 迭代中的数据集大小依次有 n，n&#x2F;2，n&#x2F;4，….，n&#x2F;2<sup>k</sup>（k 为循环的次数）。因为最后结果 n&#x2F;2<sup>k</sup> &gt;&#x3D; 1。如果令 n&#x2F;2<sup>k</sup> &#x3D; 1，将得到 k &#x3D; log<sub>2</sub>n。所以，二分查找的时间复杂度为 O(log<sub>2</sub>n)。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(list, item)</span>:</span></span><br><span class="line">    </span><br><span class="line">    low = <span class="number">0</span> </span><br><span class="line">    high = len(list) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high :</span><br><span class="line">        mid = (low + high) % <span class="number">2</span> </span><br><span class="line">        guess = list[mid]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> guess == item:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">if</span> guess &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            low = mid + <span class="number">1</span> </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>[1]. <a href="https://juejin.im/post/58d15f1044d90400691834d4" target="_blank" rel="noopener">算法（一）时间复杂度</a></p>
 <p>[2]. 算法图解 - Aditya Bhargava</p>
 <p>[3]. <a href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" target="_blank" rel="noopener">A beginner’s guide to Big O notation</a></p>
@@ -855,7 +862,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">129k</span>
+    <span title="站点总字数">155k</span>
   
 
   
@@ -864,7 +871,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:21</span>
   
 </div>
 
